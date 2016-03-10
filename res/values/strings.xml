@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">AutoSetting</string>
+    <string name="text_usb_mode">USB模式</string>
+
+</resources>
