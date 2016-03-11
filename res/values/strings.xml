@@ -3,5 +3,6 @@
 
     <string name="app_name">AutoSetting</string>
     <string name="text_usb_mode">USB模式</string>
+    <string name="text_hint">[说明]\n音频通道：\n0-系统到喇叭 \n1-蓝牙到喇叭 \n2-系统到FM \n3-BT到FM\n\nUSB/UVC切换节点:\n40-USB \n41-UVC</string>
 
 </resources>

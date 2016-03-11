@@ -33,6 +33,11 @@ public class SettingUtil {
 	private static File nodeUsbUvcSwitch = new File(
 			Constant.Path.NODE_USB_UVC_SWITCH);
 
+	public static void writeUsbMode(String content) {
+		MyLog.v("[SettingUtil]writeUsbMode:" + content);
+		SaveFileToNode(nodeUsbUvcSwitch, content);
+	}
+
 	public static void setUsbMode(boolean isUsbOn) {
 		MyLog.v("[SettingUtil]setUsbMode:" + isUsbOn);
 		SaveFileToNode(nodeUsbUvcSwitch, isUsbOn ? "40" : "41");

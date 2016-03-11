@@ -4,15 +4,19 @@ import com.tchip.autosetting.util.SettingUtil;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.Toast;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.EditText;
 import android.widget.Switch;
 
 public class MainActivity extends Activity {
 
 	private Switch switchUSB;
+	private EditText textInput;
+	private Button btnSet;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,5 +37,33 @@ public class MainActivity extends Activity {
 				SettingUtil.setUsbMode(isChecked);
 			}
 		});
+
+		textInput = (EditText) findViewById(R.id.textInput);
+		btnSet = (Button) findViewById(R.id.btnSet);
+		btnSet.setOnClickListener(new MyOnClickListener());
+	}
+
+	class MyOnClickListener implements View.OnClickListener {
+
+		@Override
+		public void onClick(View v) {
+			switch (v.getId()) {
+			case R.id.btnSet:
+				String strContent = textInput.getText().toString();
+				if (strContent.trim().length() > 0 && strContent != null) {
+					SettingUtil.writeUsbMode(strContent);
+				} else {
+					Toast.makeText(MainActivity.this, "请输入", Toast.LENGTH_SHORT)
+							.show();
+				}
+
+				break;
+
+			default:
+				break;
+			}
+
+		}
+
 	}
 }

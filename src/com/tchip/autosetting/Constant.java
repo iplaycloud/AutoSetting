@@ -35,8 +35,13 @@ public interface Constant {
 		/** 字体目录 */
 		public static final String FONT = "fonts/";
 
-		/** USB/UVC切换节点:40-USB 41-UVC */
+		/**
+		 * USB/UVC切换节点:40-USB 41-UVC
+		 * 
+		 * 音频通道：0-系统到喇叭 1-蓝牙到喇叭 2-系统到FM 3-BT到FM
+		 */
 		public static final String NODE_USB_UVC_SWITCH = "/sys/bus/i2c/devices/0-007f/Spk_Choose_Num";
+
 	}
 
 }
