@@ -42,6 +42,12 @@ public interface Constant {
 		 */
 		public static final String NODE_USB_UVC_SWITCH = "/sys/bus/i2c/devices/0-007f/Spk_Choose_Num";
 
+		/** FM开关:0-下电 1-上电 */
+		public static final String NODE_FM_ENABLE = "/sys/bus/i2c/devices/2-0011/enable_si4712";
+
+		/** FM频率 */
+		public static final String NODE_FM_FREQUENCY = "/sys/bus/i2c/devices/2-0011/setch_si4712";
+
 	}
 
 }

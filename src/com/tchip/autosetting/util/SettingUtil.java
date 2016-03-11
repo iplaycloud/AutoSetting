@@ -33,6 +33,19 @@ public class SettingUtil {
 	private static File nodeUsbUvcSwitch = new File(
 			Constant.Path.NODE_USB_UVC_SWITCH);
 
+	private static File nodeFMEnable = new File(Constant.Path.NODE_FM_ENABLE);
+	private static File nodeFMFrequency = new File(
+			Constant.Path.NODE_FM_FREQUENCY);
+
+	public static void setFMEnable(boolean isFmOn) {
+		MyLog.v("[SettingUtil]setFMEnable:" + isFmOn);
+		SaveFileToNode(nodeFMEnable, isFmOn ? "1" : "0");
+	}
+
+	public static boolean isFMEnable() {
+		return getFileInt(nodeFMEnable) == 1;
+	}
+
 	public static void writeUsbMode(String content) {
 		MyLog.v("[SettingUtil]writeUsbMode:" + content);
 		SaveFileToNode(nodeUsbUvcSwitch, content);

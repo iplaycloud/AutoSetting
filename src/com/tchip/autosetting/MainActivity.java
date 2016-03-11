@@ -14,7 +14,7 @@ import android.widget.Switch;
 
 public class MainActivity extends Activity {
 
-	private Switch switchUSB;
+	private Switch switchFM;
 	private EditText textInput;
 	private Button btnSet;
 
@@ -27,14 +27,14 @@ public class MainActivity extends Activity {
 	}
 
 	private void initialLayout() {
-		switchUSB = (Switch) findViewById(R.id.switchUSB);
-		switchUSB.setChecked(SettingUtil.isUsbMode());
-		switchUSB.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+		switchFM = (Switch) findViewById(R.id.switchFM);
+		switchFM.setChecked(SettingUtil.isFMEnable());
+		switchFM.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView,
 					boolean isChecked) {
-				SettingUtil.setUsbMode(isChecked);
+				SettingUtil.setFMEnable(isChecked);
 			}
 		});
 
