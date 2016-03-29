@@ -31,11 +31,23 @@ import android.telephony.TelephonyManager;
 public class SettingUtil {
 
 	private static File nodeUsbUvcSwitch = new File(
-			Constant.Path.NODE_USB_UVC_SWITCH);
+			Constant.Path.NODE_SWITCH_USB_UVC);
+
+	private static File nodeSwitchAudio = new File(
+			Constant.Path.NODE_SWITCH_AUDIO);
 
 	private static File nodeFMEnable = new File(Constant.Path.NODE_FM_ENABLE);
 	private static File nodeFMFrequency = new File(
 			Constant.Path.NODE_FM_FREQUENCY);
+
+	public static void setUVCEnable(boolean isUVCOn) {
+		MyLog.v("[SettingUtil]setFMEnable:" + isUVCOn);
+		SaveFileToNode(nodeUsbUvcSwitch, isUVCOn ? "1" : "0");
+	}
+
+	public static boolean isUVCEnable() {
+		return getFileInt(nodeUsbUvcSwitch) == 1;
+	}
 
 	public static void setFMEnable(boolean isFmOn) {
 		MyLog.v("[SettingUtil]setFMEnable:" + isFmOn);
@@ -46,9 +58,9 @@ public class SettingUtil {
 		return getFileInt(nodeFMEnable) == 1;
 	}
 
-	public static void writeUsbMode(String content) {
-		MyLog.v("[SettingUtil]writeUsbMode:" + content);
-		SaveFileToNode(nodeUsbUvcSwitch, content);
+	public static void writeAudioNode(String content) {
+		MyLog.v("[SettingUtil]writeAudioNode:" + content);
+		SaveFileToNode(nodeSwitchAudio, content);
 	}
 
 	public static void setUsbMode(boolean isUsbOn) {
@@ -56,7 +68,7 @@ public class SettingUtil {
 		SaveFileToNode(nodeUsbUvcSwitch, isUsbOn ? "40" : "41");
 	}
 
-	public static boolean isUsbMode() {
+	private static boolean isUsbMode() {
 
 		int fileValue = 0;
 		String strValue = "";
@@ -122,10 +134,11 @@ public class SettingUtil {
 					output.close();
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
-					MyLog.e("SaveFileToNode:output error");
+					MyLog.e("[SaveFileToNode]FileNotFoundException:"
+							+ e.toString());
 				}
 			} catch (IOException e) {
-				MyLog.e("SaveFileToNode:IO Exception");
+				MyLog.e("[SaveFileToNode]IOException:" + e.toString());
 			}
 		} else {
 			MyLog.e("SaveFileToNode:File:" + file + "not exists");

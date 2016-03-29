@@ -36,11 +36,14 @@ public interface Constant {
 		public static final String FONT = "fonts/";
 
 		/**
-		 * USB/UVC切换节点:40-USB 41-UVC
+		 * 
 		 * 
 		 * 音频通道：0-系统到喇叭 1-蓝牙到喇叭 2-系统到FM 3-BT到FM
 		 */
-		public static final String NODE_USB_UVC_SWITCH = "/sys/bus/i2c/devices/0-007f/Spk_Choose_Num";
+		public static final String NODE_SWITCH_AUDIO = "/sys/bus/i2c/devices/0-007f/Spk_Choose_Num";
+
+		/** USB/UVC切换节点:0-USB 1-UVC */
+		public static final String NODE_SWITCH_USB_UVC = "/sys/bus/i2c/devices/0-007f/Connect_To_PC";
 
 		/** FM开关:0-下电 1-上电 */
 		public static final String NODE_FM_ENABLE = "/sys/bus/i2c/devices/2-0011/enable_si4712";

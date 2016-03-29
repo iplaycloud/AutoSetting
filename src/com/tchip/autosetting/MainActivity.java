@@ -15,6 +15,7 @@ import android.widget.Switch;
 public class MainActivity extends Activity {
 
 	private Switch switchFM;
+	private Switch switchUVC;
 	private EditText textInput;
 	private Button btnSet;
 
@@ -38,6 +39,17 @@ public class MainActivity extends Activity {
 			}
 		});
 
+		switchUVC = (Switch) findViewById(R.id.switchUVC);
+		switchUVC.setChecked(SettingUtil.isUVCEnable());
+		switchUVC.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView,
+					boolean isChecked) {
+				SettingUtil.setUVCEnable(isChecked);
+			}
+		});
+
 		textInput = (EditText) findViewById(R.id.textInput);
 		btnSet = (Button) findViewById(R.id.btnSet);
 		btnSet.setOnClickListener(new MyOnClickListener());
@@ -51,7 +63,7 @@ public class MainActivity extends Activity {
 			case R.id.btnSet:
 				String strContent = textInput.getText().toString();
 				if (strContent.trim().length() > 0 && strContent != null) {
-					SettingUtil.writeUsbMode(strContent);
+					SettingUtil.writeAudioNode(strContent);
 				} else {
 					Toast.makeText(MainActivity.this, "请输入", Toast.LENGTH_SHORT)
 							.show();
