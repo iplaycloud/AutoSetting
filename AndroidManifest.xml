@@ -59,6 +59,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.tchip.autosetting.QuickSettingActivity"
+            android:theme="@style/ThemeQuickSettingDialog" 
+            android:exported="true" />
     </application>
 
 </manifest>

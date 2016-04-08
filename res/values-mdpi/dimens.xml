@@ -1,0 +1,12 @@
+<resources>
+
+    <!-- Quick Setting -->
+    <dimen name="quick_setting_total_width">830dp</dimen>
+    <dimen name="quick_setting_total_height">372dp</dimen>
+    <dimen name="quick_setting_icon_edge_length">84dp</dimen>
+    <dimen name="quick_setting_layout_switch_margin_top">36dp</dimen>
+    <dimen name="quick_setting_bright_seekbar_margin_top">54dp</dimen>
+    <dimen name="quick_setting_volume_seekbar_margin_top">42dp</dimen>
+    <dimen name="quick_setting_seekbar_icon_margin_left">60dp</dimen>
+
+</resources>

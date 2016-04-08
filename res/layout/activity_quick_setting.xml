@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/quick_setting_total_width"
+    android:layout_height="@dimen/quick_setting_total_height"
+    android:background="@drawable/shape_quick_setting_bg"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/quick_setting_layout_switch_margin_top"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:id="@+id/imageWifi"
+            android:layout_width="@dimen/quick_setting_icon_edge_length"
+            android:layout_height="@dimen/quick_setting_icon_edge_length"
+            android:layout_weight="1"
+            android:src="@drawable/quick_setting_wifi_off" />
+
+        <ImageView
+            android:id="@+id/imageData"
+            android:layout_width="@dimen/quick_setting_icon_edge_length"
+            android:layout_height="@dimen/quick_setting_icon_edge_length"
+            android:layout_weight="1"
+            android:src="@drawable/quick_setting_data_on" />
+
+        <ImageView
+            android:id="@+id/imageBluetooth"
+            android:layout_width="@dimen/quick_setting_icon_edge_length"
+            android:layout_height="@dimen/quick_setting_icon_edge_length"
+            android:layout_weight="1"
+            android:src="@drawable/quick_setting_bluetooth_off" />
+
+        <ImageView
+            android:id="@+id/imageGPS"
+            android:layout_width="@dimen/quick_setting_icon_edge_length"
+            android:layout_height="@dimen/quick_setting_icon_edge_length"
+            android:layout_weight="1"
+            android:src="@drawable/quick_setting_gps_on" />
+
+        <ImageView
+            android:id="@+id/imageAirplane"
+            android:layout_width="@dimen/quick_setting_icon_edge_length"
+            android:layout_height="@dimen/quick_setting_icon_edge_length"
+            android:layout_weight="1"
+            android:src="@drawable/quick_setting_airplane_off" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/quick_setting_seekbar_icon_margin_left"
+        android:layout_marginTop="@dimen/quick_setting_bright_seekbar_margin_top" >
+
+        <ImageView
+            android:id="@+id/imageBrightness"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/quick_setting_brightness" />
+
+        <SeekBar
+            android:id="@+id/seekBarBrightness"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="5dp"
+            android:layout_toRightOf="@id/imageBrightness"
+            android:max="250" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/quick_setting_seekbar_icon_margin_left"
+        android:layout_marginTop="@dimen/quick_setting_volume_seekbar_margin_top" >
+
+        <ImageView
+            android:id="@+id/imageVolumeIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/quick_setting_volume" />
+
+        <SeekBar
+            android:id="@+id/seekBarVolume"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="5dp"
+            android:layout_toRightOf="@id/imageVolumeIcon"
+            android:max="15" />
+    </RelativeLayout>
+
+</LinearLayout>

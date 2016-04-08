@@ -41,4 +41,11 @@
         android:layout_below="@id/btnSet"
         android:text="@string/text_hint" />
 
+    <Button
+        android:id="@+id/btnQuickSetting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textHint"
+        android:text="Quick Setting" />
+
 </RelativeLayout>
