@@ -1,4 +1,4 @@
-package com.tchip.autosetting;
+package com.tchip.autosetting.ui;
 
 import com.tchip.autosetting.R;
 

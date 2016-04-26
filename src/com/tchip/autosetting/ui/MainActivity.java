@@ -1,5 +1,8 @@
-package com.tchip.autosetting;
+package com.tchip.autosetting.ui;
 
+import com.tchip.autosetting.R;
+import com.tchip.autosetting.R.id;
+import com.tchip.autosetting.R.layout;
 import com.tchip.autosetting.util.OpenUtil;
 import com.tchip.autosetting.util.SettingUtil;
 import com.tchip.autosetting.util.OpenUtil.MODULE_TYPE;
@@ -22,6 +25,9 @@ public class MainActivity extends Activity {
 	private Switch switchUVC;
 	private EditText textInput;
 	private Button btnSet;
+	private Button itemSystemSetting; // 系统设置
+	private Button itemAbout, itemDeviceTest, itemEngineerMode, itemApp,
+			itemDataUsage,itemDate;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +70,27 @@ public class MainActivity extends Activity {
 
 		Button btnQuickSetting = (Button) findViewById(R.id.btnQuickSetting);
 		btnQuickSetting.setOnClickListener(myOnClickListener);
+
+		itemSystemSetting = (Button) findViewById(R.id.itemSystemSetting);
+		itemSystemSetting.setOnClickListener(myOnClickListener);
+
+		itemAbout = (Button) findViewById(R.id.itemAbout);
+		itemAbout.setOnClickListener(myOnClickListener);
+
+		itemDeviceTest = (Button) findViewById(R.id.itemDeviceTest);
+		itemDeviceTest.setOnClickListener(myOnClickListener);
+
+		itemEngineerMode = (Button) findViewById(R.id.itemEngineerMode);
+		itemEngineerMode.setOnClickListener(myOnClickListener);
+
+		itemApp = (Button) findViewById(R.id.itemApp);
+		itemApp.setOnClickListener(myOnClickListener);
+
+		itemDataUsage = (Button) findViewById(R.id.itemDataUsage);
+		itemDataUsage.setOnClickListener(myOnClickListener);
+		
+		itemDate = (Button) findViewById(R.id.itemDate);
+		itemDate.setOnClickListener(myOnClickListener);
 	}
 
 	class MyOnClickListener implements View.OnClickListener {
@@ -84,6 +111,38 @@ public class MainActivity extends Activity {
 			case R.id.btnQuickSetting:
 				OpenUtil.openModule(MainActivity.this,
 						MODULE_TYPE.QUICK_SETTING);
+				break;
+
+			case R.id.itemSystemSetting:
+				OpenUtil.openModule(MainActivity.this,
+						MODULE_TYPE.SETTING_SYSTEM);
+				break;
+
+			case R.id.itemAbout:
+				OpenUtil.openModule(MainActivity.this,
+						MODULE_TYPE.SETTING_ABOUT);
+				break;
+
+			case R.id.itemDeviceTest:
+				OpenUtil.openModule(MainActivity.this, MODULE_TYPE.DEVICE_TEST);
+				break;
+
+			case R.id.itemEngineerMode:
+				OpenUtil.openModule(MainActivity.this,
+						MODULE_TYPE.ENGINEER_MODE);
+				break;
+
+			case R.id.itemApp:
+				OpenUtil.openModule(MainActivity.this, MODULE_TYPE.SETTING_APP);
+				break;
+
+			case R.id.itemDataUsage:
+				OpenUtil.openModule(MainActivity.this,
+						MODULE_TYPE.SETTING_DATA_USAGE);
+				break;
+
+			case R.id.itemDate:
+				OpenUtil.openModule(MainActivity.this, MODULE_TYPE.SETTING_DATE);
 				break;
 
 			default:

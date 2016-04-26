@@ -1,6 +1,6 @@
 package com.tchip.autosetting.util;
 
-import com.tchip.autosetting.QuickSettingActivity;
+import com.tchip.autosetting.ui.QuickSettingActivity;
 
 import android.app.Activity;
 import android.content.ComponentName;

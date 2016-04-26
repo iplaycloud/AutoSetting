@@ -3,49 +3,99 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <Switch
-        android:id="@+id/switchFM"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:checked="false"
-        android:textOff="FM关闭"
-        android:textOn="FM开启" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
 
-    <Switch
-        android:id="@+id/switchUVC"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/switchFM"
-        android:checked="false"
-        android:textOff="USB模式"
-        android:textOn="UVC模式" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
-    <EditText
-        android:id="@+id/textInput"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/switchUVC"
-        android:hint="请输入音频通道" />
+            <Switch
+                android:id="@+id/switchFM"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:textOff="FM关闭"
+                android:textOn="FM开启" />
 
-    <Button
-        android:id="@+id/btnSet"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textInput"
-        android:text="设置" />
+            <Switch
+                android:id="@+id/switchUVC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:textOff="USB模式"
+                android:textOn="UVC模式" />
 
-    <TextView
-        android:id="@+id/textHint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/btnSet"
-        android:text="@string/text_hint" />
+            <EditText
+                android:id="@+id/textInput"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="请输入音频通道" />
 
-    <Button
-        android:id="@+id/btnQuickSetting"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textHint"
-        android:text="Quick Setting" />
+            <Button
+                android:id="@+id/btnSet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textInput"
+                android:text="设置" />
+
+            <TextView
+                android:id="@+id/textHint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btnSet"
+                android:text="@string/text_hint" />
+
+            <Button
+                android:id="@+id/btnQuickSetting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quick Setting" />
+
+            <Button
+                android:id="@+id/itemSystemSetting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="系统设置" />
+
+            <Button
+                android:id="@+id/itemAbout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="关于" />
+
+            <Button
+                android:id="@+id/itemDeviceTest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="工厂测试" />
+
+            <Button
+                android:id="@+id/itemEngineerMode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="工程模式" />
+
+            <Button
+                android:id="@+id/itemApp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="应用" />
+
+            <Button
+                android:id="@+id/itemDataUsage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="流量使用情况" />
+
+            <Button
+                android:id="@+id/itemDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="日期和时间" />
+        </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>

@@ -51,7 +51,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MainActivity"
+            android:name="com.tchip.autosetting.ui.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -60,7 +60,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.tchip.autosetting.QuickSettingActivity"
+            android:name="com.tchip.autosetting.ui.QuickSettingActivity"
             android:theme="@style/ThemeQuickSettingDialog" 
             android:exported="true" />
     </application>
