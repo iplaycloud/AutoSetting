@@ -12,12 +12,18 @@ public class OpenUtil {
 
 		/** 设置 */
 		AUTO_SETTING,
+		
+		/** 性能监视器 */
+		CPU_INFO,
 
 		/** 设备测试 */
 		DEVICE_TEST,
 
 		/** 工程模式 */
 		ENGINEER_MODE,
+
+		/** MTKLogger */
+		MTK_LOGGER,
 
 		/** 快速设置 */
 		QUICK_SETTING,
@@ -69,10 +75,18 @@ public class OpenUtil {
 				case AUTO_SETTING:
 					ComponentName componentSetting = new ComponentName(
 							"com.tchip.autosetting",
-							"com.tchip.autosetting.MainActivity");
+							"com.tchip.autosetting.ui.MainActivity");
 					Intent intentSetting = new Intent();
 					intentSetting.setComponent(componentSetting);
 					activity.startActivity(intentSetting);
+					break;
+					
+				case CPU_INFO:
+					Intent intentCPUInfo = new Intent(Intent.ACTION_VIEW);
+					intentCPUInfo.setClassName("eu.chainfire.perfmon",
+							"com.common.activity.MainActivity");
+					intentCPUInfo.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					activity.startActivity(intentCPUInfo);
 					break;
 
 				case DEVICE_TEST:
@@ -90,6 +104,15 @@ public class OpenUtil {
 							"com.mediatek.engineermode.EngineerMode");
 					intentEngineerMode.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					activity.startActivity(intentEngineerMode);
+					break;
+
+				case MTK_LOGGER:
+					Intent intentMtkLogger = new Intent(Intent.ACTION_VIEW);
+					intentMtkLogger.setClassName("com.mediatek.mtklogger",
+							"com.mediatek.mtklogger.MainActivity");
+					intentMtkLogger.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					activity.startActivity(intentMtkLogger);
+
 					break;
 
 				case QUICK_SETTING:
@@ -118,6 +141,9 @@ public class OpenUtil {
 					activity.startActivity(new Intent(
 							android.provider.Settings.ACTION_DATE_SETTINGS));
 					break;
+					
+				case SETTING_DISPLAY:
+					break;
 
 				case SETTING_FM:
 					activity.startActivity(new Intent(
@@ -127,6 +153,9 @@ public class OpenUtil {
 				case SETTING_LOCATION:
 					activity.startActivity(new Intent(
 							android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+					break;
+					
+				case SETTING_VOLUME:
 					break;
 
 				case SETTING_RESET:

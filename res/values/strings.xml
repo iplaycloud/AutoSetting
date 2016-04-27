@@ -5,4 +5,19 @@
     <string name="text_usb_mode">USB模式</string>
     <string name="text_hint">[说明]\n音频通道：\n0-系统到喇叭 \n1-蓝牙到喇叭 \n2-系统到FM \n3-BT到FM</string>
 
+    <!-- Title -->
+    <string name="title_display">显示</string>
+    <string name="title_sound">声音</string>
+    <string name="title_wifi">Wi-Fi</string>
+    <string name="title_wifi_ap">热点分享</string>
+    <string name="title_traffic_status">流量使用情况</string>
+    <string name="title_apn">APN设置</string>
+    <string name="title_crash">碰撞侦测</string>
+    <string name="title_park_monitor">停车守卫</string>
+    <string name="title_usb">USB连接设置</string>
+    <string name="title_date_time">日期和时间</string>
+    <string name="title_reset">恢复出厂设置</string>
+    <string name="title_ota">系统升级</string>
+    <string name="title_about">关于设备</string>
+
 </resources>

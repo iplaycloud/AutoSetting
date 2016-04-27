@@ -26,6 +26,9 @@ public interface Constant {
 
 		/** 进入MagicActivity的密码 */
 		public static final String MagicCode = "55555";
+		
+		/** 是否有APN设置 */
+		public static final boolean hasAPNSetting = true;
 
 	}
 
@@ -36,8 +39,6 @@ public interface Constant {
 		public static final String FONT = "fonts/";
 
 		/**
-		 * 
-		 * 
 		 * 音频通道：0-系统到喇叭 1-蓝牙到喇叭 2-系统到FM 3-BT到FM
 		 */
 		public static final String NODE_SWITCH_AUDIO = "/sys/bus/i2c/devices/0-007f/Spk_Choose_Num";
