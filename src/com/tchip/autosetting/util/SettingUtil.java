@@ -21,6 +21,8 @@ import com.tchip.autosetting.Constant;
 import android.app.KeyguardManager;
 import android.app.KeyguardManager.KeyguardLock;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.PowerManager;
@@ -96,6 +98,41 @@ public class SettingUtil {
 
 		return fileValue == 40;
 	}
+	
+	/**
+	 * 调整系统亮度
+	 * 
+	 * @param brightness
+	 */
+	public static void setBrightness(Context context, int brightness) {
+		if (brightness <= Constant.Setting.MAX_BRIGHTNESS && brightness > -1) {
+			boolean setSuccess = Settings.System.putInt(
+					context.getContentResolver(),
+					Settings.System.SCREEN_BRIGHTNESS, brightness);
+			MyLog.v("[SettingUtil]setBrightness: " + brightness + ", "
+					+ setSuccess);
+
+			SharedPreferences sharedPreferences = context.getSharedPreferences(
+					Constant.MySP.NAME, Context.MODE_PRIVATE);
+			Editor editor = sharedPreferences.edit();
+
+			editor.putInt(Constant.MySP.STR_MANUL_LIGHT_VALUE, brightness);
+			editor.commit();
+		}
+	}
+
+	public static int getBrightness(Context context) {
+		try {
+			int nowBrightness = Settings.System.getInt(
+					context.getContentResolver(),
+					Settings.System.SCREEN_BRIGHTNESS);
+			MyLog.v("[SettingUtil]nowBrightness:" + nowBrightness);
+			return nowBrightness;
+		} catch (SettingNotFoundException e) {
+			e.printStackTrace();
+			return Constant.Setting.DEFAULT_BRIGHTNESS;
+		}
+	}
 
 	public static void setScreenOffTime(Context context, int time) {
 		boolean isSuccess = Settings.System.putInt(
@@ -168,7 +205,7 @@ public class SettingUtil {
 				.getSystemService(Context.KEYGUARD_SERVICE);
 
 		// 参数是LogCat里用的Tag
-		KeyguardLock kl = km.newKeyguardLock("ZMS");
+		KeyguardLock kl = km.newKeyguardLock("AZ");
 
 		kl.disableKeyguard();
 	}

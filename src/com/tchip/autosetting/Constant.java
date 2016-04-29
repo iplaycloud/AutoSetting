@@ -11,6 +11,12 @@ public interface Constant {
 		/** 名称 */
 		public static final String NAME = "AutoSetting";
 
+		/** 停车侦测是否打开[boolean:true] */
+		public static final String STR_PARKING_ON = "parkingOn";
+
+		/** 手动设置的亮度[int] */
+		public static final String STR_MANUL_LIGHT_VALUE = "manulLightValue";
+
 	}
 
 	/** 广播 */
@@ -20,15 +26,46 @@ public interface Constant {
 
 	public static final class Setting {
 
+		/** 最大亮度 */
+		public static final int MAX_BRIGHTNESS = 196; // 255;
+
+		/** 默认亮度 */
+		public static final int DEFAULT_BRIGHTNESS = 180;
+
+		/** Camera自动调节亮度是否打开 */
+		public static final boolean AUTO_BRIGHT_DEFAULT_ON = false;
 	}
 
 	public static final class Module {
 
 		/** 进入MagicActivity的密码 */
 		public static final String MagicCode = "55555";
-		
+
 		/** 是否有APN设置 */
 		public static final boolean hasAPNSetting = true;
+
+	}
+
+	public static final class GravitySensor {
+		/**
+		 * 碰撞侦测是否默认打开
+		 */
+		public static final boolean DEFAULT_ON = true;
+
+		/**
+		 * 碰撞侦测默认灵敏度Level
+		 */
+		public static final float VALUE = 9.8f;
+
+		public static final int SENSITIVE_LOW = 0;
+		public static final int SENSITIVE_MIDDLE = 1;
+		public static final int SENSITIVE_HIGH = 2;
+		public static final int SENSITIVE_DEFAULT = SENSITIVE_MIDDLE;
+
+		public static final float VALUE_LOW = VALUE * 1.8f;
+		public static final float VALUE_MIDDLE = VALUE * 1.5f;
+		public static final float VALUE_HIGH = VALUE * 1;
+		public static final float VALUE_DEFAULT = VALUE_MIDDLE;
 
 	}
 

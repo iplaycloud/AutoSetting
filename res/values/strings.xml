@@ -20,4 +20,17 @@
     <string name="title_ota">系统升级</string>
     <string name="title_about">关于设备</string>
 
+    <!-- Gravity -->
+    <string name="title_setting_gravity">系统设置-碰撞侦测灵敏度</string>
+    <string name="setting_gravity_hint">设置合适的灵敏度：\n过低较难触发视频加锁，过高则容易导致误判</string>
+    
+    <!-- Display -->
+    <string name="display_auto_adjust">亮度自动调节</string>
+    <string name="display_auto_dim">屏幕自动关闭</string>
+    <string name="display_time_30s">30秒</string>
+    <string name="display_time_1m">1分</string>
+    <string name="display_time_2m">2分</string>
+    <string name="display_time_10m">10分</string>
+    <string name="display_time_forever">永不休眠</string>
+
 </resources>
