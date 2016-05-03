@@ -1,6 +1,9 @@
 package com.tchip.autosetting.util;
 
 import com.tchip.autosetting.ui.QuickSettingActivity;
+import com.tchip.autosetting.ui.SettingGravityActivity;
+import com.tchip.autosetting.ui.SettingSystemDisplayActivity;
+import com.tchip.autosetting.ui.SettingSystemVolumeActivity;
 
 import android.app.Activity;
 import android.content.ComponentName;
@@ -10,11 +13,20 @@ public class OpenUtil {
 
 	public enum MODULE_TYPE {
 
+		/** 关于 */
+		ABOUT,
+
+		/** APN */
+		APN,
+
 		/** 设置 */
 		AUTO_SETTING,
-		
+
 		/** 性能监视器 */
 		CPU_INFO,
+
+		/** 碰撞侦测(视频加锁) */
+		CRASH,
 
 		/** 设备测试 */
 		DEVICE_TEST,
@@ -28,38 +40,41 @@ public class OpenUtil {
 		/** 快速设置 */
 		QUICK_SETTING,
 
-		/** 关于 */
-		SETTING_ABOUT,
-
 		/** 应用 */
-		SETTING_APP,
+		APP,
 
 		/** 流量使用情况 */
-		SETTING_DATA_USAGE,
+		DATA_USAGE,
 
 		/** 日期和时间 */
-		SETTING_DATE,
+		DATE,
 
 		/** 显示设置 */
-		SETTING_DISPLAY,
+		DISPLAY,
 
 		/** FM发射设置 */
-		SETTING_FM,
+		FM,
 
 		/** 位置 */
-		SETTING_LOCATION,
+		LOCATION,
+
+		/** USB */
+		USB,
 
 		/** 音量设置 */
-		SETTING_VOLUME,
+		VOLUME,
+
+		/** OTA */
+		OTA,
 
 		/** 备份和重置 */
-		SETTING_RESET,
+		RESET,
 
 		/** 存储设置 */
-		SETTING_STORAGE,
+		STORAGE,
 
 		/** 系统设置 */
-		SETTING_SYSTEM,
+		SYSTEM_SETTING,
 
 		/** Wi-Fi */
 		WIFI,
@@ -68,10 +83,19 @@ public class OpenUtil {
 		WIFI_AP,
 	}
 
-	public static void openModule(Activity activity, MODULE_TYPE moduleTye) {
+	public static void openModule(Activity activity, MODULE_TYPE moduleType) {
 		if (!ClickUtil.isQuickClick(1000)) {
 			try {
-				switch (moduleTye) {
+				switch (moduleType) {
+				case ABOUT:
+					activity.startActivity(new Intent(
+							android.provider.Settings.ACTION_DEVICE_INFO_SETTINGS));
+					break;
+
+				case APN:
+					HintUtil.showToast(activity, "TODO");
+					break;
+
 				case AUTO_SETTING:
 					ComponentName componentSetting = new ComponentName(
 							"com.tchip.autosetting",
@@ -80,13 +104,20 @@ public class OpenUtil {
 					intentSetting.setComponent(componentSetting);
 					activity.startActivity(intentSetting);
 					break;
-					
+
 				case CPU_INFO:
 					Intent intentCPUInfo = new Intent(Intent.ACTION_VIEW);
 					intentCPUInfo.setClassName("eu.chainfire.perfmon",
 							"com.common.activity.MainActivity");
 					intentCPUInfo.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					activity.startActivity(intentCPUInfo);
+					break;
+
+				case CRASH:
+					Intent intentCrash = new Intent(activity,
+							SettingGravityActivity.class);
+					intentCrash.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					activity.startActivity(intentCrash);
 					break;
 
 				case DEVICE_TEST:
@@ -122,53 +153,60 @@ public class OpenUtil {
 					activity.startActivity(intentQuickSetting);
 					break;
 
-				case SETTING_ABOUT:
-					activity.startActivity(new Intent(
-							android.provider.Settings.ACTION_DEVICE_INFO_SETTINGS));
-					break;
-
-				case SETTING_APP:
+				case APP:
 					activity.startActivity(new Intent(
 							android.provider.Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS));
 					break;
 
-				case SETTING_DATA_USAGE:
+				case DATA_USAGE:
 					activity.startActivity(new Intent(
 							"android.settings.DATA_USAGE_SETTINGS"));
 					break;
 
-				case SETTING_DATE:
+				case DATE:
 					activity.startActivity(new Intent(
 							android.provider.Settings.ACTION_DATE_SETTINGS));
 					break;
-					
-				case SETTING_DISPLAY:
+
+				case DISPLAY:
+					Intent intentDisplay = new Intent(activity,
+							SettingSystemDisplayActivity.class);
+					intentDisplay.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					activity.startActivity(intentDisplay);
 					break;
 
-				case SETTING_FM:
+				case FM:
 					activity.startActivity(new Intent(
 							"android.settings.FM_SETTINGS"));
 					break;
 
-				case SETTING_LOCATION:
+				case LOCATION:
 					activity.startActivity(new Intent(
 							android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
 					break;
-					
-				case SETTING_VOLUME:
+
+				case USB:
+					HintUtil.showToast(activity, "ToDo");
 					break;
 
-				case SETTING_RESET:
+				case VOLUME:
+					Intent intentVolume = new Intent(activity,
+							SettingSystemVolumeActivity.class);
+					intentVolume.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					activity.startActivity(intentVolume);
+					break;
+
+				case RESET:
 					activity.startActivity(new Intent(
 							"android.settings.BACKUP_AND_RESET_SETTINGS"));
 					break;
 
-				case SETTING_STORAGE:
+				case STORAGE:
 					activity.startActivity(new Intent(
 							android.provider.Settings.ACTION_MEMORY_CARD_SETTINGS));
 					break;
 
-				case SETTING_SYSTEM:
+				case SYSTEM_SETTING:
 					ComponentName componentSettingSystem = new ComponentName(
 							"com.android.settings",
 							"com.android.settings.Settings");
@@ -192,6 +230,7 @@ public class OpenUtil {
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
+				MyLog.e("[OpenUtil]Exception:" + e.toString());
 			}
 		}
 

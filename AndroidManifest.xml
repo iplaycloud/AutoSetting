@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.tchip.autosetting"
     android:versionCode="1"
-    android:versionName="20160315.1545" >
+    android:versionName="20160503.10:30" >
 
     <uses-sdk
         android:minSdkVersion="19"
@@ -65,6 +65,11 @@
             android:launchMode="singleTask"
             android:theme="@style/ThemeQuickSettingDialog" />
         <activity android:name="com.tchip.autosetting.ui.MagicActivity" />
+        <activity android:name="com.tchip.autosetting.ui.SettingGravityActivity" />
+        <activity android:name="com.tchip.autosetting.ui.SettingSystemDisplayActivity" />
+        <activity
+            android:name="com.tchip.autosetting.ui.SettingSystemVolumeActivity"
+            android:theme="@style/ThemeVolumeDialog" />
     </application>
 
 </manifest>

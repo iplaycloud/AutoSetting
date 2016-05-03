@@ -34,8 +34,7 @@ public class MainActivity extends Activity {
 	private EditText textInput;
 	private Button btnSet;
 	private Button itemSystemSetting; // 系统设置
-	private Button itemAbout, itemDeviceTest, itemEngineerMode, itemApp,
-			itemDataUsage, itemDate;
+	private Button  itemApp;
 
 	private WifiManager wifiManager;
 	/** WiFi状态监听器 */
@@ -74,16 +73,40 @@ public class MainActivity extends Activity {
 		RelativeLayout itemSound = (RelativeLayout) findViewById(R.id.itemSound);
 		itemSound.setOnClickListener(myOnClickListener);
 		// Wi-Fi
+		RelativeLayout itemWifi = (RelativeLayout) findViewById(R.id.itemWifi);
+		itemWifi.setOnClickListener(myOnClickListener);
 		// 热点分享
+		RelativeLayout itemWifiAp = (RelativeLayout) findViewById(R.id.itemWifiAp);
+		itemWifiAp.setOnClickListener(myOnClickListener);
 		// 流量使用情况
+		RelativeLayout itemDataUsage = (RelativeLayout) findViewById(R.id.itemDataUsage);
+		itemDataUsage.setOnClickListener(myOnClickListener);
 		// APN设置
+		RelativeLayout itemAPN = (RelativeLayout) findViewById(R.id.itemAPN);
+		itemAPN.setVisibility(Constant.Module.hasAPNSetting ? View.VISIBLE
+				: View.GONE);
+		itemAPN.setOnClickListener(myOnClickListener);
 		// 碰撞侦测
+		RelativeLayout itemCrash = (RelativeLayout) findViewById(R.id.itemCrash);
+		itemCrash.setOnClickListener(myOnClickListener);
 		// 停车守卫
-		// 存储设置
+		RelativeLayout itemParkMonitor = (RelativeLayout) findViewById(R.id.itemParkMonitor);
+		itemParkMonitor.setOnClickListener(myOnClickListener);
+		// 存储
+		RelativeLayout itemStorage = (RelativeLayout) findViewById(R.id.itemStorage);
+		itemStorage.setOnClickListener(myOnClickListener);
 		// USB连接设置
-		// 日期和时间
+		RelativeLayout itemUsb = (RelativeLayout) findViewById(R.id.itemUsb);
+		itemUsb.setOnClickListener(myOnClickListener);
+		// 日期
+		RelativeLayout itemDate = (RelativeLayout) findViewById(R.id.itemDate);
+		itemDate.setOnClickListener(myOnClickListener);
 		// 恢复出厂设置
-		// 系统升级
+		RelativeLayout itemReset = (RelativeLayout) findViewById(R.id.itemReset);
+		itemReset.setOnClickListener(myOnClickListener);
+		// OTA
+		RelativeLayout itemOTA = (RelativeLayout) findViewById(R.id.itemOTA);
+		itemOTA.setOnClickListener(myOnClickListener);
 		// 关于设备
 		RelativeLayout itemAbout = (RelativeLayout) findViewById(R.id.itemAbout);
 		itemAbout.setOnClickListener(myOnClickListener);
@@ -114,29 +137,12 @@ public class MainActivity extends Activity {
 		btnSet = (Button) findViewById(R.id.btnSet);
 		btnSet.setOnClickListener(myOnClickListener);
 
-		Button btnQuickSetting = (Button) findViewById(R.id.btnQuickSetting);
-		btnQuickSetting.setOnClickListener(myOnClickListener);
-
-		itemSystemSetting = (Button) findViewById(R.id.itemSystemSetting);
-		itemSystemSetting.setOnClickListener(myOnClickListener);
-
-		itemDeviceTest = (Button) findViewById(R.id.itemDeviceTest);
-		itemDeviceTest.setOnClickListener(myOnClickListener);
-
-		itemEngineerMode = (Button) findViewById(R.id.itemEngineerMode);
-		itemEngineerMode.setOnClickListener(myOnClickListener);
-
-		itemDataUsage = (Button) findViewById(R.id.itemDataUsage);
-		itemDataUsage.setOnClickListener(myOnClickListener);
-
 		// Below is OLD
 
 		itemApp = (Button) findViewById(R.id.itemApp);
 		itemApp.setOnClickListener(myOnClickListener);
 
 		// Wi-Fi
-		RelativeLayout layoutRippleWifi = (RelativeLayout) findViewById(R.id.layoutRippleWifi);
-		layoutRippleWifi.setOnClickListener(new MyOnClickListener());
 		switchWifi = (Switch) findViewById(R.id.switchWifi);
 		wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
 		switchWifi.setChecked(wifiManager.isWifiEnabled());
@@ -156,25 +162,6 @@ public class MainActivity extends Activity {
 		wifiIntentFilter.addAction(WifiManager.WIFI_STATE_CHANGED_ACTION);
 		wifiIntentFilter.setPriority(Integer.MAX_VALUE);
 
-		// 热点共享
-		RelativeLayout layoutWifiAp = (RelativeLayout) findViewById(R.id.layoutWifiAp);
-		layoutWifiAp.setOnClickListener(myOnClickListener);
-
-		// 流量使用情况
-		RelativeLayout layoutRippleTraffic = (RelativeLayout) findViewById(R.id.layoutRippleTraffic);
-		layoutRippleTraffic.setOnClickListener(myOnClickListener);
-
-		// APN设置
-		RelativeLayout layoutApnSetting = (RelativeLayout) findViewById(R.id.layoutApnSetting);
-		layoutApnSetting
-				.setVisibility(Constant.Module.hasAPNSetting ? View.VISIBLE
-						: View.GONE);
-		layoutApnSetting.setOnClickListener(myOnClickListener);
-
-		// 碰撞侦测
-		RelativeLayout layoutGravity = (RelativeLayout) findViewById(R.id.layoutGravity);
-		layoutGravity.setOnClickListener(myOnClickListener);
-
 		// 停车侦测开关
 		switchParking = (Switch) findViewById(R.id.switchParking);
 		switchParking.setChecked(false/* isParkingMonitorOn() */); // FIXME
@@ -186,28 +173,6 @@ public class MainActivity extends Activity {
 				// SettingUtil.setParkingMonitor(MainActivity.this, isChecked);
 			}
 		});
-		RelativeLayout layoutRippleParking = (RelativeLayout) findViewById(R.id.layoutRippleParking);
-		layoutRippleParking.setOnClickListener(myOnClickListener);
-
-		// 存储
-		RelativeLayout layoutRippleStorage = (RelativeLayout) findViewById(R.id.layoutRippleStorage);
-		layoutRippleStorage.setOnClickListener(myOnClickListener);
-
-		// USB连接设置
-		RelativeLayout layoutRippleUsb = (RelativeLayout) findViewById(R.id.layoutRippleUsb);
-		layoutRippleUsb.setOnClickListener(myOnClickListener);
-
-		// 日期
-		RelativeLayout itemDate = (RelativeLayout) findViewById(R.id.itemDate);
-		itemDate.setOnClickListener(myOnClickListener);
-
-		// 恢复出厂设置
-		RelativeLayout layoutRippleReset = (RelativeLayout) findViewById(R.id.layoutRippleReset);
-		layoutRippleReset.setOnClickListener(myOnClickListener);
-
-		// OTA
-		RelativeLayout layoutOTA = (RelativeLayout) findViewById(R.id.layoutOTA);
-		layoutOTA.setOnClickListener(myOnClickListener);
 
 	}
 
@@ -217,13 +182,55 @@ public class MainActivity extends Activity {
 		public void onClick(View v) {
 			switch (v.getId()) {
 			case R.id.itemDisplay:
-				OpenUtil.openModule(MainActivity.this,
-						MODULE_TYPE.SETTING_DISPLAY);
+				OpenUtil.openModule(MainActivity.this, MODULE_TYPE.DISPLAY);
 				break;
-				
+
 			case R.id.itemSound:
-				OpenUtil.openModule(MainActivity.this,
-						MODULE_TYPE.SETTING_VOLUME);
+				OpenUtil.openModule(MainActivity.this, MODULE_TYPE.VOLUME);
+				break;
+
+			case R.id.itemWifi:
+				OpenUtil.openModule(MainActivity.this, MODULE_TYPE.WIFI);
+				break;
+
+			case R.id.itemDataUsage:
+				OpenUtil.openModule(MainActivity.this, MODULE_TYPE.DATA_USAGE);
+				break;
+
+			case R.id.itemAPN:
+				OpenUtil.openModule(MainActivity.this, MODULE_TYPE.APN);
+				break;
+
+			case R.id.itemCrash:
+				OpenUtil.openModule(MainActivity.this, MODULE_TYPE.CRASH);
+				break;
+
+			case R.id.itemParkMonitor:
+				// TODO: Change switch state
+				break;
+
+			case R.id.itemStorage:
+				OpenUtil.openModule(MainActivity.this, MODULE_TYPE.STORAGE);
+				break;
+
+			case R.id.itemUsb:
+				OpenUtil.openModule(MainActivity.this, MODULE_TYPE.USB);
+				break;
+
+			case R.id.itemDate:
+				OpenUtil.openModule(MainActivity.this, MODULE_TYPE.DATE);
+				break;
+
+			case R.id.itemReset:
+				OpenUtil.openModule(MainActivity.this, MODULE_TYPE.RESET);
+				break;
+
+			case R.id.itemOTA:
+				OpenUtil.openModule(MainActivity.this, MODULE_TYPE.OTA);
+				break;
+
+			case R.id.itemAbout:
+				OpenUtil.openModule(MainActivity.this, MODULE_TYPE.ABOUT);
 				break;
 
 			// FIXME:Below is OLD
@@ -237,41 +244,8 @@ public class MainActivity extends Activity {
 				}
 				break;
 
-			case R.id.btnQuickSetting:
-				OpenUtil.openModule(MainActivity.this,
-						MODULE_TYPE.QUICK_SETTING);
-				break;
-
-			case R.id.itemSystemSetting:
-				OpenUtil.openModule(MainActivity.this,
-						MODULE_TYPE.SETTING_SYSTEM);
-				break;
-
-			case R.id.itemDeviceTest:
-				OpenUtil.openModule(MainActivity.this, MODULE_TYPE.DEVICE_TEST);
-				break;
-
-			case R.id.itemEngineerMode:
-				OpenUtil.openModule(MainActivity.this,
-						MODULE_TYPE.ENGINEER_MODE);
-				break;
-
 			case R.id.itemApp:
-				OpenUtil.openModule(MainActivity.this, MODULE_TYPE.SETTING_APP);
-				break;
-
-			case R.id.itemDataUsage:
-				OpenUtil.openModule(MainActivity.this,
-						MODULE_TYPE.SETTING_DATA_USAGE);
-				break;
-
-			case R.id.itemDate:
-				OpenUtil.openModule(MainActivity.this, MODULE_TYPE.SETTING_DATE);
-				break;
-
-			case R.id.itemAbout:
-				OpenUtil.openModule(MainActivity.this,
-						MODULE_TYPE.SETTING_ABOUT);
+				OpenUtil.openModule(MainActivity.this, MODULE_TYPE.APP);
 				break;
 
 			default:

@@ -145,7 +145,7 @@
                 android:background="@color/setting_item_separator" />
 
             <RelativeLayout
-                android:id="@+id/layoutRippleWifi"
+                android:id="@+id/itemWifi"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/item_height"
                 android:background="@color/setting_item_bg"
@@ -185,7 +185,7 @@
                 android:background="@color/setting_item_separator" />
 
             <RelativeLayout
-                android:id="@+id/layoutWifiAp"
+                android:id="@+id/itemWifiAp"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/item_height"
                 android:background="@color/setting_item_bg"
@@ -217,7 +217,7 @@
                 android:background="@color/setting_item_separator" />
 
             <RelativeLayout
-                android:id="@+id/layoutRippleTraffic"
+                android:id="@+id/itemDataUsage"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/item_height"
                 android:background="@color/setting_item_bg"
@@ -249,7 +249,7 @@
                 android:background="@color/setting_item_separator" />
 
             <RelativeLayout
-                android:id="@+id/layoutApnSetting"
+                android:id="@+id/itemAPN"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/item_height"
                 android:background="@color/setting_item_bg"
@@ -281,7 +281,7 @@
                 android:background="@color/setting_item_separator" />
 
             <RelativeLayout
-                android:id="@+id/layoutGravity"
+                android:id="@+id/itemCrash"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/item_height"
                 android:background="@color/setting_item_bg"
@@ -313,7 +313,7 @@
                 android:background="@color/setting_item_separator" />
 
             <RelativeLayout
-                android:id="@+id/layoutRippleParking"
+                android:id="@+id/itemParkMonitor"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/item_height"
                 android:background="@color/setting_item_bg"
@@ -356,7 +356,7 @@
                 android:visibility="visible" />
 
             <RelativeLayout
-                android:id="@+id/layoutRippleStorage"
+                android:id="@+id/itemStorage"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/item_height"
                 android:background="@color/setting_item_bg"
@@ -389,7 +389,7 @@
                 android:visibility="visible" />
 
             <RelativeLayout
-                android:id="@+id/layoutRippleUsb"
+                android:id="@+id/itemUsb"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/item_height"
                 android:background="@color/setting_item_bg"
@@ -418,8 +418,7 @@
                 android:layout_height="@dimen/item_separator_height"
                 android:layout_marginLeft="@dimen/item_separator_margin"
                 android:layout_marginRight="@dimen/item_separator_margin"
-                android:background="@color/setting_item_separator"
-                android:visibility="gone" />
+                android:background="@color/setting_item_separator" />
 
             <RelativeLayout
                 android:id="@+id/itemDate"
@@ -453,7 +452,7 @@
                 android:background="@color/setting_item_separator" />
 
             <RelativeLayout
-                android:id="@+id/layoutRippleReset"
+                android:id="@+id/itemReset"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/item_height"
                 android:background="@color/setting_item_bg"
@@ -484,7 +483,7 @@
                 android:background="@color/setting_item_separator" />
 
             <RelativeLayout
-                android:id="@+id/layoutOTA"
+                android:id="@+id/itemOTA"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/item_height"
                 android:background="@color/setting_item_bg"
@@ -578,40 +577,10 @@
                 android:text="@string/text_hint" />
 
             <Button
-                android:id="@+id/btnQuickSetting"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Quick Setting" />
-
-            <Button
-                android:id="@+id/itemSystemSetting"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="系统设置" />
-
-            <Button
-                android:id="@+id/itemDeviceTest"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="工厂测试" />
-
-            <Button
-                android:id="@+id/itemEngineerMode"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="工程模式" />
-
-            <Button
                 android:id="@+id/itemApp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="应用" />
-
-            <Button
-                android:id="@+id/itemDataUsage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="流量使用情况" />
 
         </LinearLayout>
     </ScrollView>

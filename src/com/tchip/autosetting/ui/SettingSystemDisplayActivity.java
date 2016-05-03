@@ -81,7 +81,6 @@ public class SettingSystemDisplayActivity extends Activity {
 			public void onProgressChanged(SeekBar seekBar, int progress,
 					boolean fromUser) {
 				SettingUtil.setBrightness(context, progress);
-
 			}
 		});
 

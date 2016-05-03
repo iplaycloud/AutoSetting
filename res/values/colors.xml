@@ -40,5 +40,8 @@
     
     <!-- Display -->
     <color name="display_time_text_color">#1E88E5</color>
+    
+    <!-- Volume -->
+    <color name="volume_bg">#444444</color>
 
 </resources>

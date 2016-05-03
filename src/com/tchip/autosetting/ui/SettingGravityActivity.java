@@ -15,7 +15,6 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.CompoundButton;
-import android.widget.RelativeLayout;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.SeekBar;
@@ -63,9 +62,6 @@ public class SettingGravityActivity extends Activity {
 						"content", isChecked ? "crashOn" : "crashOff"));
 			}
 		});
-
-		RelativeLayout layoutBack = (RelativeLayout) findViewById(R.id.layoutBack);
-		layoutBack.setOnClickListener(new MyOnClickListener());
 
 		SeekBar gravitySeekBar = (SeekBar) findViewById(R.id.gravitySeekBar);
 		gravitySeekBar.setMax(2);

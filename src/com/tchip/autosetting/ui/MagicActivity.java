@@ -86,7 +86,7 @@ public class MagicActivity extends Activity {
 
 			case R.id.btnSystemSetting:
 				OpenUtil.openModule(MagicActivity.this,
-						MODULE_TYPE.SETTING_SYSTEM);
+						MODULE_TYPE.SYSTEM_SETTING);
 				break;
 
 			case R.id.btnMtkLogger:
