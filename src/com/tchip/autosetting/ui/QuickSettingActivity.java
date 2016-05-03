@@ -1,6 +1,8 @@
 package com.tchip.autosetting.ui;
 
+import com.tchip.autosetting.Constant;
 import com.tchip.autosetting.R;
+import com.tchip.autosetting.util.SettingUtil;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,6 +16,7 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 
 public class QuickSettingActivity extends Activity {
+	private Context context;
 
 	private AudioManager audioManager;
 	private int secondCount = 1;
@@ -21,12 +24,35 @@ public class QuickSettingActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		context = getApplicationContext();
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.activity_quick_setting);
 
 		// 亮度SeekBar
+		SeekBar seekBarBright = (SeekBar) findViewById(R.id.seekBarBright);
+		seekBarBright.setMax(Constant.Setting.MAX_BRIGHTNESS);
+		seekBarBright.setProgress(SettingUtil.getBrightness(context));
+		seekBarBright.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+
+			@Override
+			public void onStopTrackingTouch(SeekBar seekBar) {
+				SettingUtil.setBrightness(context, seekBar.getProgress());
+			}
+
+			@Override
+			public void onStartTrackingTouch(SeekBar seekBar) {
+
+			}
+
+			@Override
+			public void onProgressChanged(SeekBar seekBar, int progress,
+					boolean fromUser) {
+				secondCount = 1;
+				SettingUtil.setBrightness(context, progress);
+			}
+		});
 
 		// 媒体音量SeekBar
 		audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
