@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.tchip.autosetting"
     android:versionCode="1"
-    android:versionName="20160504.14:00" >
+    android:versionName="20160509-18:30" >
 
     <uses-sdk
         android:minSdkVersion="19"
@@ -53,6 +53,7 @@
         <activity
             android:name="com.tchip.autosetting.ui.MainActivity"
             android:clearTaskOnLaunch="true"
+            android:launchMode="singleTask"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
