@@ -540,49 +540,6 @@
                     android:textSize="@dimen/item_title_text_size" />
             </RelativeLayout>
             
-
-            <Switch
-                android:id="@+id/switchFM"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="false"
-                android:textOff="FM关闭"
-                android:textOn="FM开启" />
-
-            <Switch
-                android:id="@+id/switchUVC"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="false"
-                android:textOff="USB模式"
-                android:textOn="UVC模式" />
-
-            <EditText
-                android:id="@+id/textInput"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="请输入音频通道" />
-
-            <Button
-                android:id="@+id/btnSet"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/textInput"
-                android:text="设置" />
-
-            <TextView
-                android:id="@+id/textHint"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/btnSet"
-                android:text="@string/text_hint" />
-
-            <Button
-                android:id="@+id/itemApp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="应用" />
-
         </LinearLayout>
     </ScrollView>
 

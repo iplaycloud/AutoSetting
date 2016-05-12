@@ -1,26 +1,35 @@
 package com.tchip.autosetting.ui;
 
-
 import com.tchip.autosetting.Constant;
 import com.tchip.autosetting.R;
 import com.tchip.autosetting.util.OpenUtil;
+import com.tchip.autosetting.util.SettingUtil;
 import com.tchip.autosetting.util.OpenUtil.MODULE_TYPE;
 
 import android.app.Activity;
-import android.content.ComponentName;
-import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.Switch;
+import android.widget.Toast;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 
 public class MagicActivity extends Activity {
 	private EditText textPass;
-	private Button btnGo, btnBack;
-	private RelativeLayout layoutMagic, layoutBack;
+	private RelativeLayout layoutMagic;
+
+	private Switch switchFM;
+	private Switch switchUVC;
+
+	private EditText textInput;
+	private Button btnSet;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,30 +44,78 @@ public class MagicActivity extends Activity {
 	}
 
 	private void initialLayout() {
+		MyOnClickListener myOnClickListener = new MyOnClickListener();
 		layoutMagic = (RelativeLayout) findViewById(R.id.layoutMagic);
-		layoutBack = (RelativeLayout) findViewById(R.id.layoutBack);
-		layoutBack.setOnClickListener(new MyOnClickListener());
-		btnBack = (Button) findViewById(R.id.btnBack);
-		btnBack.setOnClickListener(new MyOnClickListener());
 
 		textPass = (EditText) findViewById(R.id.textPass);
-		btnGo = (Button) findViewById(R.id.btnGo);
-		btnGo.setOnClickListener(new MyOnClickListener());
+		textPass.addTextChangedListener(new TextWatcher() {
 
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+
+			}
+
+			@Override
+			public void afterTextChanged(Editable s) {
+
+				String strInput = textPass.getText().toString();
+				if (Constant.Module.MagicCode.equals(strInput)) {
+					layoutMagic.setVisibility(View.VISIBLE);
+				}
+
+			}
+		});
+
+		// Row 1
 		Button btnDeviceTest = (Button) findViewById(R.id.btnDeviceTest);
-		btnDeviceTest.setOnClickListener(new MyOnClickListener());
-
+		btnDeviceTest.setOnClickListener(myOnClickListener);
 		Button btnEngineerMode = (Button) findViewById(R.id.btnEngineerMode);
-		btnEngineerMode.setOnClickListener(new MyOnClickListener());
-
+		btnEngineerMode.setOnClickListener(myOnClickListener);
 		Button btnSystemSetting = (Button) findViewById(R.id.btnSystemSetting);
-		btnSystemSetting.setOnClickListener(new MyOnClickListener());
-
+		btnSystemSetting.setOnClickListener(myOnClickListener);
 		Button btnMtkLogger = (Button) findViewById(R.id.btnMtkLogger);
-		btnMtkLogger.setOnClickListener(new MyOnClickListener());
-
+		btnMtkLogger.setOnClickListener(myOnClickListener);
 		Button btnCPUInfo = (Button) findViewById(R.id.btnCPUInfo);
-		btnCPUInfo.setOnClickListener(new MyOnClickListener());
+		btnCPUInfo.setOnClickListener(myOnClickListener);
+		// Row 2
+		Button btnDeveloperSetting = (Button) findViewById(R.id.btnDeveloperSetting);
+		btnDeveloperSetting.setOnClickListener(myOnClickListener);
+		Button btnApplication = (Button) findViewById(R.id.btnApplication);
+		btnApplication.setOnClickListener(myOnClickListener);
+
+		// Row 3
+		switchFM = (Switch) findViewById(R.id.switchFM);
+		switchFM.setChecked(SettingUtil.isFMEnable());
+		switchFM.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView,
+					boolean isChecked) {
+				SettingUtil.setFMEnable(isChecked);
+			}
+		});
+
+		switchUVC = (Switch) findViewById(R.id.switchUVC);
+		switchUVC.setChecked(SettingUtil.isUVCEnable());
+		switchUVC.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView,
+					boolean isChecked) {
+				SettingUtil.setUVCEnable(isChecked);
+			}
+		});
+
+		textInput = (EditText) findViewById(R.id.textInput);
+		btnSet = (Button) findViewById(R.id.btnSet);
+		btnSet.setOnClickListener(myOnClickListener);
 	}
 
 	class MyOnClickListener implements View.OnClickListener {
@@ -66,15 +123,6 @@ public class MagicActivity extends Activity {
 		@Override
 		public void onClick(View v) {
 			switch (v.getId()) {
-			case R.id.btnGo:
-				String strInput = textPass.getText().toString();
-				if (Constant.Module.MagicCode.equals(strInput)) {
-					layoutMagic.setVisibility(View.VISIBLE);
-				} else {
-					textPass.setText("");
-				}
-				break;
-
 			case R.id.btnDeviceTest:
 				OpenUtil.openModule(MagicActivity.this, MODULE_TYPE.DEVICE_TEST);
 				break;
@@ -97,9 +145,22 @@ public class MagicActivity extends Activity {
 				OpenUtil.openModule(MagicActivity.this, MODULE_TYPE.CPU_INFO);
 				break;
 
-			case R.id.layoutBack:
-			case R.id.btnBack:
-				finish();
+			case R.id.btnDeveloperSetting:
+				OpenUtil.openModule(MagicActivity.this, MODULE_TYPE.DEV_SETTING);
+				break;
+
+			case R.id.btnApplication:
+				OpenUtil.openModule(MagicActivity.this, MODULE_TYPE.APP);
+				break;
+
+			case R.id.btnSet:
+				String strContent = textInput.getText().toString();
+				if (strContent.trim().length() > 0 && strContent != null) {
+					SettingUtil.writeAudioNode(strContent);
+				} else {
+					Toast.makeText(MagicActivity.this, "请输入",
+							Toast.LENGTH_SHORT).show();
+				}
 				break;
 
 			default:

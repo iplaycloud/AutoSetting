@@ -43,5 +43,8 @@
     
     <!-- Volume -->
     <color name="volume_bg">#444444</color>
+    
+    <!-- Magic -->
+    <color name="magic_btn_text_color">#1E88E5</color>
 
 </resources>

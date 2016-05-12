@@ -28,13 +28,7 @@ import android.widget.Switch;
 
 public class MainActivity extends Activity {
 
-	private Switch switchFM;
-	private Switch switchUVC;
 	private Switch switchWifi, switchParking;
-	private EditText textInput;
-	private Button btnSet;
-	private Button itemSystemSetting; // 系统设置
-	private Button  itemApp;
 
 	private WifiManager wifiManager;
 	/** WiFi状态监听器 */
@@ -111,37 +105,8 @@ public class MainActivity extends Activity {
 		RelativeLayout itemAbout = (RelativeLayout) findViewById(R.id.itemAbout);
 		itemAbout.setOnClickListener(myOnClickListener);
 
-		switchFM = (Switch) findViewById(R.id.switchFM);
-		switchFM.setChecked(SettingUtil.isFMEnable());
-		switchFM.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-			@Override
-			public void onCheckedChanged(CompoundButton buttonView,
-					boolean isChecked) {
-				SettingUtil.setFMEnable(isChecked);
-			}
-		});
-
-		switchUVC = (Switch) findViewById(R.id.switchUVC);
-		switchUVC.setChecked(SettingUtil.isUVCEnable());
-		switchUVC.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-			@Override
-			public void onCheckedChanged(CompoundButton buttonView,
-					boolean isChecked) {
-				SettingUtil.setUVCEnable(isChecked);
-			}
-		});
-
-		textInput = (EditText) findViewById(R.id.textInput);
-		btnSet = (Button) findViewById(R.id.btnSet);
-		btnSet.setOnClickListener(myOnClickListener);
 
 		// Below is OLD
-
-		itemApp = (Button) findViewById(R.id.itemApp);
-		itemApp.setOnClickListener(myOnClickListener);
-
 		// Wi-Fi
 		switchWifi = (Switch) findViewById(R.id.switchWifi);
 		wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
@@ -231,21 +196,6 @@ public class MainActivity extends Activity {
 
 			case R.id.itemAbout:
 				OpenUtil.openModule(MainActivity.this, MODULE_TYPE.ABOUT);
-				break;
-
-			// FIXME:Below is OLD
-			case R.id.btnSet:
-				String strContent = textInput.getText().toString();
-				if (strContent.trim().length() > 0 && strContent != null) {
-					SettingUtil.writeAudioNode(strContent);
-				} else {
-					Toast.makeText(MainActivity.this, "请输入", Toast.LENGTH_SHORT)
-							.show();
-				}
-				break;
-
-			case R.id.itemApp:
-				OpenUtil.openModule(MainActivity.this, MODULE_TYPE.APP);
 				break;
 
 			default:

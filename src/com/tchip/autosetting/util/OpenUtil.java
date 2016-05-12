@@ -49,6 +49,9 @@ public class OpenUtil {
 		/** 日期和时间 */
 		DATE,
 
+		/** 开发者选项 */
+		DEV_SETTING,
+
 		/** 显示设置 */
 		DISPLAY,
 
@@ -92,6 +95,11 @@ public class OpenUtil {
 							android.provider.Settings.ACTION_DEVICE_INFO_SETTINGS));
 					break;
 
+				case APP:
+					activity.startActivity(new Intent(
+							android.provider.Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS));
+					break;
+
 				case APN:
 					HintUtil.showToast(activity, "TODO");
 					break;
@@ -118,6 +126,11 @@ public class OpenUtil {
 							SettingGravityActivity.class);
 					intentCrash.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					activity.startActivity(intentCrash);
+					break;
+
+				case DEV_SETTING:
+					activity.startActivity(new Intent(
+							"android.settings.APPLICATION_DEVELOPMENT_SETTINGS"));
 					break;
 
 				case DEVICE_TEST:
@@ -151,11 +164,6 @@ public class OpenUtil {
 							QuickSettingActivity.class);
 					intentQuickSetting.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					activity.startActivity(intentQuickSetting);
-					break;
-
-				case APP:
-					activity.startActivity(new Intent(
-							android.provider.Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS));
 					break;
 
 				case DATA_USAGE:

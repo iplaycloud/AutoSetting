@@ -124,16 +124,4 @@ public class SettingGravityActivity extends Activity {
 		return crashSensitive;
 	}
 
-	class MyOnClickListener implements View.OnClickListener {
-
-		@Override
-		public void onClick(View v) {
-			switch (v.getId()) {
-			case R.id.layoutBack:
-				finish();
-				break;
-			}
-		}
-	}
-
 }
