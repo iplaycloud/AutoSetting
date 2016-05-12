@@ -85,7 +85,8 @@ public class SettingSystemDisplayActivity extends Activity {
 		iniRadioGroup();
 		boolean isAutoLightSwitchOn = isAutoLightSwitchOn();
 		layoutSeekBar = (RelativeLayout) findViewById(R.id.layoutSeekBar);
-		hideOrShowSeekBarLayout(isAutoLightSwitchOn);
+		// hideOrShowSeekBarLayout(isAutoLightSwitchOn);
+		layoutSeekBar.setVisibility(View.VISIBLE);
 
 		// 亮度自动调节开关
 		switchAutolight = (Switch) findViewById(R.id.switchAutolight);

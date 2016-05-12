@@ -20,17 +20,15 @@
             android:layout_marginLeft="@dimen/top_bar_title_margin_left"
             android:text="设置"
             android:textColor="@color/setting_item_title_color"
-            android:textSize="34sp" />
+            android:textSize="@dimen/main_title_text_size" />
 
         <LinearLayout
             android:id="@+id/layoutDate"
-            android:layout_width="120dp"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginBottom="15dp"
-            android:layout_marginRight="40dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginRight="20dp"
             android:orientation="vertical" >
 
             <TextClock
@@ -40,7 +38,7 @@
                 android:format12Hour="MM月dd日"
                 android:format24Hour="MM月dd日"
                 android:textColor="#8b8e8f"
-                android:textSize="15sp" />
+                android:textSize="@dimen/main_date_text_size" />
 
             <TextClock
                 android:id="@+id/textWeek"
@@ -49,7 +47,7 @@
                 android:format12Hour="EEEE"
                 android:format24Hour="EEEE"
                 android:textColor="#8b8e8f"
-                android:textSize="15sp" />
+                android:textSize="@dimen/main_week_text_size" />
         </LinearLayout>
 
         <TextClock
@@ -57,12 +55,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="12dp"
             android:layout_toLeftOf="@id/layoutDate"
             android:format12Hour="HH:mm"
             android:format24Hour="HH:mm"
-            android:textColor="#ffffff"
-            android:textSize="45sp" />
+            android:textColor="@color/setting_item_title_color"
+            android:textSize="@dimen/main_clock_text_size" />
     </RelativeLayout>
 
     <ScrollView
@@ -71,7 +69,7 @@
 
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical" >
 
             <View
@@ -89,21 +87,28 @@
                 android:background="@color/setting_item_bg"
                 android:clickable="true" >
 
-                <ImageView
-                    android:layout_width="@dimen/item_icon_length"
-                    android:layout_height="@dimen/item_icon_length"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/item_icon_margin_left"
-                    android:src="@drawable/icon_display" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="?android:attr/selectableItemBackgroundBorderless" >
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/item_title_margin_left"
-                    android:text="@string/title_display"
-                    android:textColor="@color/setting_item_title_color"
-                    android:textSize="@dimen/item_title_text_size" />
+                    <ImageView
+                        android:layout_width="@dimen/item_icon_length"
+                        android:layout_height="@dimen/item_icon_length"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/item_icon_margin_left"
+                        android:contentDescription="@null"
+                        android:src="@drawable/icon_display" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/item_title_margin_left"
+                        android:text="@string/title_display"
+                        android:textColor="@color/setting_item_title_color"
+                        android:textSize="@dimen/item_title_text_size" />
+                </RelativeLayout>
             </RelativeLayout>
 
             <View
@@ -120,21 +125,27 @@
                 android:background="@color/setting_item_bg"
                 android:clickable="true" >
 
-                <ImageView
-                    android:layout_width="@dimen/item_icon_length"
-                    android:layout_height="@dimen/item_icon_length"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/item_icon_margin_left"
-                    android:src="@drawable/icon_sound" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="?android:attr/selectableItemBackgroundBorderless" >
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/item_title_margin_left"
-                    android:text="@string/title_sound"
-                    android:textColor="@color/setting_item_title_color"
-                    android:textSize="@dimen/item_title_text_size" />
+                    <ImageView
+                        android:layout_width="@dimen/item_icon_length"
+                        android:layout_height="@dimen/item_icon_length"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/item_icon_margin_left"
+                        android:src="@drawable/icon_sound" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/item_title_margin_left"
+                        android:text="@string/title_sound"
+                        android:textColor="@color/setting_item_title_color"
+                        android:textSize="@dimen/item_title_text_size" />
+                </RelativeLayout>
             </RelativeLayout>
 
             <View
@@ -151,31 +162,37 @@
                 android:background="@color/setting_item_bg"
                 android:clickable="true" >
 
-                <ImageView
-                    android:layout_width="@dimen/item_icon_length"
-                    android:layout_height="@dimen/item_icon_length"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/item_icon_margin_left"
-                    android:src="@drawable/icon_wifi" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="?android:attr/selectableItemBackgroundBorderless" >
 
-                <TextView
-                    android:id="@+id/textView1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/item_title_margin_left"
-                    android:text="@string/title_wifi"
-                    android:textColor="@color/setting_item_title_color"
-                    android:textSize="@dimen/item_title_text_size" />
+                    <ImageView
+                        android:layout_width="@dimen/item_icon_length"
+                        android:layout_height="@dimen/item_icon_length"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/item_icon_margin_left"
+                        android:src="@drawable/icon_wifi" />
 
-                <Switch
-                    android:id="@+id/switchWifi"
-                    android:visibility="gone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/item_switch_margin_right" />
+                    <TextView
+                        android:id="@+id/textView1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/item_title_margin_left"
+                        android:text="@string/title_wifi"
+                        android:textColor="@color/setting_item_title_color"
+                        android:textSize="@dimen/item_title_text_size" />
+
+                    <Switch
+                        android:id="@+id/switchWifi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/item_switch_margin_right"
+                        android:visibility="gone" />
+                </RelativeLayout>
             </RelativeLayout>
 
             <View
@@ -193,21 +210,27 @@
                 android:clickable="true"
                 android:visibility="visible" >
 
-                <ImageView
-                    android:layout_width="@dimen/item_icon_length"
-                    android:layout_height="@dimen/item_icon_length"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/item_icon_margin_left"
-                    android:src="@drawable/icon_wifi_ap" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="?android:attr/selectableItemBackgroundBorderless" >
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/item_title_margin_left"
-                    android:text="@string/title_wifi_ap"
-                    android:textColor="@color/setting_item_title_color"
-                    android:textSize="@dimen/item_title_text_size" />
+                    <ImageView
+                        android:layout_width="@dimen/item_icon_length"
+                        android:layout_height="@dimen/item_icon_length"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/item_icon_margin_left"
+                        android:src="@drawable/icon_wifi_ap" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/item_title_margin_left"
+                        android:text="@string/title_wifi_ap"
+                        android:textColor="@color/setting_item_title_color"
+                        android:textSize="@dimen/item_title_text_size" />
+                </RelativeLayout>
             </RelativeLayout>
 
             <View
@@ -225,21 +248,27 @@
                 android:clickable="true"
                 android:visibility="visible" >
 
-                <ImageView
-                    android:layout_width="@dimen/item_icon_length"
-                    android:layout_height="@dimen/item_icon_length"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/item_icon_margin_left"
-                    android:src="@drawable/icon_datausage" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="?android:attr/selectableItemBackgroundBorderless" >
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/item_title_margin_left"
-                    android:text="@string/title_traffic_status"
-                    android:textColor="@color/setting_item_title_color"
-                    android:textSize="@dimen/item_title_text_size" />
+                    <ImageView
+                        android:layout_width="@dimen/item_icon_length"
+                        android:layout_height="@dimen/item_icon_length"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/item_icon_margin_left"
+                        android:src="@drawable/icon_datausage" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/item_title_margin_left"
+                        android:text="@string/title_traffic_status"
+                        android:textColor="@color/setting_item_title_color"
+                        android:textSize="@dimen/item_title_text_size" />
+                </RelativeLayout>
             </RelativeLayout>
 
             <View
@@ -257,21 +286,27 @@
                 android:clickable="true"
                 android:visibility="visible" >
 
-                <ImageView
-                    android:layout_width="@dimen/item_icon_length"
-                    android:layout_height="@dimen/item_icon_length"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/item_icon_margin_left"
-                    android:src="@drawable/icon_apn" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="?android:attr/selectableItemBackgroundBorderless" >
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/item_title_margin_left"
-                    android:text="@string/title_apn"
-                    android:textColor="@color/setting_item_title_color"
-                    android:textSize="@dimen/item_title_text_size" />
+                    <ImageView
+                        android:layout_width="@dimen/item_icon_length"
+                        android:layout_height="@dimen/item_icon_length"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/item_icon_margin_left"
+                        android:src="@drawable/icon_apn" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/item_title_margin_left"
+                        android:text="@string/title_apn"
+                        android:textColor="@color/setting_item_title_color"
+                        android:textSize="@dimen/item_title_text_size" />
+                </RelativeLayout>
             </RelativeLayout>
 
             <View
@@ -289,21 +324,27 @@
                 android:clickable="true"
                 android:visibility="visible" >
 
-                <ImageView
-                    android:layout_width="@dimen/item_icon_length"
-                    android:layout_height="@dimen/item_icon_length"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/item_icon_margin_left"
-                    android:src="@drawable/icon_crash" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="?android:attr/selectableItemBackgroundBorderless" >
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/item_title_margin_left"
-                    android:text="@string/title_crash"
-                    android:textColor="@color/setting_item_title_color"
-                    android:textSize="@dimen/item_title_text_size" />
+                    <ImageView
+                        android:layout_width="@dimen/item_icon_length"
+                        android:layout_height="@dimen/item_icon_length"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/item_icon_margin_left"
+                        android:src="@drawable/icon_crash" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/item_title_margin_left"
+                        android:text="@string/title_crash"
+                        android:textColor="@color/setting_item_title_color"
+                        android:textSize="@dimen/item_title_text_size" />
+                </RelativeLayout>
             </RelativeLayout>
 
             <View
@@ -320,33 +361,37 @@
                 android:background="@color/setting_item_bg"
                 android:clickable="true" >
 
-                <ImageView
-                    android:layout_width="@dimen/item_icon_length"
-                    android:layout_height="@dimen/item_icon_length"
-                    android:layout_centerVertical="true"
-                    android:contentDescription="@null"
-                    android:layout_marginLeft="@dimen/item_icon_margin_left"
-                    android:src="@drawable/icon_park_monitor" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="?android:attr/selectableItemBackgroundBorderless" >
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/item_title_margin_left"
-                    android:text="@string/title_park_monitor"
-                    android:textColor="@color/setting_item_title_color"
-                    android:textSize="@dimen/item_title_text_size" />
+                    <ImageView
+                        android:layout_width="@dimen/item_icon_length"
+                        android:layout_height="@dimen/item_icon_length"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/item_icon_margin_left"
+                        android:contentDescription="@null"
+                        android:src="@drawable/icon_park_monitor" />
 
-                <Switch
-                    android:id="@+id/switchParking"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/item_switch_margin_right" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/item_title_margin_left"
+                        android:text="@string/title_park_monitor"
+                        android:textColor="@color/setting_item_title_color"
+                        android:textSize="@dimen/item_title_text_size" />
+
+                    <Switch
+                        android:id="@+id/switchParking"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/item_switch_margin_right" />
+                </RelativeLayout>
             </RelativeLayout>
-
-
 
             <View
                 android:layout_width="fill_parent"
@@ -364,21 +409,27 @@
                 android:clickable="true"
                 android:visibility="visible" >
 
-                <ImageView
-                    android:layout_width="@dimen/item_icon_length"
-                    android:layout_height="@dimen/item_icon_length"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/item_icon_margin_left"
-                    android:src="@drawable/icon_usb" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="?android:attr/selectableItemBackgroundBorderless" >
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/item_title_margin_left"
-                    android:text="存储设置"
-                    android:textColor="@color/setting_item_title_color"
-                    android:textSize="@dimen/item_title_text_size" />
+                    <ImageView
+                        android:layout_width="@dimen/item_icon_length"
+                        android:layout_height="@dimen/item_icon_length"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/item_icon_margin_left"
+                        android:src="@drawable/icon_usb" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/item_title_margin_left"
+                        android:text="存储设置"
+                        android:textColor="@color/setting_item_title_color"
+                        android:textSize="@dimen/item_title_text_size" />
+                </RelativeLayout>
             </RelativeLayout>
 
             <View
@@ -397,21 +448,27 @@
                 android:clickable="true"
                 android:visibility="visible" >
 
-                <ImageView
-                    android:layout_width="@dimen/item_icon_length"
-                    android:layout_height="@dimen/item_icon_length"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/item_icon_margin_left"
-                    android:src="@drawable/icon_usb" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="?android:attr/selectableItemBackgroundBorderless" >
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/item_title_margin_left"
-                    android:text="@string/title_usb"
-                    android:textColor="@color/setting_item_title_color"
-                    android:textSize="@dimen/item_title_text_size" />
+                    <ImageView
+                        android:layout_width="@dimen/item_icon_length"
+                        android:layout_height="@dimen/item_icon_length"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/item_icon_margin_left"
+                        android:src="@drawable/icon_usb" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/item_title_margin_left"
+                        android:text="@string/title_usb"
+                        android:textColor="@color/setting_item_title_color"
+                        android:textSize="@dimen/item_title_text_size" />
+                </RelativeLayout>
             </RelativeLayout>
 
             <View
@@ -428,21 +485,27 @@
                 android:background="@color/setting_item_bg"
                 android:clickable="true" >
 
-                <ImageView
-                    android:layout_width="@dimen/item_icon_length"
-                    android:layout_height="@dimen/item_icon_length"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/item_icon_margin_left"
-                    android:src="@drawable/icon_date" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="?android:attr/selectableItemBackgroundBorderless" >
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/item_title_margin_left"
-                    android:text="@string/title_date_time"
-                    android:textColor="@color/setting_item_title_color"
-                    android:textSize="@dimen/item_title_text_size" />
+                    <ImageView
+                        android:layout_width="@dimen/item_icon_length"
+                        android:layout_height="@dimen/item_icon_length"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/item_icon_margin_left"
+                        android:src="@drawable/icon_date" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/item_title_margin_left"
+                        android:text="@string/title_date_time"
+                        android:textColor="@color/setting_item_title_color"
+                        android:textSize="@dimen/item_title_text_size" />
+                </RelativeLayout>
             </RelativeLayout>
 
             <View
@@ -459,21 +522,27 @@
                 android:background="@color/setting_item_bg"
                 android:clickable="true" >
 
-                <ImageView
-                    android:layout_width="@dimen/item_icon_length"
-                    android:layout_height="@dimen/item_icon_length"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/item_icon_margin_left"
-                    android:src="@drawable/icon_reset" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="?android:attr/selectableItemBackgroundBorderless" >
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/item_title_margin_left"
-                    android:text="@string/title_reset"
-                    android:textColor="@color/setting_item_title_color"
-                    android:textSize="@dimen/item_title_text_size" />
+                    <ImageView
+                        android:layout_width="@dimen/item_icon_length"
+                        android:layout_height="@dimen/item_icon_length"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/item_icon_margin_left"
+                        android:src="@drawable/icon_reset" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/item_title_margin_left"
+                        android:text="@string/title_reset"
+                        android:textColor="@color/setting_item_title_color"
+                        android:textSize="@dimen/item_title_text_size" />
+                </RelativeLayout>
             </RelativeLayout>
 
             <View
@@ -491,21 +560,27 @@
                 android:clickable="true"
                 android:visibility="visible" >
 
-                <ImageView
-                    android:layout_width="@dimen/item_icon_length"
-                    android:layout_height="@dimen/item_icon_length"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/item_icon_margin_left"
-                    android:src="@drawable/icon_ota" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="?android:attr/selectableItemBackgroundBorderless" >
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/item_title_margin_left"
-                    android:text="@string/title_ota"
-                    android:textColor="@color/setting_item_title_color"
-                    android:textSize="@dimen/item_title_text_size" />
+                    <ImageView
+                        android:layout_width="@dimen/item_icon_length"
+                        android:layout_height="@dimen/item_icon_length"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/item_icon_margin_left"
+                        android:src="@drawable/icon_ota" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/item_title_margin_left"
+                        android:text="@string/title_ota"
+                        android:textColor="@color/setting_item_title_color"
+                        android:textSize="@dimen/item_title_text_size" />
+                </RelativeLayout>
             </RelativeLayout>
 
             <View
@@ -523,23 +598,28 @@
                 android:clickable="true"
                 android:visibility="visible" >
 
-                <ImageView
-                    android:layout_width="@dimen/item_icon_length"
-                    android:layout_height="@dimen/item_icon_length"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/item_icon_margin_left"
-                    android:src="@drawable/icon_about" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="?android:attr/selectableItemBackgroundBorderless" >
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/item_title_margin_left"
-                    android:text="@string/title_about"
-                    android:textColor="@color/setting_item_title_color"
-                    android:textSize="@dimen/item_title_text_size" />
+                    <ImageView
+                        android:layout_width="@dimen/item_icon_length"
+                        android:layout_height="@dimen/item_icon_length"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/item_icon_margin_left"
+                        android:src="@drawable/icon_about" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/item_title_margin_left"
+                        android:text="@string/title_about"
+                        android:textColor="@color/setting_item_title_color"
+                        android:textSize="@dimen/item_title_text_size" />
+                </RelativeLayout>
             </RelativeLayout>
-            
         </LinearLayout>
     </ScrollView>
 

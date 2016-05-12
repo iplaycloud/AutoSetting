@@ -2,10 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.tchip.autosetting"
     android:versionCode="1"
-    android:versionName="2016.05.12-10:55" >
+    android:versionName="2016.05.12-12:05" >
 
     <uses-sdk
-        android:minSdkVersion="19"
+        android:minSdkVersion="21"
         android:targetSdkVersion="22" />
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />

@@ -105,7 +105,6 @@ public class MainActivity extends Activity {
 		RelativeLayout itemAbout = (RelativeLayout) findViewById(R.id.itemAbout);
 		itemAbout.setOnClickListener(myOnClickListener);
 
-
 		// Below is OLD
 		// Wi-Fi
 		switchWifi = (Switch) findViewById(R.id.switchWifi);

@@ -17,7 +17,7 @@
     <color name="content_color">#737373</color>
 
     <!-- Setting Activity -->
-    <color name="setting_item_title_color">#b6b6b6</color>
+    <color name="setting_item_title_color">#959595</color>
     <color name="setting_item_bg_grey">#29292d</color>
     <color name="setting_item_bg">#111111</color>
     <color name="setting_title_bg">#222222</color>
@@ -40,6 +40,7 @@
     
     <!-- Display -->
     <color name="display_time_text_color">#1E88E5</color>
+    <color name="display_item_text_color">#7dc7c0</color>
     
     <!-- Volume -->
     <color name="volume_bg">#444444</color>
