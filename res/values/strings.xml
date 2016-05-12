@@ -22,7 +22,8 @@
 
     <!-- Gravity -->
     <string name="title_setting_gravity">系统设置-碰撞侦测灵敏度</string>
-    <string name="setting_gravity_hint">设置合适的灵敏度：\n过低较难触发视频加锁，过高则容易导致误判</string>
+    <string name="gravity_hint_main">设置合适的灵敏度</string>
+    <string name="gravity_hint_vice">过低较难触发视频加锁，过高则容易导致误判</string>
     
     <!-- Display -->
     <string name="display_auto_adjust">亮度自动调节</string>

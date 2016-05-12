@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:background="@color/setting_bg_color" >
 
     <RelativeLayout
         android:id="@+id/layoutTop"
@@ -21,7 +22,7 @@
             android:layout_marginLeft="15dp"
             android:text="@string/title_crash"
             android:textColor="@color/setting_item_title_color"
-            android:textSize="30sp" />
+            android:textSize="@dimen/main_title_text_size" />
 
         <Switch
             android:id="@+id/switchGravity"
@@ -39,59 +40,76 @@
         android:layout_below="@id/layoutTop" >
 
         <TextView
-            android:id="@+id/textHint"
+            android:id="@+id/textHintMain"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="60dp"
             android:layout_marginRight="60dp"
-            android:layout_marginTop="50dp"
-            android:background="@drawable/ic_launcher"
-            android:text="@string/setting_gravity_hint"
-            android:textColor="#ffffff"
-            android:textSize="25sp" />
+            android:layout_marginTop="30dp"
+            android:text="@string/gravity_hint_main"
+            android:textColor="@color/gravity_hint_main"
+            android:textSize="@dimen/gravity_hint_main_text_size" />
+
+        <TextView
+            android:id="@+id/textHintVice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textHintMain"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/gravity_hint_vice"
+            android:textColor="@color/gravity_hint_vice"
+            android:textSize="@dimen/gravity_hint_vice_text_size" />
 
         <SeekBar
             android:id="@+id/gravitySeekBar"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="110dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp" />
+            android:layout_marginBottom="50dp"
+            android:layout_marginLeft="@dimen/gravity_seekbar_margin_left_right"
+            android:layout_marginRight="@dimen/gravity_seekbar_margin_left_right" />
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_above="@id/gravitySeekBar"
-            android:orientation="horizontal" >
+            android:layout_marginLeft="@dimen/gravity_level_margin_left_right"
+            android:layout_marginRight="@dimen/gravity_level_margin_left_right" >
 
             <TextView
-                android:layout_width="0dip"
+                android:id="@+id/textLow"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
-                android:layout_weight="1"
-                android:gravity="left"
-                android:text="低\n |"
-                android:textSize="20sp" />
+                android:layout_alignParentLeft="true"
+                android:gravity="center"
+                android:text="低"
+                android:textColor="@color/gravity_level_text_color"
+                android:textSize="@dimen/gravity_level_text_size" />
 
             <TextView
-                android:layout_width="0dip"
+                android:id="@+id/textMiddle"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:text="中\n|"
-                android:textSize="20sp" />
+                android:layout_centerHorizontal="true"
+                android:text="中"
+                android:gravity="center"
+                android:textColor="@color/gravity_level_text_color"
+                android:textSize="@dimen/gravity_level_text_size" />
 
             <TextView
-                android:layout_width="0dip"
+                android:id="@+id/textHigh"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="40dp"
-                android:layout_weight="1"
-                android:gravity="right"
-                android:text="高\n| "
-                android:textSize="20sp" />
-        </LinearLayout>
+                android:layout_alignParentRight="true"
+                android:text="高"
+                android:gravity="center"
+                android:textColor="@color/gravity_level_text_color"
+                android:textSize="@dimen/gravity_level_text_size" />
+        </RelativeLayout>
     </RelativeLayout>
 
 </RelativeLayout>

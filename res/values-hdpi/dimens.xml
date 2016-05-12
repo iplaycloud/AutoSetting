@@ -12,7 +12,7 @@
     <!-- TopBar -->
     <dimen name="top_bar_height">46dp</dimen>
     <dimen name="top_bar_title_margin_left">28dp</dimen>
-    
+
     <!-- Main -->
     <dimen name="main_title_text_size">20sp</dimen>
     <dimen name="main_clock_text_size">35sp</dimen>
@@ -34,15 +34,22 @@
     <dimen name="setting_system_bright_item_height">60dp</dimen>
     <dimen name="setting_system_bright_radio_margin">15dp</dimen>
     <dimen name="ui_topbar_height">95dp</dimen>
-    
+
     <!-- Volume -->
     <dimen name="volume_dialog_width">650dp</dimen>
     <dimen name="volume_dialog_height">60dp</dimen>
     <dimen name="volume_dialog_margin">10dp</dimen>
-    
+
     <!-- Magic -->
     <dimen name="magic_btn_width">195dp</dimen>
     <dimen name="magic_btn_height">60dp</dimen>
     <dimen name="magic_btn_text_size">25sp</dimen>
+
+    <!-- Gravity -->
+    <dimen name="gravity_hint_main_text_size">22sp</dimen>
+    <dimen name="gravity_hint_vice_text_size">20sp</dimen>
+    <dimen name="gravity_seekbar_margin_left_right">100dp</dimen>
+    <dimen name="gravity_level_margin_left_right">90dp</dimen>
+    <dimen name="gravity_level_text_size">20sp</dimen>
 
 </resources>

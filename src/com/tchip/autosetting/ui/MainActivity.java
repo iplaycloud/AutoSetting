@@ -3,7 +3,6 @@ package com.tchip.autosetting.ui;
 import com.tchip.autosetting.Constant;
 import com.tchip.autosetting.R;
 import com.tchip.autosetting.util.OpenUtil;
-import com.tchip.autosetting.util.SettingUtil;
 import com.tchip.autosetting.util.OpenUtil.MODULE_TYPE;
 import com.tchip.autosetting.util.TypefaceUtil;
 
@@ -17,13 +16,10 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.View.OnLongClickListener;
-import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
 import android.widget.TextClock;
-import android.widget.Toast;
 import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.EditText;
 import android.widget.Switch;
 
 public class MainActivity extends Activity {
@@ -31,8 +27,9 @@ public class MainActivity extends Activity {
 	private Switch switchWifi, switchParking;
 
 	private WifiManager wifiManager;
+
 	/** WiFi状态监听器 */
-	private IntentFilter wifiIntentFilter;
+	// private IntentFilter wifiIntentFilter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -122,9 +119,9 @@ public class MainActivity extends Activity {
 			}
 		});
 
-		wifiIntentFilter = new IntentFilter();
-		wifiIntentFilter.addAction(WifiManager.WIFI_STATE_CHANGED_ACTION);
-		wifiIntentFilter.setPriority(Integer.MAX_VALUE);
+		// wifiIntentFilter = new IntentFilter();
+		// wifiIntentFilter.addAction(WifiManager.WIFI_STATE_CHANGED_ACTION);
+		// wifiIntentFilter.setPriority(Integer.MAX_VALUE);
 
 		// 停车侦测开关
 		switchParking = (Switch) findViewById(R.id.switchParking);

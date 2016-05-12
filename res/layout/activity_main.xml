@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000"
+    android:background="@color/setting_bg_color"
     android:orientation="vertical" >
 
     <RelativeLayout
@@ -84,7 +84,7 @@
                 android:id="@+id/itemDisplay"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/item_height"
-                android:background="@color/setting_item_bg"
+                android:background="@color/setting_bg_color"
                 android:clickable="true" >
 
                 <RelativeLayout
@@ -122,7 +122,7 @@
                 android:id="@+id/itemSound"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/item_height"
-                android:background="@color/setting_item_bg"
+                android:background="@color/setting_bg_color"
                 android:clickable="true" >
 
                 <RelativeLayout
@@ -159,7 +159,7 @@
                 android:id="@+id/itemWifi"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/item_height"
-                android:background="@color/setting_item_bg"
+                android:background="@color/setting_bg_color"
                 android:clickable="true" >
 
                 <RelativeLayout
@@ -206,7 +206,7 @@
                 android:id="@+id/itemWifiAp"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/item_height"
-                android:background="@color/setting_item_bg"
+                android:background="@color/setting_bg_color"
                 android:clickable="true"
                 android:visibility="visible" >
 
@@ -244,7 +244,7 @@
                 android:id="@+id/itemDataUsage"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/item_height"
-                android:background="@color/setting_item_bg"
+                android:background="@color/setting_bg_color"
                 android:clickable="true"
                 android:visibility="visible" >
 
@@ -282,7 +282,7 @@
                 android:id="@+id/itemAPN"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/item_height"
-                android:background="@color/setting_item_bg"
+                android:background="@color/setting_bg_color"
                 android:clickable="true"
                 android:visibility="visible" >
 
@@ -320,7 +320,7 @@
                 android:id="@+id/itemCrash"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/item_height"
-                android:background="@color/setting_item_bg"
+                android:background="@color/setting_bg_color"
                 android:clickable="true"
                 android:visibility="visible" >
 
@@ -358,7 +358,7 @@
                 android:id="@+id/itemParkMonitor"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/item_height"
-                android:background="@color/setting_item_bg"
+                android:background="@color/setting_bg_color"
                 android:clickable="true" >
 
                 <RelativeLayout
@@ -405,7 +405,7 @@
                 android:id="@+id/itemStorage"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/item_height"
-                android:background="@color/setting_item_bg"
+                android:background="@color/setting_bg_color"
                 android:clickable="true"
                 android:visibility="visible" >
 
@@ -444,7 +444,7 @@
                 android:id="@+id/itemUsb"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/item_height"
-                android:background="@color/setting_item_bg"
+                android:background="@color/setting_bg_color"
                 android:clickable="true"
                 android:visibility="visible" >
 
@@ -482,7 +482,7 @@
                 android:id="@+id/itemDate"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/item_height"
-                android:background="@color/setting_item_bg"
+                android:background="@color/setting_bg_color"
                 android:clickable="true" >
 
                 <RelativeLayout
@@ -519,7 +519,7 @@
                 android:id="@+id/itemReset"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/item_height"
-                android:background="@color/setting_item_bg"
+                android:background="@color/setting_bg_color"
                 android:clickable="true" >
 
                 <RelativeLayout
@@ -556,7 +556,7 @@
                 android:id="@+id/itemOTA"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/item_height"
-                android:background="@color/setting_item_bg"
+                android:background="@color/setting_bg_color"
                 android:clickable="true"
                 android:visibility="visible" >
 
@@ -594,7 +594,7 @@
                 android:id="@+id/itemAbout"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/item_height"
-                android:background="@color/setting_item_bg"
+                android:background="@color/setting_bg_color"
                 android:clickable="true"
                 android:visibility="visible" >
 

@@ -4,12 +4,15 @@ import com.tchip.autosetting.Constant;
 import com.tchip.autosetting.MyApp;
 import com.tchip.autosetting.R;
 import com.tchip.autosetting.util.MyLog;
+import com.tchip.autosetting.util.ProviderUtil;
+import com.tchip.autosetting.util.ProviderUtil.Name;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -23,13 +26,14 @@ import android.widget.TextView;
 
 public class SettingGravityActivity extends Activity {
 
-	private TextView textHint;
-	private SharedPreferences sharedPreferences;
-	private Editor editor;
+	private Context context;
+	private TextView textLow, textMiddle, textHigh;
+	private SeekBar seekBarGravity;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		context = getApplicationContext();
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -37,15 +41,11 @@ public class SettingGravityActivity extends Activity {
 		decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
 		setContentView(R.layout.activity_setting_gravity);
 
-		sharedPreferences = getSharedPreferences(Constant.MySP.NAME,
-				Context.MODE_PRIVATE);
-		editor = sharedPreferences.edit();
-
 		initialLayout();
 	}
 
 	private void initialLayout() {
-		textHint = (TextView) findViewById(R.id.textHint);
+		MyOnClickListener myOnClickListener = new MyOnClickListener();
 		Switch switchGravity = (Switch) findViewById(R.id.switchGravity);
 		switchGravity.setChecked(isGravityOn());
 		switchGravity.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -53,49 +53,29 @@ public class SettingGravityActivity extends Activity {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView,
 					boolean isChecked) {
-				editor.putBoolean("crashOn", isChecked);
-				editor.commit();
-				MyApp.isCrashOn = isChecked;
-
-				// 通知CarLauncher
-				sendBroadcast(new Intent("com.tchip.SETTING_SYNC").putExtra(
-						"content", isChecked ? "crashOn" : "crashOff"));
+				MyLog.v("[SettingGravity]SET_DETECT_CRASH_STATE:" + isChecked);
+				ProviderUtil.setValue(context, Name.SET_DETECT_CRASH_STATE,
+						isChecked ? "1" : "0");
 			}
 		});
 
-		SeekBar gravitySeekBar = (SeekBar) findViewById(R.id.gravitySeekBar);
-		gravitySeekBar.setMax(2);
-		gravitySeekBar.setProgress(getGravityLevel());
+		textLow = (TextView) findViewById(R.id.textLow);
+		textLow.setOnClickListener(myOnClickListener);
+		textMiddle = (TextView) findViewById(R.id.textMiddle);
+		textMiddle.setOnClickListener(myOnClickListener);
+		textHigh = (TextView) findViewById(R.id.textHigh);
+		textHigh.setOnClickListener(myOnClickListener);
 
-		gravitySeekBar
+		seekBarGravity = (SeekBar) findViewById(R.id.gravitySeekBar);
+		seekBarGravity.setMax(2);
+		seekBarGravity.setProgress(getGravityLevel());
+		setTextLevelBackground(getGravityLevel());
+
+		seekBarGravity
 				.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 					@Override
 					public void onStopTrackingTouch(SeekBar seekBar) {
-						int crashSensitive = seekBar.getProgress();
-						MyLog.v("[SettingGravity] Set crash sensitive:"
-								+ crashSensitive);
-						MyApp.crashSensitive = crashSensitive;
-						editor.putInt("crashSensitive", crashSensitive);
-						editor.commit();
 
-						// 通知CarLauncher
-						String content = "crashMiddle";
-						switch (crashSensitive) {
-						case 0:
-							content = "crashLow";
-							break;
-
-						case 2:
-							content = "crashHigh";
-							break;
-
-						case 1:
-						default:
-							content = "crashMiddle";
-							break;
-						}
-						sendBroadcast(new Intent("com.tchip.SETTING_SYNC")
-								.putExtra("content", content));
 					}
 
 					@Override
@@ -106,22 +86,108 @@ public class SettingGravityActivity extends Activity {
 					@Override
 					public void onProgressChanged(SeekBar seekBar,
 							int progress, boolean fromUser) {
+						setTextLevelBackground(progress);
+						int crashSensitive = seekBar.getProgress();
+						MyLog.v("[SettingGravity] Set crash sensitive:"
+								+ crashSensitive);
+						ProviderUtil.setValue(context,
+								Name.SET_DETECT_CRASH_LEVEL, ""
+										+ crashSensitive);
 					}
 				});
 	}
 
-	/** 碰撞侦测是否打开 */
-	private boolean isGravityOn() {
-		boolean isGravityOn = sharedPreferences.getBoolean("crashOn",
-				Constant.GravitySensor.DEFAULT_ON);
-		return isGravityOn;
+	class MyOnClickListener implements View.OnClickListener {
+
+		@Override
+		public void onClick(View v) {
+
+			switch (v.getId()) {
+			case R.id.textLow:
+				seekBarGravity.setProgress(0);
+				break;
+
+			case R.id.textMiddle:
+				seekBarGravity.setProgress(1);
+				break;
+
+			case R.id.textHigh:
+				seekBarGravity.setProgress(2);
+				break;
+
+			default:
+				break;
+			}
+
+		}
+
 	}
 
-	/** 获取当前设置的碰撞等级 */
+	private void setTextLevelBackground(int level) {
+		switch (level) {
+		case 0:
+			textLow.setBackground(getResources().getDrawable(
+					R.drawable.gravity_level_now_bg, null));
+			textMiddle.setBackground(getResources().getDrawable(
+					R.drawable.gravity_level_other_bg, null));
+			textHigh.setBackground(getResources().getDrawable(
+					R.drawable.gravity_level_other_bg, null));
+			break;
+
+		case 1:
+			textLow.setBackground(getResources().getDrawable(
+					R.drawable.gravity_level_other_bg, null));
+			textMiddle.setBackground(getResources().getDrawable(
+					R.drawable.gravity_level_now_bg, null));
+			textHigh.setBackground(getResources().getDrawable(
+					R.drawable.gravity_level_other_bg, null));
+			break;
+
+		case 2:
+			textLow.setBackground(getResources().getDrawable(
+					R.drawable.gravity_level_other_bg, null));
+			textMiddle.setBackground(getResources().getDrawable(
+					R.drawable.gravity_level_other_bg, null));
+			textHigh.setBackground(getResources().getDrawable(
+					R.drawable.gravity_level_now_bg, null));
+			break;
+
+		default:
+			break;
+		}
+
+	}
+
+	/** 碰撞侦测是否打开:默认开启 */
+	private boolean isGravityOn() {
+		String strGravityOn = ProviderUtil.getValue(context,
+				Name.SET_DETECT_CRASH_STATE);
+		if (null != strGravityOn && strGravityOn.trim().length() > 0) {
+			if (strGravityOn.equals("0")) {
+				return false;
+			} else {
+				return true;
+			}
+		} else {
+			return true;
+		}
+	}
+
+	/** 获取当前设置的碰撞等级:默认1-中 */
 	private int getGravityLevel() {
-		int crashSensitive = sharedPreferences.getInt("crashSensitive",
-				Constant.GravitySensor.SENSITIVE_DEFAULT);
-		return crashSensitive;
+		String strGravityLevel = ProviderUtil.getValue(context,
+				Name.SET_DETECT_CRASH_LEVEL);
+		if (null != strGravityLevel && strGravityLevel.trim().length() > 0) {
+			if (strGravityLevel.equals("0")) {
+				return 0;
+			} else if (strGravityLevel.equals("2")) {
+				return 2;
+			} else {
+				return 1;
+			}
+		} else {
+			return 1;
+		}
 	}
 
 }

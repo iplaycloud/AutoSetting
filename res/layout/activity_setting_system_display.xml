@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/setting_item_bg"
+    android:background="@color/setting_bg_color"
     android:orientation="vertical" >
 
     <RelativeLayout
@@ -100,7 +100,7 @@
                 android:layout_height="1dp"
                 android:layout_alignParentBottom="true"
                 android:layout_margin="2dp"
-                android:background="@color/setting_item_bg" />
+                android:background="@color/setting_item_separator" />
         </RelativeLayout>
 
         <RelativeLayout
