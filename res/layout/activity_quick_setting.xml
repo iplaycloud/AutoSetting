@@ -8,6 +8,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/quick_setting_layout_switch_margin_left_right"
+        android:layout_marginRight="@dimen/quick_setting_layout_switch_margin_left_right"
         android:layout_marginTop="@dimen/quick_setting_layout_switch_margin_top"
         android:orientation="horizontal" >
 
@@ -16,6 +18,8 @@
             android:layout_width="@dimen/quick_setting_icon_edge_length"
             android:layout_height="@dimen/quick_setting_icon_edge_length"
             android:layout_weight="1"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@null"
             android:src="@drawable/quick_setting_wifi_off" />
 
         <ImageView
@@ -23,20 +27,27 @@
             android:layout_width="@dimen/quick_setting_icon_edge_length"
             android:layout_height="@dimen/quick_setting_icon_edge_length"
             android:layout_weight="1"
-            android:src="@drawable/quick_setting_data_on" />
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@null"
+            android:src="@drawable/quick_setting_data_on"
+            android:visibility="visible" />
 
         <ImageView
             android:id="@+id/imageBluetooth"
             android:layout_width="@dimen/quick_setting_icon_edge_length"
             android:layout_height="@dimen/quick_setting_icon_edge_length"
             android:layout_weight="1"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@null"
             android:src="@drawable/quick_setting_bluetooth_off" />
 
         <ImageView
-            android:id="@+id/imageGPS"
+            android:id="@+id/imageLocation"
             android:layout_width="@dimen/quick_setting_icon_edge_length"
             android:layout_height="@dimen/quick_setting_icon_edge_length"
             android:layout_weight="1"
+            android:background="?android:attr/selectableItemBackground"
+            android:contentDescription="@null"
             android:src="@drawable/quick_setting_gps_on" />
 
         <ImageView
@@ -44,6 +55,8 @@
             android:layout_width="@dimen/quick_setting_icon_edge_length"
             android:layout_height="@dimen/quick_setting_icon_edge_length"
             android:layout_weight="1"
+            android:background="?android:attr/selectableItemBackground"
+            android:contentDescription="@null"
             android:src="@drawable/quick_setting_airplane_off" />
     </LinearLayout>
 
@@ -51,6 +64,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/quick_setting_seekbar_icon_margin_left"
+        android:layout_marginRight="@dimen/quick_setting_seekbar_icon_margin_left"
         android:layout_marginTop="@dimen/quick_setting_bright_seekbar_margin_top" >
 
         <ImageView
@@ -59,6 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
+            android:contentDescription="@null"
             android:src="@drawable/quick_setting_brightness" />
 
         <SeekBar
@@ -76,6 +91,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/quick_setting_seekbar_icon_margin_left"
+        android:layout_marginRight="@dimen/quick_setting_seekbar_icon_margin_left"
         android:layout_marginTop="@dimen/quick_setting_volume_seekbar_margin_top" >
 
         <ImageView
@@ -84,6 +100,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
+            android:contentDescription="@null"
             android:src="@drawable/quick_setting_volume" />
 
         <SeekBar

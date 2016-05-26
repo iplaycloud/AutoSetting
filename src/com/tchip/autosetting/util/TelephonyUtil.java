@@ -6,10 +6,12 @@ import java.net.SocketException;
 import java.util.Enumeration;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
@@ -32,6 +34,23 @@ public class TelephonyUtil {
 		}
 		return false;
 	}
+	
+	/**
+	 * 返回当前Wifi是否连接上
+	 * 
+	 * @param context
+	 * @return true 已连接
+	 */
+	public static boolean isWifiConnected(Context context) {
+		ConnectivityManager conMan = (ConnectivityManager) context
+				.getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo netInfo = conMan.getActiveNetworkInfo();
+		if (netInfo != null
+				&& netInfo.getType() == ConnectivityManager.TYPE_WIFI) {
+			return true;
+		}
+		return false;
+	}
 
 	/**
 	 * 飞行模式是否打开
@@ -43,6 +62,17 @@ public class TelephonyUtil {
 		return android.provider.Settings.System.getInt(
 				context.getContentResolver(),
 				android.provider.Settings.Global.AIRPLANE_MODE_ON, 0) == 1;
+	}
+	
+	/** 设置飞行模式 */
+	public static void setAirplaneMode(Context context, boolean setAirPlane) {
+		MyLog.v("[SettingUtil]setAirplaneMode:" + setAirPlane);
+		Settings.Global.putInt(context.getContentResolver(),
+				Settings.Global.AIRPLANE_MODE_ON, setAirPlane ? 1 : 0);
+		// 广播飞行模式的改变，让相应的程序可以处理。
+		Intent intent = new Intent(Intent.ACTION_AIRPLANE_MODE_CHANGED);
+		intent.putExtra("state", setAirPlane);
+		context.sendBroadcast(intent);
 	}
 
 	/** 获取设备Mac地址 */
