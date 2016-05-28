@@ -30,7 +30,7 @@
             android:background="?android:attr/selectableItemBackgroundBorderless"
             android:contentDescription="@null"
             android:src="@drawable/quick_setting_data_on"
-            android:visibility="visible" />
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/imageBluetooth"
@@ -46,7 +46,7 @@
             android:layout_width="@dimen/quick_setting_icon_edge_length"
             android:layout_height="@dimen/quick_setting_icon_edge_length"
             android:layout_weight="1"
-            android:background="?android:attr/selectableItemBackground"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
             android:contentDescription="@null"
             android:src="@drawable/quick_setting_gps_on" />
 
@@ -55,9 +55,18 @@
             android:layout_width="@dimen/quick_setting_icon_edge_length"
             android:layout_height="@dimen/quick_setting_icon_edge_length"
             android:layout_weight="1"
-            android:background="?android:attr/selectableItemBackground"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
             android:contentDescription="@null"
             android:src="@drawable/quick_setting_airplane_off" />
+
+        <ImageView
+            android:id="@+id/imageSetting"
+            android:layout_width="@dimen/quick_setting_icon_edge_length"
+            android:layout_height="@dimen/quick_setting_icon_edge_length"
+            android:layout_weight="1"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_launcher" />
     </LinearLayout>
 
     <RelativeLayout

@@ -3,8 +3,10 @@ package com.tchip.autosetting.ui;
 import com.tchip.autosetting.Constant;
 import com.tchip.autosetting.R;
 import com.tchip.autosetting.util.HintUtil;
+import com.tchip.autosetting.util.OpenUtil;
 import com.tchip.autosetting.util.SettingUtil;
 import com.tchip.autosetting.util.TelephonyUtil;
+import com.tchip.autosetting.util.OpenUtil.MODULE_TYPE;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
@@ -35,6 +37,7 @@ public class QuickSettingActivity extends Activity {
 	private ImageView imageBluetooth;
 	private ImageView imageLocation;
 	private ImageView imageAirplane;
+	private ImageView imageSetting;
 
 	/** WiFi状态监听器 **/
 	private IntentFilter intentFilter;
@@ -135,6 +138,8 @@ public class QuickSettingActivity extends Activity {
 		imageLocation.setOnClickListener(myOnClickListener);
 		imageAirplane = (ImageView) findViewById(R.id.imageAirplane);
 		imageAirplane.setOnClickListener(myOnClickListener);
+		imageSetting = (ImageView) findViewById(R.id.imageSetting);
+		imageSetting.setOnClickListener(myOnClickListener);
 
 		updateIconState();
 
@@ -184,6 +189,13 @@ public class QuickSettingActivity extends Activity {
 						"Need WRITE_SECURE_SETTING Permission");
 				// TelephonyUtil.setAirplaneMode(context,
 				// !TelephonyUtil.isAirplaneModeOn(context));
+				break;
+
+			case R.id.imageSetting:
+				finish();
+				Intent intentSetting = new Intent(QuickSettingActivity.this,
+						MainActivity.class);
+				startActivity(intentSetting);
 				break;
 
 			default:

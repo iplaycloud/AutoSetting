@@ -75,7 +75,7 @@ public class OpenUtil {
 
 		/** 存储设置 */
 		STORAGE,
-
+		
 		/** 系统设置 */
 		SYSTEM_SETTING,
 
