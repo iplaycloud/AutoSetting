@@ -22,6 +22,11 @@ public interface Constant {
 	/** 广播 */
 	public static final class Broadcast {
 
+		/** 打开飞行模式 */
+		public static final String AIRPLANE_ON = "tchip.intent.action.AIRPLANE_ON";
+		/** 关闭飞行模式 */
+		public static final String AIRPLANE_OFF = "tchip.intent.action.AIRPLANE_OFF";
+
 	}
 
 	public static final class Setting {

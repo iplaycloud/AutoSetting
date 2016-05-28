@@ -5,6 +5,8 @@ import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.util.Enumeration;
 
+import com.tchip.autosetting.Constant;
+
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -66,14 +68,11 @@ public class TelephonyUtil {
 	
 	/** 设置飞行模式 */
 	public static void setAirplaneMode(Context context, boolean setAirPlane) {
-		MyLog.v("[SettingUtil]setAirplaneMode:" + setAirPlane);
-		Settings.Global.putInt(context.getContentResolver(),
-				Settings.Global.AIRPLANE_MODE_ON, setAirPlane ? 1 : 0);
-		// 广播飞行模式的改变，让相应的程序可以处理。
-		Intent intent = new Intent(Intent.ACTION_AIRPLANE_MODE_CHANGED);
-		intent.putExtra("state", setAirPlane);
-		context.sendBroadcast(intent);
+		 MyLog.v("[SettingUtil]setAirplaneMode:" + setAirPlane);
+		 context.sendBroadcast(new Intent(setAirPlane ? Constant.Broadcast.AIRPLANE_ON
+					: Constant.Broadcast.AIRPLANE_OFF));
 	}
+
 
 	/** 获取设备Mac地址 */
 	public static String getLocalMacAddress(Context context) {
