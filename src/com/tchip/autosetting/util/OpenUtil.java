@@ -234,6 +234,14 @@ public class OpenUtil {
 							"mediatek.intent.action.WIFI_TETHER"));
 					break;
 
+				case OTA:
+					Intent intentSettingOTA = new Intent(Intent.ACTION_VIEW);
+					intentSettingOTA.setClassName("com.tchipota",
+							"com.tchipota.MainActivity");
+					intentSettingOTA.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					activity.startActivity(intentSettingOTA);
+					break;
+
 				default:
 					break;
 				}
