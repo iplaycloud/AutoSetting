@@ -75,7 +75,7 @@ public class OpenUtil {
 
 		/** 存储设置 */
 		STORAGE,
-		
+
 		/** 系统设置 */
 		SYSTEM_SETTING,
 
@@ -228,9 +228,9 @@ public class OpenUtil {
 							android.provider.Settings.ACTION_WIFI_SETTINGS));
 					break;
 
-				case WIFI_AP:
+				case WIFI_AP: // android.settings.TETHER_WIFI_SETTINGS
 					activity.startActivity(new Intent(
-							"android.settings.TETHER_WIFI_SETTINGS"));
+							"mediatek.intent.action.WIFI_TETHER"));
 					break;
 
 				default:

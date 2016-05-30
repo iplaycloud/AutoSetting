@@ -153,6 +153,10 @@ public class MainActivity extends Activity {
 			case R.id.itemWifi:
 				OpenUtil.openModule(MainActivity.this, MODULE_TYPE.WIFI);
 				break;
+				
+			case R.id.itemWifiAp:
+				OpenUtil.openModule(MainActivity.this, MODULE_TYPE.WIFI_AP);
+				break;
 
 			case R.id.itemDataUsage:
 				OpenUtil.openModule(MainActivity.this, MODULE_TYPE.DATA_USAGE);
