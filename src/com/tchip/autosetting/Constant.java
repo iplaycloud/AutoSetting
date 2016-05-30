@@ -94,6 +94,9 @@ public interface Constant {
 		/** FM频率 */
 		public static final String NODE_FM_FREQUENCY = "/sys/bus/i2c/devices/2-0011/setch_si4712";
 
+		/** 停车守卫开关： * 2：打开(默认) 3：关闭 */
+		public static final String NODE_PARK_MONITOR = "/sys/bus/i2c/devices/0-007f/back_car_status";
+
 	}
 
 }

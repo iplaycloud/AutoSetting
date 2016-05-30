@@ -446,7 +446,7 @@
                 android:layout_height="@dimen/item_height"
                 android:background="@color/setting_bg_color"
                 android:clickable="true"
-                android:visibility="visible" >
+                android:visibility="gone" >
 
                 <RelativeLayout
                     android:layout_width="match_parent"

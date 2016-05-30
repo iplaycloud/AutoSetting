@@ -17,16 +17,12 @@ import java.net.SocketException;
 import java.util.Enumeration;
 
 import com.tchip.autosetting.Constant;
-
-import android.app.KeyguardManager;
-import android.app.KeyguardManager.KeyguardLock;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
-import android.os.PowerManager;
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
 import android.telephony.TelephonyManager;
@@ -42,6 +38,10 @@ public class SettingUtil {
 	private static File nodeFMEnable = new File(Constant.Path.NODE_FM_ENABLE);
 	private static File nodeFMFrequency = new File(
 			Constant.Path.NODE_FM_FREQUENCY);
+
+	/** 停车侦测开关节点 2：打开(默认) 3：关闭 */
+	public static File fileParkingMonitor = new File(
+			Constant.Path.NODE_PARK_MONITOR);
 
 	public static void setUVCEnable(boolean isUVCOn) {
 		MyLog.v("[SettingUtil]setFMEnable:" + isUVCOn);
@@ -72,7 +72,6 @@ public class SettingUtil {
 	}
 
 	private static boolean isUsbMode() {
-
 		int fileValue = 0;
 		String strValue = "";
 		if (nodeUsbUvcSwitch.exists()) {
@@ -99,7 +98,27 @@ public class SettingUtil {
 
 		return fileValue == 40;
 	}
-	
+
+	public static void setParkingMonitor(Context context, boolean isParkingOn) {
+		if (isParkingOn) {
+			SaveFileToNode(fileParkingMonitor, "2");
+		} else {
+			SaveFileToNode(fileParkingMonitor, "3");
+		}
+
+		SharedPreferences sharedPreferences = context.getSharedPreferences(
+				Constant.MySP.NAME, Context.MODE_PRIVATE);
+		Editor editor = sharedPreferences.edit();
+
+		editor.putBoolean(Constant.MySP.STR_PARKING_ON, isParkingOn);
+		editor.commit();
+		MyLog.v("[SettingUtil]setParkingMonitor:" + isParkingOn);
+
+		// 通知CarLauncher
+		context.sendBroadcast(new Intent("com.tchip.SETTING_SYNC").putExtra(
+				"content", isParkingOn ? "parkOn" : "parkOff"));
+	}
+
 	/**
 	 * 调整系统亮度
 	 * 
@@ -142,7 +161,6 @@ public class SettingUtil {
 
 		MyLog.v("[SettingUtil]setScreenOffTime " + time + ",isSuccess:"
 				+ isSuccess);
-
 	}
 
 	public static int getScreenOffTime(Context context) {
@@ -183,80 +201,19 @@ public class SettingUtil {
 		}
 	}
 
-	/**
-	 * 点亮屏幕
-	 * 
-	 * @param context
-	 */
-	public static void lightScreen(Context context) {
-		// 获取电源管理器对象
-		PowerManager pm = (PowerManager) context
-				.getSystemService(Context.POWER_SERVICE);
-
-		// 获取PowerManager.WakeLock对象,后面的参数|表示同时传入两个值,最后的是LogCat里用的Tag
-		PowerManager.WakeLock wl = pm.newWakeLock(
-				PowerManager.ACQUIRE_CAUSES_WAKEUP
-						| PowerManager.SCREEN_DIM_WAKE_LOCK, "bright");
-
-		wl.acquire(); // 点亮屏幕
-		wl.release(); // 释放
-
-		// 得到键盘锁管理器对象
-		KeyguardManager km = (KeyguardManager) context
-				.getSystemService(Context.KEYGUARD_SERVICE);
-
-		// 参数是LogCat里用的Tag
-		KeyguardLock kl = km.newKeyguardLock("AZ");
-
-		kl.disableKeyguard();
-	}
-
-	/**
-	 * Camera自动调节亮度节点
-	 * 
-	 * 1：开 0：关;默认打开
-	 */
-	public static File fileAutoLightSwitch = new File(
-			"/sys/devices/platform/mt-i2c.1/i2c-1/1-007f/back_car_status");
-
-	/**
-	 * 设置Camera自动调节亮度开关
-	 */
-	public static void setAutoLight(Context context, boolean isAutoLightOn) {
-		if (isAutoLightOn) {
-			SaveFileToNode(fileAutoLightSwitch, "1");
-		} else {
-			SaveFileToNode(fileAutoLightSwitch, "0");
-		}
-		MyLog.v("[SettingUtil]setAutoLight:" + isAutoLightOn);
-	}
-
-	/**
-	 * ACC状态节点
-	 */
-	public static File fileAccStatus = new File(
-			"/sys/devices/platform/mt-i2c.1/i2c-1/1-007f/acc_car_status");
-
-	/**
-	 * 获取ACC状态
-	 * 
-	 * @return 0:ACC下电
-	 * 
-	 *         1:ACC上电
-	 */
-	public static int getAccStatus() {
-		return getFileInt(fileAccStatus);
-	}
-
 	public static int getFileInt(File file) {
-
 		if (file.exists()) {
 			try {
 				InputStream is = new FileInputStream(file);
 				InputStreamReader fr = new InputStreamReader(is);
 				int ch = 0;
-				if ((ch = fr.read()) != -1)
+				if ((ch = fr.read()) != -1) {
+					fr.close();
 					return Integer.parseInt(String.valueOf((char) ch));
+				} else {
+					fr.close();
+					return 0;
+				}
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
@@ -264,62 +221,6 @@ public class SettingUtil {
 			}
 		}
 		return 0;
-	}
-
-	/**
-	 * 获取背光亮度值
-	 */
-	public static int getLCDValue() {
-		/** 背光值节点 **/
-		File fileLCDValue = new File("/sys/class/leds/lcd-backlight/brightness");
-
-		String strValue = "";
-		if (fileLCDValue.exists()) {
-			try {
-				InputStreamReader read = new InputStreamReader(
-						new FileInputStream(fileLCDValue), "utf-8");
-				BufferedReader bufferedReader = new BufferedReader(read);
-				String lineTXT = null;
-				while ((lineTXT = bufferedReader.readLine()) != null) {
-					strValue += lineTXT.toString();
-				}
-				read.close();
-
-				return Integer.parseInt(strValue);
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-				MyLog.e("[SettingUtil]getLCDValue: FileNotFoundException");
-			} catch (IOException e) {
-				e.printStackTrace();
-				MyLog.e("[SettingUtil]getLCDValue: IOException");
-			}
-		}
-		return -5;
-	}
-
-	/**
-	 * 电子狗电源开关节点
-	 * 
-	 * 1-打开
-	 * 
-	 * 0-关闭
-	 */
-	public static File fileEDogPower = new File(
-			"/sys/devices/platform/mt-i2c.1/i2c-1/1-007f/edog_car_status");
-
-	/**
-	 * 设置电子狗电源开关
-	 * 
-	 * @param isEDogOn
-	 */
-	public static void setEDogEnable(boolean isEDogOn) {
-
-		MyLog.v("[SettingUtil]setEDogEnable:" + isEDogOn);
-		if (isEDogOn) {
-			SaveFileToNode(fileEDogPower, "1");
-		} else {
-			SaveFileToNode(fileEDogPower, "0");
-		}
 	}
 
 	/**

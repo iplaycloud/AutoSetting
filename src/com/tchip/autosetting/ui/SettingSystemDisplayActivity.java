@@ -104,7 +104,7 @@ public class SettingSystemDisplayActivity extends Activity {
 						editor.commit();
 						hideOrShowSeekBarLayout(isChecked);
 
-						SettingUtil.setAutoLight(context, isChecked);
+						// SettingUtil.setAutoLight(context, isChecked);
 
 						// 关闭自动亮度调节，重设亮度值
 						if (!isChecked) {

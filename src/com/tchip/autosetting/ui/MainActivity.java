@@ -9,7 +9,6 @@ import com.tchip.autosetting.util.TypefaceUtil;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.view.View;

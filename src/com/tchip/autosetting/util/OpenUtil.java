@@ -101,7 +101,8 @@ public class OpenUtil {
 					break;
 
 				case APN:
-					HintUtil.showToast(activity, "TODO");
+					activity.startActivity(new Intent(
+							android.provider.Settings.ACTION_APN_SETTINGS));
 					break;
 
 				case AUTO_SETTING:
