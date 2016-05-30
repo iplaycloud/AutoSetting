@@ -185,10 +185,9 @@ public class QuickSettingActivity extends Activity {
 				break;
 
 			case R.id.imageAirplane:
-				HintUtil.showToast(context,
-						"Need WRITE_SECURE_SETTING Permission");
-				// TelephonyUtil.setAirplaneMode(context,
-				// !TelephonyUtil.isAirplaneModeOn(context));
+				sendBroadcast(new Intent(
+						TelephonyUtil.isAirplaneModeOn(context) ? Constant.Broadcast.AIRPLANE_OFF
+								: Constant.Broadcast.AIRPLANE_ON));
 				break;
 
 			case R.id.imageSetting:
