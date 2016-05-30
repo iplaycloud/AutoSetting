@@ -4,6 +4,8 @@ import com.tchip.autosetting.Constant;
 import com.tchip.autosetting.R;
 import com.tchip.autosetting.util.OpenUtil;
 import com.tchip.autosetting.util.OpenUtil.MODULE_TYPE;
+import com.tchip.autosetting.util.ProviderUtil;
+import com.tchip.autosetting.util.ProviderUtil.Name;
 import com.tchip.autosetting.util.TypefaceUtil;
 
 import android.app.Activity;
@@ -124,16 +126,28 @@ public class MainActivity extends Activity {
 
 		// 停车侦测开关
 		switchParking = (Switch) findViewById(R.id.switchParking);
-		switchParking.setChecked(false/* isParkingMonitorOn() */); // FIXME
+		switchParking.setChecked(isParkingMonitorOn());
 		switchParking.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView,
-					boolean isChecked) { // FIXME
-				// SettingUtil.setParkingMonitor(MainActivity.this, isChecked);
+					boolean isChecked) {
+				ProviderUtil.setValue(MainActivity.this,
+						Name.SET_PARK_MONITOR_STATE, isChecked ? "1" : "0");
 			}
 		});
 
+	}
+
+	/** 停车守卫是否打开：默认打开 */
+	private boolean isParkingMonitorOn() {
+		String parkState = ProviderUtil.getValue(MainActivity.this,
+				Name.SET_PARK_MONITOR_STATE);
+		if ("0".equals(parkState)) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	class MyOnClickListener implements View.OnClickListener {
@@ -152,7 +166,7 @@ public class MainActivity extends Activity {
 			case R.id.itemWifi:
 				OpenUtil.openModule(MainActivity.this, MODULE_TYPE.WIFI);
 				break;
-				
+
 			case R.id.itemWifiAp:
 				OpenUtil.openModule(MainActivity.this, MODULE_TYPE.WIFI_AP);
 				break;
@@ -170,7 +184,7 @@ public class MainActivity extends Activity {
 				break;
 
 			case R.id.itemParkMonitor:
-				// TODO: Change switch state
+				switchParking.setChecked(!isParkingMonitorOn());
 				break;
 
 			case R.id.itemStorage:
