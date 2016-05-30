@@ -17,10 +17,13 @@ import java.net.SocketException;
 import java.util.Enumeration;
 
 import com.tchip.autosetting.Constant;
+
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.location.LocationManager;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.provider.Settings;
@@ -270,6 +273,14 @@ public class SettingUtil {
 			MyLog.e("WifiPreference IpAddress:" + ex.toString());
 		}
 		return null;
+	}
+
+	public static boolean isGpsOn(Context context) {
+		ContentResolver resolver = context.getContentResolver();
+		boolean gpsState = Settings.Secure.isLocationProviderEnabled(resolver,
+				LocationManager.GPS_PROVIDER);
+		MyLog.v("[GPS]Now State:" + gpsState);
+		return gpsState;
 	}
 
 }

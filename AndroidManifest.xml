@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.tchip.autosetting"
     android:versionCode="1"
-    android:versionName="2016.05.30-12:10" >
+    android:versionName="2016.05.30-13:55" >
 
     <uses-sdk
         android:minSdkVersion="21"

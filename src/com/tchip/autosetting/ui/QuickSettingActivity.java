@@ -18,6 +18,7 @@ import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.Html.ImageGetter;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -155,6 +156,10 @@ public class QuickSettingActivity extends Activity {
 		imageWifi.setImageDrawable(getResources().getDrawable(
 				wifiManager.isWifiEnabled() ? R.drawable.quick_setting_wifi_on
 						: R.drawable.quick_setting_wifi_off, null));
+		// GPS
+		imageLocation.setImageDrawable(getResources().getDrawable(
+				SettingUtil.isGpsOn(context) ? R.drawable.quick_setting_gps_on
+						: R.drawable.quick_setting_gps_off, null));
 		// Airplane Mode
 		imageAirplane
 				.setImageDrawable(getResources()
@@ -162,7 +167,6 @@ public class QuickSettingActivity extends Activity {
 								TelephonyUtil.isAirplaneModeOn(context) ? R.drawable.quick_setting_airplane_on
 										: R.drawable.quick_setting_airplane_off,
 								null));
-
 	}
 
 	class MyOnClickListener implements View.OnClickListener {
@@ -182,6 +186,9 @@ public class QuickSettingActivity extends Activity {
 				break;
 
 			case R.id.imageLocation:
+				sendBroadcast(new Intent(
+						SettingUtil.isGpsOn(context) ? Constant.Broadcast.GPS_OFF
+								: Constant.Broadcast.GPS_ON));
 				break;
 
 			case R.id.imageAirplane:
@@ -256,6 +263,10 @@ public class QuickSettingActivity extends Activity {
 					Message messageFinish = new Message();
 					messageFinish.what = 1;
 					autoFinishHandler.sendMessage(messageFinish);
+				} else {
+					Message messageFinish = new Message();
+					messageFinish.what = 2;
+					autoFinishHandler.sendMessage(messageFinish);
 				}
 			}
 
@@ -267,6 +278,10 @@ public class QuickSettingActivity extends Activity {
 			switch (msg.what) {
 			case 1:
 				finish();
+				break;
+
+			case 2: // Update Icon
+				updateIconState();
 				break;
 
 			default:
