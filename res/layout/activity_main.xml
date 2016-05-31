@@ -438,7 +438,7 @@
                 android:layout_marginLeft="@dimen/item_separator_margin"
                 android:layout_marginRight="@dimen/item_separator_margin"
                 android:background="@color/setting_item_separator"
-                android:visibility="visible" />
+                android:visibility="gone" />
 
             <RelativeLayout
                 android:id="@+id/itemUsb"
