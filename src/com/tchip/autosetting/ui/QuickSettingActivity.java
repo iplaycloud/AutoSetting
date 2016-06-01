@@ -20,6 +20,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.Html.ImageGetter;
 import android.view.View;
+import android.view.View.OnLongClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -77,6 +78,7 @@ public class QuickSettingActivity extends Activity {
 
 	private void initialLayout() {
 		MyOnClickListener myOnClickListener = new MyOnClickListener();
+		MyOnLongClickListener myOnLongClickListener = new MyOnLongClickListener();
 		// 亮度SeekBar
 		SeekBar seekBarBright = (SeekBar) findViewById(R.id.seekBarBright);
 		seekBarBright.setMax(Constant.Setting.MAX_BRIGHTNESS);
@@ -131,10 +133,12 @@ public class QuickSettingActivity extends Activity {
 
 		imageWifi = (ImageView) findViewById(R.id.imageWifi);
 		imageWifi.setOnClickListener(myOnClickListener);
+		imageWifi.setOnLongClickListener(myOnLongClickListener);
 		imageData = (ImageView) findViewById(R.id.imageData);
 		imageData.setOnClickListener(myOnClickListener);
 		imageBluetooth = (ImageView) findViewById(R.id.imageBluetooth);
 		imageBluetooth.setOnClickListener(myOnClickListener);
+		imageBluetooth.setOnLongClickListener(myOnLongClickListener);
 		imageLocation = (ImageView) findViewById(R.id.imageLocation);
 		imageLocation.setOnClickListener(myOnClickListener);
 		imageAirplane = (ImageView) findViewById(R.id.imageAirplane);
@@ -208,6 +212,29 @@ public class QuickSettingActivity extends Activity {
 				break;
 			}
 
+		}
+
+	}
+
+	class MyOnLongClickListener implements OnLongClickListener {
+
+		@Override
+		public boolean onLongClick(View v) {
+			secondCount = 1;
+			switch (v.getId()) {
+			case R.id.imageWifi:
+				OpenUtil.openModule(QuickSettingActivity.this, MODULE_TYPE.WIFI);
+				break;
+
+			case R.id.imageBluetooth:
+				OpenUtil.openModule(QuickSettingActivity.this,
+						MODULE_TYPE.DIALER);
+				break;
+
+			default:
+				break;
+			}
+			return false;
 		}
 
 	}

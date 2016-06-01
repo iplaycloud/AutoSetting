@@ -29,7 +29,10 @@ public class OpenUtil {
 		CRASH,
 
 		/** 设备测试 */
-		DEVICE_TEST,
+		DEVICE_TEST,		
+		
+		/** 拨号 */
+		DIALER,
 
 		/** 工程模式 */
 		ENGINEER_MODE,
@@ -140,6 +143,15 @@ public class OpenUtil {
 							"com.DeviceTest.DeviceTest");
 					intentDeviceTest.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					activity.startActivity(intentDeviceTest);
+					break;
+					
+				case DIALER:
+					ComponentName componentDialer = new ComponentName(
+							"com.goodocom.gocsdk",
+							"com.tchip.call.MainActivity");
+					Intent intentDialer = new Intent();
+					intentDialer.setComponent(componentDialer);
+					activity.startActivity(intentDialer);
 					break;
 
 				case ENGINEER_MODE:
