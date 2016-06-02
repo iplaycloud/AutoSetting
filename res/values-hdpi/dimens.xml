@@ -1,16 +1,20 @@
 <resources>
 
     <!-- Quick Setting -->
-    <dimen name="quick_setting_total_width">550dp</dimen>
-    <dimen name="quick_setting_total_height">248dp</dimen>
+    <dimen name="quick_setting_total_width">600dp</dimen>
+    <dimen name="quick_setting_total_height">256dp</dimen>
     <dimen name="quick_setting_icon_edge_length">56dp</dimen>
-    <dimen name="quick_setting_icon_area_length">80dp</dimen>
-    <dimen name="quick_setting_icon_margin">15dp</dimen>
-    <dimen name="quick_setting_layout_switch_margin_top">15dp</dimen>
+    <dimen name="quick_setting_icon_area_wdith">80dp</dimen>
+    <dimen name="quick_setting_icon_area_height">110dp</dimen>
+    <dimen name="quick_setting_text_margin_top">8dp</dimen>
+    <dimen name="quick_setting_text_size">15sp</dimen>
+    <dimen name="quick_setting_icon_margin">20dp</dimen>
+    <dimen name="quick_setting_icon_margin_top">12dp</dimen>
+    <dimen name="quick_setting_layout_switch_margin_top">10dp</dimen>
     <dimen name="quick_setting_layout_switch_margin_left_right">25dp</dimen>
-    <dimen name="quick_setting_bright_seekbar_margin_top">20dp</dimen>
-    <dimen name="quick_setting_volume_seekbar_margin_top">28dp</dimen>
-    <dimen name="quick_setting_seekbar_icon_margin_left">40dp</dimen>
+    <dimen name="quick_setting_bright_seekbar_margin_top">16dp</dimen>
+    <dimen name="quick_setting_volume_seekbar_margin_top">22dp</dimen>
+    <dimen name="quick_setting_seekbar_icon_margin_left">64dp</dimen>
 
     <!-- TopBar -->
     <dimen name="top_bar_height">46dp</dimen>

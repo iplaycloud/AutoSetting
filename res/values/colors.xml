@@ -52,5 +52,8 @@
     <color name="gravity_hint_main">#ffffff</color>
     <color name="gravity_hint_vice">#959595</color>
     <color name="gravity_level_text_color">#ffffff</color>
+    
+    <!-- Quick Setting -->
+    <color name="quick_setting_text_color">#ffffff</color>
 
 </resources>

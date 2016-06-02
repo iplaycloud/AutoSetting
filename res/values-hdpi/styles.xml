@@ -1,13 +1,14 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <style name="ThemeQuickSettingDialog" parent="@android:style/Animation.Dialog">
-        <item name="android:width">550dp</item>
-        <item name="android:height">266dp</item>
+        <item name="android:width">@dimen/quick_setting_total_width</item>
+        <item name="android:height">@dimen/quick_setting_total_height</item>
         <item name="android:windowCloseOnTouchOutside">true</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsFloating">true</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.7</item>
         <item name="android:windowActionBar">false</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowFrame">@null</item>
