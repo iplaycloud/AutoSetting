@@ -30,6 +30,8 @@ public interface Constant {
 		public static final String GPS_ON = "tchip.intent.action.GPS_ON";
 		/** 关闭GPS */
 		public static final String GPS_OFF = "tchip.intent.action.GPS_OFF";
+		/** 改变蓝牙状态 */
+		public static final String BT_STATUS_CHANGE = "com.tchip.BT_STATUS_CHANGE";
 
 	}
 

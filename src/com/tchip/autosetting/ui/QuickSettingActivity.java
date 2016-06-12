@@ -2,7 +2,6 @@ package com.tchip.autosetting.ui;
 
 import com.tchip.autosetting.Constant;
 import com.tchip.autosetting.R;
-import com.tchip.autosetting.util.HintUtil;
 import com.tchip.autosetting.util.OpenUtil;
 import com.tchip.autosetting.util.SettingUtil;
 import com.tchip.autosetting.util.TelephonyUtil;
@@ -18,6 +17,7 @@ import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.Settings;
 import android.text.Html.ImageGetter;
 import android.view.View;
 import android.view.View.OnLongClickListener;
@@ -160,6 +160,12 @@ public class QuickSettingActivity extends Activity {
 		imageWifi.setImageDrawable(getResources().getDrawable(
 				wifiManager.isWifiEnabled() ? R.drawable.quick_setting_wifi_on
 						: R.drawable.quick_setting_wifi_off, null));
+		// 蓝牙
+		boolean isBluetoothEnable = "1".equals(Settings.System.getString(
+				getContentResolver(), "bt_enable"));
+		imageBluetooth.setImageDrawable(getResources().getDrawable(
+				isBluetoothEnable ? R.drawable.quick_setting_bluetooth_on
+						: R.drawable.quick_setting_bluetooth_off, null));
 		// GPS
 		imageLocation.setImageDrawable(getResources().getDrawable(
 				SettingUtil.isGpsOn(context) ? R.drawable.quick_setting_gps_on
@@ -187,6 +193,7 @@ public class QuickSettingActivity extends Activity {
 				break;
 
 			case R.id.imageBluetooth:
+				sendBroadcast(new Intent(Constant.Broadcast.BT_STATUS_CHANGE));
 				break;
 
 			case R.id.imageLocation:
