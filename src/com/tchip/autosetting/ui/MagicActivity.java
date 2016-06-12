@@ -89,6 +89,8 @@ public class MagicActivity extends Activity {
 		btnDeveloperSetting.setOnClickListener(myOnClickListener);
 		Button btnApplication = (Button) findViewById(R.id.btnApplication);
 		btnApplication.setOnClickListener(myOnClickListener);
+		Button btnCamera = (Button) findViewById(R.id.btnCamera);
+		btnCamera.setOnClickListener(myOnClickListener);
 
 		// Row 3
 		switchFM = (Switch) findViewById(R.id.switchFM);
@@ -151,6 +153,10 @@ public class MagicActivity extends Activity {
 
 			case R.id.btnApplication:
 				OpenUtil.openModule(MagicActivity.this, MODULE_TYPE.APP);
+				break;
+				
+			case R.id.btnCamera:
+				OpenUtil.openModule(MagicActivity.this, MODULE_TYPE.SYSTEM_CAMERA);
 				break;
 
 			case R.id.btnSet:

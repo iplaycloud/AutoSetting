@@ -97,6 +97,14 @@
                 android:text="应用"
                 android:textColor="@color/magic_btn_text_color"
                 android:textSize="@dimen/magic_btn_text_size" />
+
+            <Button
+                android:id="@+id/btnCamera"
+                android:layout_width="@dimen/magic_btn_width"
+                android:layout_height="@dimen/magic_btn_height"
+                android:text="系统相机"
+                android:textColor="@color/magic_btn_text_color"
+                android:textSize="@dimen/magic_btn_text_size" />
         </LinearLayout>
 
         <ScrollView

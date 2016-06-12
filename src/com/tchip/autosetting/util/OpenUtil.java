@@ -8,6 +8,7 @@ import com.tchip.autosetting.ui.SettingSystemVolumeActivity;
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.provider.MediaStore;
 
 public class OpenUtil {
 
@@ -29,8 +30,8 @@ public class OpenUtil {
 		CRASH,
 
 		/** 设备测试 */
-		DEVICE_TEST,		
-		
+		DEVICE_TEST,
+
 		/** 拨号 */
 		DIALER,
 
@@ -78,6 +79,9 @@ public class OpenUtil {
 
 		/** 存储设置 */
 		STORAGE,
+
+		/** 系统相机 */
+		SYSTEM_CAMERA,
 
 		/** 系统设置 */
 		SYSTEM_SETTING,
@@ -144,7 +148,7 @@ public class OpenUtil {
 					intentDeviceTest.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					activity.startActivity(intentDeviceTest);
 					break;
-					
+
 				case DIALER:
 					ComponentName componentDialer = new ComponentName(
 							"com.goodocom.gocsdk",
@@ -225,6 +229,15 @@ public class OpenUtil {
 				case STORAGE:
 					activity.startActivity(new Intent(
 							android.provider.Settings.ACTION_MEMORY_CARD_SETTINGS));
+					break;
+
+				case SYSTEM_CAMERA:
+					Intent intent = new Intent(
+							MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA)
+							.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+									| Intent.FLAG_ACTIVITY_NEW_TASK
+									| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+					activity.startActivity(intent);
 					break;
 
 				case SYSTEM_SETTING:
