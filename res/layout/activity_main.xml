@@ -272,6 +272,7 @@
             </RelativeLayout>
 
             <View
+                android:id="@+id/lineAPN"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/item_separator_height"
                 android:layout_marginLeft="@dimen/item_separator_margin"

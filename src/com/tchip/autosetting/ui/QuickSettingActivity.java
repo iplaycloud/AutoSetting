@@ -2,7 +2,10 @@ package com.tchip.autosetting.ui;
 
 import com.tchip.autosetting.Constant;
 import com.tchip.autosetting.R;
+import com.tchip.autosetting.util.HintUtil;
 import com.tchip.autosetting.util.OpenUtil;
+import com.tchip.autosetting.util.ProviderUtil;
+import com.tchip.autosetting.util.ProviderUtil.Name;
 import com.tchip.autosetting.util.SettingUtil;
 import com.tchip.autosetting.util.TelephonyUtil;
 import com.tchip.autosetting.util.OpenUtil.MODULE_TYPE;
@@ -18,6 +21,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.Settings;
+import android.telephony.TelephonyManager;
 import android.text.Html.ImageGetter;
 import android.view.View;
 import android.view.View.OnLongClickListener;
@@ -154,12 +158,32 @@ public class QuickSettingActivity extends Activity {
 		intentFilter.setPriority(Integer.MAX_VALUE);
 	}
 
+	/** 数据流量是否打开 */
+	private boolean isMobileDataOn(Context context) {
+		String strMobileData = ProviderUtil.getValue(context,
+				Name.SET_MOBILE_DATA);
+		if (null != strMobileData && strMobileData.trim().length() > 0
+				&& "1".equals(strMobileData)) {
+			return true;
+		} else
+			return false;
+	}
+
 	private void updateIconState() {
 		// Wi-Fi
 		wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
 		imageWifi.setImageDrawable(getResources().getDrawable(
 				wifiManager.isWifiEnabled() ? R.drawable.quick_setting_wifi_on
 						: R.drawable.quick_setting_wifi_off, null));
+		// 数据流量
+		if (TelephonyUtil.isAirplaneModeOn(context)) {
+			imageData.setImageDrawable(getResources().getDrawable(
+					R.drawable.quick_setting_data_off, null));
+		} else {
+			imageData.setImageDrawable(getResources().getDrawable(
+					isMobileDataOn(context) ? R.drawable.quick_setting_data_on
+							: R.drawable.quick_setting_data_off, null));
+		}
 		// 蓝牙
 		boolean isBluetoothEnable = "1".equals(Settings.System.getString(
 				getContentResolver(), "bt_enable"));
@@ -190,6 +214,16 @@ public class QuickSettingActivity extends Activity {
 				break;
 
 			case R.id.imageData:
+				if (TelephonyUtil.isAirplaneModeOn(context)) {
+					HintUtil.showToast(
+							context,
+							getResources().getString(
+									R.string.quick_setting_airplane_on));
+				} else {
+					sendBroadcast(new Intent(
+							isMobileDataOn(context) ? Constant.Broadcast.MOBILE_DATA_OFF
+									: Constant.Broadcast.MOBILE_DATA_ON));
+				}
 				break;
 
 			case R.id.imageBluetooth:

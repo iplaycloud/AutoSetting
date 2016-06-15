@@ -40,5 +40,6 @@
     <string name="quick_setting_text_bluetooth">蓝牙</string>
     <string name="quick_setting_text_gps">GPS</string>
     <string name="quick_setting_text_airplane">飞行模式</string>
+    <string name="quick_setting_airplane_on">请先关闭飞行模式</string>
 
 </resources>

@@ -78,6 +78,9 @@ public class MainActivity extends Activity {
 		itemAPN.setVisibility(Constant.Module.hasAPNSetting ? View.VISIBLE
 				: View.GONE);
 		itemAPN.setOnClickListener(myOnClickListener);
+		View lineAPN = findViewById(R.id.lineAPN);
+		lineAPN.setVisibility(Constant.Module.hasAPNSetting ? View.VISIBLE
+				: View.GONE);
 		// 碰撞侦测
 		RelativeLayout itemCrash = (RelativeLayout) findViewById(R.id.itemCrash);
 		itemCrash.setOnClickListener(myOnClickListener);

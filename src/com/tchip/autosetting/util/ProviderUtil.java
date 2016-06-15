@@ -77,6 +77,9 @@ public class ProviderUtil {
 
 		/** 停车守卫开关:0,1 */
 		public static final String SET_PARK_MONITOR_STATE = "set_park_monitor_state";
+		
+		/** 数据流量开关 */
+		public static final String SET_MOBILE_DATA = "set_mobile_data";
 
 	}
 

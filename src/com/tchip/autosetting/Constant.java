@@ -32,6 +32,10 @@ public interface Constant {
 		public static final String GPS_OFF = "tchip.intent.action.GPS_OFF";
 		/** 改变蓝牙状态 */
 		public static final String BT_STATUS_CHANGE = "com.tchip.BT_STATUS_CHANGE";
+		/** 打开数据流量 */
+		public static final String MOBILE_DATA_ON = "tchip.intent.action.MOBILE_DATA_ON";
+		/** 关闭数据流量 */
+		public static final String MOBILE_DATA_OFF = "tchip.intent.action.MOBILE_DATA_OFF";
 
 	}
 
@@ -53,7 +57,7 @@ public interface Constant {
 		public static final String MagicCode = "55555";
 
 		/** 是否有APN设置 */
-		public static final boolean hasAPNSetting = true;
+		public static final boolean hasAPNSetting = false;
 
 	}
 
