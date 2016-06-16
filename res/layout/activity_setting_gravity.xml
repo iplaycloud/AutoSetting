@@ -86,7 +86,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:gravity="center"
-                android:text="低"
+                android:text="@string/gravity_level_low"
                 android:textColor="@color/gravity_level_text_color"
                 android:textSize="@dimen/gravity_level_text_size" />
 
@@ -95,8 +95,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:text="中"
                 android:gravity="center"
+                android:text="@string/gravity_level_middle"
                 android:textColor="@color/gravity_level_text_color"
                 android:textSize="@dimen/gravity_level_text_size" />
 
@@ -105,8 +105,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:text="高"
                 android:gravity="center"
+                android:text="@string/gravity_level_high"
                 android:textColor="@color/gravity_level_text_color"
                 android:textSize="@dimen/gravity_level_text_size" />
         </RelativeLayout>

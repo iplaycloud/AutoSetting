@@ -18,7 +18,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/top_bar_title_margin_left"
-            android:text="设置"
+            android:text="@string/title_setting"
             android:textColor="@color/setting_item_title_color"
             android:textSize="@dimen/main_title_text_size" />
 
@@ -429,7 +429,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="@dimen/item_title_margin_left"
-                        android:text="存储设置"
+                        android:text="@string/title_storage"
                         android:textColor="@color/setting_item_title_color"
                         android:textSize="@dimen/item_title_text_size" />
                 </RelativeLayout>

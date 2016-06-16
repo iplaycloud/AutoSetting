@@ -26,6 +26,7 @@ import android.content.SharedPreferences.Editor;
 import android.location.LocationManager;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.os.Handler;
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
 import android.telephony.TelephonyManager;
@@ -275,12 +276,36 @@ public class SettingUtil {
 		return null;
 	}
 
+	/** GPS开关 */
 	public static boolean isGpsOn(Context context) {
 		ContentResolver resolver = context.getContentResolver();
 		boolean gpsState = Settings.Secure.isLocationProviderEnabled(resolver,
 				LocationManager.GPS_PROVIDER);
 		MyLog.v("[GPS]Now State:" + gpsState);
 		return gpsState;
+	}
+
+	/** 设置GPS开关 */
+	public static void setGpsOn(final Context context, final boolean isGpsOn) {
+		ContentResolver resolver = context.getContentResolver();
+		boolean nowState = isGpsOn(context);
+		if (isGpsOn != nowState) {
+			MyLog.v("[GPS]Set State:" + isGpsOn);
+			// Settings.Secure.setLocationProviderEnabled(resolver,
+			// LocationManager.GPS_PROVIDER, isGpsOn);
+			int mCurrentMode = (!isGpsOn) ? Settings.Secure.LOCATION_MODE_HIGH_ACCURACY
+					: Settings.Secure.LOCATION_MODE_OFF;
+			int mode = isGpsOn ? Settings.Secure.LOCATION_MODE_HIGH_ACCURACY
+					: Settings.Secure.LOCATION_MODE_OFF;
+			Intent intent = new Intent(
+					"com.android.settings.location.MODE_CHANGING");
+			intent.putExtra("CURRENT_MODE", mCurrentMode);
+			intent.putExtra("NEW_MODE", mode);
+			context.sendBroadcast(intent,
+					android.Manifest.permission.WRITE_SECURE_SETTINGS);
+			Settings.Secure.putInt(resolver, Settings.Secure.LOCATION_MODE,
+					mode);
+		}
 	}
 
 }

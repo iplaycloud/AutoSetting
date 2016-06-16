@@ -6,6 +6,7 @@
     <string name="text_hint">[说明]\n音频通道：\n0-系统到喇叭 \n1-蓝牙到喇叭 \n2-系统到FM \n3-BT到FM</string>
 
     <!-- Title -->
+    <string name="title_setting">设置</string>
     <string name="title_display">显示</string>
     <string name="title_sound">声音</string>
     <string name="title_wifi">Wi-Fi</string>
@@ -14,6 +15,7 @@
     <string name="title_apn">APN设置</string>
     <string name="title_crash">碰撞侦测</string>
     <string name="title_park_monitor">停车守卫</string>
+    <string name="title_storage">存储设置</string>
     <string name="title_usb">USB连接设置</string>
     <string name="title_date_time">日期和时间</string>
     <string name="title_reset">恢复出厂设置</string>
@@ -24,6 +26,9 @@
     <string name="title_setting_gravity">系统设置-碰撞侦测灵敏度</string>
     <string name="gravity_hint_main">设置合适的灵敏度</string>
     <string name="gravity_hint_vice">过低较难触发视频加锁，过高则容易导致误判</string>
+    <string name="gravity_level_low">低</string>
+    <string name="gravity_level_middle">中</string>
+    <string name="gravity_level_high">高</string>
 
     <!-- Display -->
     <string name="display_auto_adjust">亮度自动调节</string>
@@ -33,6 +38,10 @@
     <string name="display_time_2m">2分</string>
     <string name="display_time_10m">10分</string>
     <string name="display_time_forever">永不休眠</string>
+    <string name="display_brightness">亮度</string>
+    
+    <!-- Volume -->
+    <string name="volume_ringtone">铃声</string>
 
     <!-- Quick Setting -->
     <string name="quick_setting_text_wlan">WLAN</string>
@@ -41,5 +50,22 @@
     <string name="quick_setting_text_gps">GPS</string>
     <string name="quick_setting_text_airplane">飞行模式</string>
     <string name="quick_setting_airplane_on">请先关闭飞行模式</string>
+
+    <!-- Magic Activity -->
+    <string name="magic_hint_input_pass">输入工程代码</string>
+    <string name="magic_device_test">设备测试</string>
+    <string name="magic_system_setting">系统设置</string>
+    <string name="magic_engineer_mode">工程模式</string>
+    <string name="magic_mtk_logger">MTKLogger</string>
+    <string name="magic_cpu_info">性能监视器</string>
+    <string name="magic_developer_option">开发者选项</string>
+    <string name="magic_application">应用</string>
+    <string name="magic_system_camera">系统相机</string>
+    <string name="magic_fm_off">FM关闭</string>
+    <string name="magic_fm_on">FM开启</string>
+    <string name="magic_usb_mode">USB模式</string>
+    <string name="magic_uvc_mode">UVC模式</string>
+    <string name="magic_input_audio_channel">请输入音频通道</string>
+    <string name="magic_audio_set">设置</string>
 
 </resources>

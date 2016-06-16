@@ -10,7 +10,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:gravity="center"
-        android:hint="输入工程代码"
+        android:hint="@string/magic_hint_input_pass"
         android:inputType="textPassword"
         android:maxLength="5"
         android:paddingLeft="5dp"
@@ -37,7 +37,7 @@
                 android:id="@+id/btnDeviceTest"
                 android:layout_width="@dimen/magic_btn_width"
                 android:layout_height="match_parent"
-                android:text="设备测试"
+                android:text="@string/magic_device_test"
                 android:textColor="@color/magic_btn_text_color"
                 android:textSize="@dimen/magic_btn_text_size"
                 android:visibility="gone" />
@@ -46,7 +46,7 @@
                 android:id="@+id/btnSystemSetting"
                 android:layout_width="@dimen/magic_btn_width"
                 android:layout_height="match_parent"
-                android:text="系统设置"
+                android:text="@string/magic_system_setting"
                 android:textColor="@color/magic_btn_text_color"
                 android:textSize="@dimen/magic_btn_text_size" />
 
@@ -54,7 +54,7 @@
                 android:id="@+id/btnEngineerMode"
                 android:layout_width="@dimen/magic_btn_width"
                 android:layout_height="match_parent"
-                android:text="工程模式"
+                android:text="@string/magic_engineer_mode"
                 android:textColor="@color/magic_btn_text_color"
                 android:textSize="@dimen/magic_btn_text_size" />
 
@@ -62,7 +62,7 @@
                 android:id="@+id/btnMtkLogger"
                 android:layout_width="@dimen/magic_btn_width"
                 android:layout_height="match_parent"
-                android:text="MTKLogger"
+                android:text="@string/magic_mtk_logger"
                 android:textColor="@color/magic_btn_text_color"
                 android:textSize="@dimen/magic_btn_text_size" />
 
@@ -70,7 +70,7 @@
                 android:id="@+id/btnCPUInfo"
                 android:layout_width="@dimen/magic_btn_width"
                 android:layout_height="@dimen/magic_btn_height"
-                android:text="性能监视器"
+                android:text="@string/magic_cpu_info"
                 android:textColor="@color/magic_btn_text_color"
                 android:textSize="@dimen/magic_btn_text_size" />
         </LinearLayout>
@@ -86,7 +86,7 @@
                 android:id="@+id/btnDeveloperSetting"
                 android:layout_width="@dimen/magic_btn_width"
                 android:layout_height="@dimen/magic_btn_height"
-                android:text="开发者选项"
+                android:text="@string/magic_developer_option"
                 android:textColor="@color/magic_btn_text_color"
                 android:textSize="@dimen/magic_btn_text_size" />
 
@@ -94,7 +94,7 @@
                 android:id="@+id/btnApplication"
                 android:layout_width="@dimen/magic_btn_width"
                 android:layout_height="@dimen/magic_btn_height"
-                android:text="应用"
+                android:text="@string/magic_application"
                 android:textColor="@color/magic_btn_text_color"
                 android:textSize="@dimen/magic_btn_text_size" />
 
@@ -102,7 +102,7 @@
                 android:id="@+id/btnCamera"
                 android:layout_width="@dimen/magic_btn_width"
                 android:layout_height="@dimen/magic_btn_height"
-                android:text="系统相机"
+                android:text="@string/magic_system_camera"
                 android:textColor="@color/magic_btn_text_color"
                 android:textSize="@dimen/magic_btn_text_size" />
         </LinearLayout>
@@ -125,22 +125,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
-                    android:textOff="FM关闭"
-                    android:textOn="FM开启" />
+                    android:textOff="@string/magic_fm_off"
+                    android:textOn="@string/magic_fm_on" />
 
                 <Switch
                     android:id="@+id/switchUVC"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
-                    android:textOff="USB模式"
-                    android:textOn="UVC模式" />
+                    android:textOff="@string/magic_usb_mode"
+                    android:textOn="@string/magic_uvc_mode" />
 
                 <EditText
                     android:id="@+id/textInput"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="请输入音频通道"
+                    android:hint="@string/magic_input_audio_channel"
                     android:textColor="@color/magic_btn_text_color"
                     android:textColorHint="#cccccc" />
 
@@ -148,14 +148,12 @@
                     android:id="@+id/btnSet"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/textInput"
-                    android:text="设置" />
+                    android:text="@string/magic_audio_set" />
 
                 <TextView
                     android:id="@+id/textHint"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/btnSet"
                     android:text="@string/text_hint"
                     android:textColor="@color/magic_btn_text_color" />
             </LinearLayout>

@@ -140,6 +140,7 @@ public class QuickSettingActivity extends Activity {
 		imageWifi.setOnLongClickListener(myOnLongClickListener);
 		imageData = (ImageView) findViewById(R.id.imageData);
 		imageData.setOnClickListener(myOnClickListener);
+		imageData.setOnLongClickListener(myOnLongClickListener);
 		imageBluetooth = (ImageView) findViewById(R.id.imageBluetooth);
 		imageBluetooth.setOnClickListener(myOnClickListener);
 		imageBluetooth.setOnLongClickListener(myOnLongClickListener);
@@ -158,17 +159,6 @@ public class QuickSettingActivity extends Activity {
 		intentFilter.setPriority(Integer.MAX_VALUE);
 	}
 
-	/** 数据流量是否打开 */
-	private boolean isMobileDataOn(Context context) {
-		String strMobileData = ProviderUtil.getValue(context,
-				Name.SET_MOBILE_DATA);
-		if (null != strMobileData && strMobileData.trim().length() > 0
-				&& "1".equals(strMobileData)) {
-			return true;
-		} else
-			return false;
-	}
-
 	private void updateIconState() {
 		// Wi-Fi
 		wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
@@ -180,9 +170,12 @@ public class QuickSettingActivity extends Activity {
 			imageData.setImageDrawable(getResources().getDrawable(
 					R.drawable.quick_setting_data_off, null));
 		} else {
-			imageData.setImageDrawable(getResources().getDrawable(
-					isMobileDataOn(context) ? R.drawable.quick_setting_data_on
-							: R.drawable.quick_setting_data_off, null));
+			imageData
+					.setImageDrawable(getResources()
+							.getDrawable(
+									TelephonyUtil.isMobileDataEnable(context) ? R.drawable.quick_setting_data_on
+											: R.drawable.quick_setting_data_off,
+									null));
 		}
 		// 蓝牙
 		boolean isBluetoothEnable = "1".equals(Settings.System.getString(
@@ -220,9 +213,8 @@ public class QuickSettingActivity extends Activity {
 							getResources().getString(
 									R.string.quick_setting_airplane_on));
 				} else {
-					sendBroadcast(new Intent(
-							isMobileDataOn(context) ? Constant.Broadcast.MOBILE_DATA_OFF
-									: Constant.Broadcast.MOBILE_DATA_ON));
+					TelephonyUtil.setMobileDataEnable(context,
+							!TelephonyUtil.isMobileDataEnable(context));
 				}
 				break;
 
@@ -231,15 +223,12 @@ public class QuickSettingActivity extends Activity {
 				break;
 
 			case R.id.imageLocation:
-				sendBroadcast(new Intent(
-						SettingUtil.isGpsOn(context) ? Constant.Broadcast.GPS_OFF
-								: Constant.Broadcast.GPS_ON));
+				SettingUtil.setGpsOn(context, !SettingUtil.isGpsOn(context));
 				break;
 
 			case R.id.imageAirplane:
-				sendBroadcast(new Intent(
-						TelephonyUtil.isAirplaneModeOn(context) ? Constant.Broadcast.AIRPLANE_OFF
-								: Constant.Broadcast.AIRPLANE_ON));
+				TelephonyUtil.setAirplaneMode(context,
+						!TelephonyUtil.isAirplaneModeOn(context));
 				break;
 
 			case R.id.imageSetting:
@@ -252,7 +241,6 @@ public class QuickSettingActivity extends Activity {
 			default:
 				break;
 			}
-
 		}
 
 	}
@@ -265,11 +253,19 @@ public class QuickSettingActivity extends Activity {
 			switch (v.getId()) {
 			case R.id.imageWifi:
 				OpenUtil.openModule(QuickSettingActivity.this, MODULE_TYPE.WIFI);
+				finish();
 				break;
 
 			case R.id.imageBluetooth:
 				OpenUtil.openModule(QuickSettingActivity.this,
 						MODULE_TYPE.DIALER);
+				finish();
+				break;
+
+			case R.id.imageData:
+				OpenUtil.openModule(QuickSettingActivity.this,
+						MODULE_TYPE.DATA_USAGE);
+				finish();
 				break;
 
 			default:

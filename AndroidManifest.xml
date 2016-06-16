@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    coreApp="true"
     package="com.tchip.autosetting"
+    android:sharedUserId="android.uid.system"
     android:versionCode="1"
-    android:versionName="2016.06.15-17:50" >
+    android:versionName="2016.06.16-17:00" >
 
     <uses-sdk
         android:minSdkVersion="21"
@@ -36,7 +38,7 @@
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <!-- <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" /> -->
+    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <!-- <uses-permission android:name="android.permission.WRITE_APN_SETTINGS" /> -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />

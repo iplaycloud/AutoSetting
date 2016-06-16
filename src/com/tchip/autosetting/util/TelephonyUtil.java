@@ -54,26 +54,6 @@ public class TelephonyUtil {
 		return false;
 	}
 
-	/**
-	 * 飞行模式是否打开
-	 * 
-	 * @param context
-	 * @return
-	 */
-	public static boolean isAirplaneModeOn(Context context) {
-		return android.provider.Settings.System.getInt(
-				context.getContentResolver(),
-				android.provider.Settings.Global.AIRPLANE_MODE_ON, 0) == 1;
-	}
-	
-	/** 设置飞行模式 */
-	public static void setAirplaneMode(Context context, boolean setAirPlane) {
-		 MyLog.v("[SettingUtil]setAirplaneMode:" + setAirPlane);
-		 context.sendBroadcast(new Intent(setAirPlane ? Constant.Broadcast.AIRPLANE_ON
-					: Constant.Broadcast.AIRPLANE_OFF));
-	}
-
-
 	/** 获取设备Mac地址 */
 	public static String getLocalMacAddress(Context context) {
 		WifiManager wifi = (WifiManager) context
@@ -108,5 +88,43 @@ public class TelephonyUtil {
 		}
 		return null;
 	}
+	
+	/**
+	 * 飞行模式是否打开
+	 * 
+	 * @param context
+	 * @return
+	 */
+	public static boolean isAirplaneModeOn(Context context) {
+		return android.provider.Settings.System.getInt(
+				context.getContentResolver(),
+				android.provider.Settings.Global.AIRPLANE_MODE_ON, 0) == 1;
+	}
+	
+	/** 设置飞行模式开关 */
+	public static void setAirplaneMode(Context context, boolean enable) {
+		Settings.Global.putInt(context.getContentResolver(),
+				Settings.Global.AIRPLANE_MODE_ON, enable ? 1 : 0);
+		Intent intentAirplaneOn = new Intent(
+				Intent.ACTION_AIRPLANE_MODE_CHANGED);
+		intentAirplaneOn.putExtra("state", enable);
+		context.sendBroadcast(intentAirplaneOn);
+	}
+
+	/** 设置数据流量开关 */
+	public static void setMobileDataEnable(Context context, boolean enable) {
+		MyLog.v("[AutoReceiver]setMobileDataEnable:" + enable);
+		TelephonyManager telephonyManager = TelephonyManager.from(context);
+		telephonyManager.setDataEnabled(enable);
+	}
+	
+	/** 获取数据流量开关 */
+	public static boolean isMobileDataEnable(Context context) {
+		TelephonyManager telephonyManager = TelephonyManager.from(context);
+		boolean isEnable = telephonyManager.getDataEnabled();
+		MyLog.v("[SettingUtil]isMobileDataEnable:" + isEnable);
+		return isEnable;
+	}
+
 
 }

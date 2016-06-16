@@ -116,7 +116,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="10dp"
-                android:text="亮度"
+                android:text="@string/display_brightness"
                 android:textColor="@color/display_item_text_color"
                 android:textSize="@dimen/setting_system_bright_text_size" />
 

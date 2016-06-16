@@ -53,23 +53,19 @@ public class MagicActivity extends Activity {
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before,
 					int count) {
-
 			}
 
 			@Override
 			public void beforeTextChanged(CharSequence s, int start, int count,
 					int after) {
-
 			}
 
 			@Override
 			public void afterTextChanged(Editable s) {
-
 				String strInput = textPass.getText().toString();
 				if (Constant.Module.MagicCode.equals(strInput)) {
 					layoutMagic.setVisibility(View.VISIBLE);
 				}
-
 			}
 		});
 
@@ -91,7 +87,6 @@ public class MagicActivity extends Activity {
 		btnApplication.setOnClickListener(myOnClickListener);
 		Button btnCamera = (Button) findViewById(R.id.btnCamera);
 		btnCamera.setOnClickListener(myOnClickListener);
-
 		// Row 3
 		switchFM = (Switch) findViewById(R.id.switchFM);
 		switchFM.setChecked(SettingUtil.isFMEnable());
