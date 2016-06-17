@@ -272,7 +272,7 @@ public class OpenUtil {
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
-				MyLog.e("[OpenUtil]Exception:" + e.toString());
+				MyLog.e("OpenUtil.Exception:" + e.toString());
 			}
 		}
 

@@ -21,8 +21,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.Settings;
-import android.telephony.TelephonyManager;
-import android.text.Html.ImageGetter;
 import android.view.View;
 import android.view.View.OnLongClickListener;
 import android.view.Window;
@@ -178,8 +176,10 @@ public class QuickSettingActivity extends Activity {
 									null));
 		}
 		// 蓝牙
-		boolean isBluetoothEnable = "1".equals(Settings.System.getString(
-				getContentResolver(), "bt_enable"));
+		boolean isBluetoothEnable = "1".equals(ProviderUtil.getValue(context,
+				Name.ACC_STATE))
+				&& "1".equals(Settings.System.getString(getContentResolver(),
+						"bt_enable"));
 		imageBluetooth.setImageDrawable(getResources().getDrawable(
 				isBluetoothEnable ? R.drawable.quick_setting_bluetooth_on
 						: R.drawable.quick_setting_bluetooth_off, null));
@@ -219,7 +219,10 @@ public class QuickSettingActivity extends Activity {
 				break;
 
 			case R.id.imageBluetooth:
-				sendBroadcast(new Intent(Constant.Broadcast.BT_STATUS_CHANGE));
+				if ("1".equals(ProviderUtil.getValue(context, Name.ACC_STATE))) {
+					sendBroadcast(new Intent(
+							Constant.Broadcast.BT_STATUS_CHANGE));
+				}
 				break;
 
 			case R.id.imageLocation:

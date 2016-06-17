@@ -26,7 +26,6 @@ import android.content.SharedPreferences.Editor;
 import android.location.LocationManager;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
-import android.os.Handler;
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
 import android.telephony.TelephonyManager;
@@ -48,7 +47,7 @@ public class SettingUtil {
 			Constant.Path.NODE_PARK_MONITOR);
 
 	public static void setUVCEnable(boolean isUVCOn) {
-		MyLog.v("[SettingUtil]setFMEnable:" + isUVCOn);
+		MyLog.v("SettingUtil.setFMEnable:" + isUVCOn);
 		SaveFileToNode(nodeUsbUvcSwitch, isUVCOn ? "1" : "0");
 	}
 
@@ -57,7 +56,7 @@ public class SettingUtil {
 	}
 
 	public static void setFMEnable(boolean isFmOn) {
-		MyLog.v("[SettingUtil]setFMEnable:" + isFmOn);
+		MyLog.v("SettingUtil.setFMEnable:" + isFmOn);
 		SaveFileToNode(nodeFMEnable, isFmOn ? "1" : "0");
 	}
 
@@ -66,12 +65,12 @@ public class SettingUtil {
 	}
 
 	public static void writeAudioNode(String content) {
-		MyLog.v("[SettingUtil]writeAudioNode:" + content);
+		MyLog.v("SettingUtil.writeAudioNode:" + content);
 		SaveFileToNode(nodeSwitchAudio, content);
 	}
 
 	public static void setUsbMode(boolean isUsbOn) {
-		MyLog.v("[SettingUtil]setUsbMode:" + isUsbOn);
+		MyLog.v("SettingUtil.setUsbMode:" + isUsbOn);
 		SaveFileToNode(nodeUsbUvcSwitch, isUsbOn ? "40" : "41");
 	}
 
@@ -92,13 +91,13 @@ public class SettingUtil {
 				fileValue = Integer.parseInt(strValue);
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
-				MyLog.e("[SettingUtil]isUsbMode: FileNotFoundException");
+				MyLog.e("SettingUtil.isUsbMode: FileNotFoundException");
 			} catch (IOException e) {
 				e.printStackTrace();
-				MyLog.e("[SettingUtil]isUsbMode: IOException");
+				MyLog.e("SettingUtil.isUsbMode: IOException");
 			}
 		}
-		MyLog.v("[SettingUtil]isUsbMode,fileValue:" + fileValue);
+		MyLog.v("SettingUtil.isUsbMode,fileValue:" + fileValue);
 
 		return fileValue == 40;
 	}
@@ -116,7 +115,7 @@ public class SettingUtil {
 
 		editor.putBoolean(Constant.MySP.STR_PARKING_ON, isParkingOn);
 		editor.commit();
-		MyLog.v("[SettingUtil]setParkingMonitor:" + isParkingOn);
+		MyLog.v("SettingUtil.setParkingMonitor:" + isParkingOn);
 
 		// 通知CarLauncher
 		context.sendBroadcast(new Intent("com.tchip.SETTING_SYNC").putExtra(
@@ -133,7 +132,7 @@ public class SettingUtil {
 			boolean setSuccess = Settings.System.putInt(
 					context.getContentResolver(),
 					Settings.System.SCREEN_BRIGHTNESS, brightness);
-			MyLog.v("[SettingUtil]setBrightness: " + brightness + ", "
+			MyLog.v("SettingUtil.setBrightness: " + brightness + ", "
 					+ setSuccess);
 
 			SharedPreferences sharedPreferences = context.getSharedPreferences(
@@ -150,7 +149,7 @@ public class SettingUtil {
 			int nowBrightness = Settings.System.getInt(
 					context.getContentResolver(),
 					Settings.System.SCREEN_BRIGHTNESS);
-			MyLog.v("[SettingUtil]nowBrightness:" + nowBrightness);
+			MyLog.v("SettingUtil.nowBrightness:" + nowBrightness);
 			return nowBrightness;
 		} catch (SettingNotFoundException e) {
 			e.printStackTrace();
@@ -163,7 +162,7 @@ public class SettingUtil {
 				context.getContentResolver(),
 				android.provider.Settings.System.SCREEN_OFF_TIMEOUT, time);
 
-		MyLog.v("[SettingUtil]setScreenOffTime " + time + ",isSuccess:"
+		MyLog.v("SettingUtil.setScreenOffTime " + time + ",isSuccess:"
 				+ isSuccess);
 	}
 
@@ -194,14 +193,14 @@ public class SettingUtil {
 					output.close();
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
-					MyLog.e("[SaveFileToNode]FileNotFoundException:"
+					MyLog.e("SaveFileToNode.FileNotFoundException:"
 							+ e.toString());
 				}
 			} catch (IOException e) {
-				MyLog.e("[SaveFileToNode]IOException:" + e.toString());
+				MyLog.e("SaveFileToNode.IOException:" + e.toString());
 			}
 		} else {
-			MyLog.e("SaveFileToNode:File:" + file + "not exists");
+			MyLog.e("SaveFileToNode.File:" + file + "not exists");
 		}
 	}
 
@@ -281,7 +280,7 @@ public class SettingUtil {
 		ContentResolver resolver = context.getContentResolver();
 		boolean gpsState = Settings.Secure.isLocationProviderEnabled(resolver,
 				LocationManager.GPS_PROVIDER);
-		MyLog.v("[GPS]Now State:" + gpsState);
+		MyLog.v("Now GPS State:" + gpsState);
 		return gpsState;
 	}
 
@@ -290,7 +289,7 @@ public class SettingUtil {
 		ContentResolver resolver = context.getContentResolver();
 		boolean nowState = isGpsOn(context);
 		if (isGpsOn != nowState) {
-			MyLog.v("[GPS]Set State:" + isGpsOn);
+			MyLog.v("Set GPS State:" + isGpsOn);
 			// Settings.Secure.setLocationProviderEnabled(resolver,
 			// LocationManager.GPS_PROVIDER, isGpsOn);
 			int mCurrentMode = (!isGpsOn) ? Settings.Secure.LOCATION_MODE_HIGH_ACCURACY

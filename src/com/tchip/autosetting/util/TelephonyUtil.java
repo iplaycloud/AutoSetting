@@ -36,7 +36,7 @@ public class TelephonyUtil {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * 返回当前Wifi是否连接上
 	 * 
@@ -88,7 +88,7 @@ public class TelephonyUtil {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * 飞行模式是否打开
 	 * 
@@ -100,7 +100,7 @@ public class TelephonyUtil {
 				context.getContentResolver(),
 				android.provider.Settings.Global.AIRPLANE_MODE_ON, 0) == 1;
 	}
-	
+
 	/** 设置飞行模式开关 */
 	public static void setAirplaneMode(Context context, boolean enable) {
 		Settings.Global.putInt(context.getContentResolver(),
@@ -113,18 +113,17 @@ public class TelephonyUtil {
 
 	/** 设置数据流量开关 */
 	public static void setMobileDataEnable(Context context, boolean enable) {
-		MyLog.v("[AutoReceiver]setMobileDataEnable:" + enable);
+		MyLog.v("TelephonyUtil.setMobileDataEnable:" + enable);
 		TelephonyManager telephonyManager = TelephonyManager.from(context);
 		telephonyManager.setDataEnabled(enable);
 	}
-	
+
 	/** 获取数据流量开关 */
 	public static boolean isMobileDataEnable(Context context) {
 		TelephonyManager telephonyManager = TelephonyManager.from(context);
 		boolean isEnable = telephonyManager.getDataEnabled();
-		MyLog.v("[SettingUtil]isMobileDataEnable:" + isEnable);
+		MyLog.v("TelephonyUtil.isMobileDataEnable:" + isEnable);
 		return isEnable;
 	}
-
 
 }

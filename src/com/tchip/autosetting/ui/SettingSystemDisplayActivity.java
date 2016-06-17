@@ -111,7 +111,7 @@ public class SettingSystemDisplayActivity extends Activity {
 							int manulLightValue = sharedPreferences.getInt(
 									"manulLightValue",
 									Constant.Setting.DEFAULT_BRIGHTNESS);
-							MyLog.v("[SettingSystemDisplay]manulLightValue:"
+							MyLog.v("SettingSystemDisplay.manulLightValue:"
 									+ manulLightValue);
 							SettingUtil.setBrightness(getApplicationContext(),
 									manulLightValue - 1);

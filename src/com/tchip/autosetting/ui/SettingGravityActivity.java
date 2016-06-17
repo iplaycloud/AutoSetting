@@ -1,7 +1,5 @@
 package com.tchip.autosetting.ui;
 
-import com.tchip.autosetting.Constant;
-import com.tchip.autosetting.MyApp;
 import com.tchip.autosetting.R;
 import com.tchip.autosetting.util.MyLog;
 import com.tchip.autosetting.util.ProviderUtil;
@@ -9,10 +7,6 @@ import com.tchip.autosetting.util.ProviderUtil.Name;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -53,7 +47,7 @@ public class SettingGravityActivity extends Activity {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView,
 					boolean isChecked) {
-				MyLog.v("[SettingGravity]SET_DETECT_CRASH_STATE:" + isChecked);
+				MyLog.v("SettingGravity.SET_DETECT_CRASH_STATE:" + isChecked);
 				ProviderUtil.setValue(context, Name.SET_DETECT_CRASH_STATE,
 						isChecked ? "1" : "0");
 			}
@@ -88,7 +82,7 @@ public class SettingGravityActivity extends Activity {
 							int progress, boolean fromUser) {
 						setTextLevelBackground(progress);
 						int crashSensitive = seekBar.getProgress();
-						MyLog.v("[SettingGravity] Set crash sensitive:"
+						MyLog.v("SettingGravity.Set crash sensitive:"
 								+ crashSensitive);
 						ProviderUtil.setValue(context,
 								Name.SET_DETECT_CRASH_LEVEL, ""
