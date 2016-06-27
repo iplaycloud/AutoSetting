@@ -130,6 +130,8 @@ public class QuickSettingActivity extends Activity {
 			public void onProgressChanged(SeekBar seekBar, int progress,
 					boolean fromUser) {
 				secondCount = 1;
+				audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
+						progress, 0);
 			}
 		});
 

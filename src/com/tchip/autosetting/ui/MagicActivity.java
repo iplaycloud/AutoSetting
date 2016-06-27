@@ -3,10 +3,13 @@ package com.tchip.autosetting.ui;
 import com.tchip.autosetting.Constant;
 import com.tchip.autosetting.R;
 import com.tchip.autosetting.util.OpenUtil;
+import com.tchip.autosetting.util.ProviderUtil;
+import com.tchip.autosetting.util.ProviderUtil.Name;
 import com.tchip.autosetting.util.SettingUtil;
 import com.tchip.autosetting.util.OpenUtil.MODULE_TYPE;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -22,11 +25,13 @@ import android.widget.Toast;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 
 public class MagicActivity extends Activity {
+	private Context context;
 	private EditText textPass;
 	private RelativeLayout layoutMagic;
 
 	private Switch switchFM;
 	private Switch switchUVC;
+	private Switch switchBack;
 
 	private EditText textInput;
 	private Button btnSet;
@@ -38,6 +43,7 @@ public class MagicActivity extends Activity {
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		getWindow().setBackgroundDrawable(null);
+		context = getApplicationContext();
 		setContentView(R.layout.activity_magic);
 
 		initialLayout();
@@ -87,6 +93,19 @@ public class MagicActivity extends Activity {
 		btnApplication.setOnClickListener(myOnClickListener);
 		Button btnCamera = (Button) findViewById(R.id.btnCamera);
 		btnCamera.setOnClickListener(myOnClickListener);
+		switchBack = (Switch) findViewById(R.id.switchBack);
+		switchBack.setChecked("1".equals(ProviderUtil.getValue(context,
+				Name.REC_BACK_ENABLE)));
+		switchBack.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView,
+					boolean isChecked) {
+				ProviderUtil.setValue(context, Name.REC_BACK_ENABLE,
+						isChecked ? "1" : "0");
+			}
+		});
+
 		// Row 3
 		switchFM = (Switch) findViewById(R.id.switchFM);
 		switchFM.setChecked(SettingUtil.isFMEnable());
@@ -149,9 +168,10 @@ public class MagicActivity extends Activity {
 			case R.id.btnApplication:
 				OpenUtil.openModule(MagicActivity.this, MODULE_TYPE.APP);
 				break;
-				
+
 			case R.id.btnCamera:
-				OpenUtil.openModule(MagicActivity.this, MODULE_TYPE.SYSTEM_CAMERA);
+				OpenUtil.openModule(MagicActivity.this,
+						MODULE_TYPE.SYSTEM_CAMERA);
 				break;
 
 			case R.id.btnSet:

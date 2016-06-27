@@ -18,6 +18,9 @@ public class ProviderUtil {
 		/** 后录录像状态:0-未录像，1-录像 */
 		public static final String REC_BACK_STATE = "rec_back_state";
 
+		/** 是否开启后录 */
+		public static final String REC_BACK_ENABLE = "rec_back_enable";
+
 		/** 前录录像状态:0-未录像，1-录像 */
 		public static final String REC_FRONT_STATE = "rec_front_state";
 

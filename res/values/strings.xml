@@ -65,6 +65,9 @@
     <string name="magic_fm_on">FM开启</string>
     <string name="magic_usb_mode">USB模式</string>
     <string name="magic_uvc_mode">UVC模式</string>
+    <string name="magic_back_record">后录</string>
+    <string name="magic_back_on">后录开启</string>
+    <string name="magic_back_off">后录关闭</string>
     <string name="magic_input_audio_channel">请输入音频通道</string>
     <string name="magic_audio_set">设置</string>
 
