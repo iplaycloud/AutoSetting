@@ -6,6 +6,7 @@ import com.tchip.autosetting.util.OpenUtil;
 import com.tchip.autosetting.util.OpenUtil.MODULE_TYPE;
 import com.tchip.autosetting.util.ProviderUtil;
 import com.tchip.autosetting.util.ProviderUtil.Name;
+import com.tchip.autosetting.util.SettingUtil;
 import com.tchip.autosetting.util.TypefaceUtil;
 
 import android.app.Activity;
@@ -25,12 +26,10 @@ import android.widget.Switch;
 
 public class MainActivity extends Activity {
 
+	private Context context;
 	private Switch switchWifi, switchParking;
 
 	private WifiManager wifiManager;
-
-	/** WiFi状态监听器 */
-	// private IntentFilter wifiIntentFilter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +38,7 @@ public class MainActivity extends Activity {
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.activity_main);
+		context = getApplicationContext();
 		initialLayout();
 	}
 
@@ -120,10 +120,6 @@ public class MainActivity extends Activity {
 			}
 		});
 
-		// wifiIntentFilter = new IntentFilter();
-		// wifiIntentFilter.addAction(WifiManager.WIFI_STATE_CHANGED_ACTION);
-		// wifiIntentFilter.setPriority(Integer.MAX_VALUE);
-
 		// 停车侦测开关
 		switchParking = (Switch) findViewById(R.id.switchParking);
 		switchParking.setChecked(isParkingMonitorOn());
@@ -134,6 +130,8 @@ public class MainActivity extends Activity {
 					boolean isChecked) {
 				ProviderUtil.setValue(MainActivity.this,
 						Name.SET_PARK_MONITOR_STATE, isChecked ? "1" : "0");
+				SettingUtil.setParkMonitorNode(isChecked);
+				SettingUtil.setParkMonitorConfig(context, isChecked);
 			}
 		});
 

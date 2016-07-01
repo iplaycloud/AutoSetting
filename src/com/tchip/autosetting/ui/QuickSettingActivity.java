@@ -118,7 +118,8 @@ public class QuickSettingActivity extends Activity {
 			public void onStopTrackingTouch(SeekBar seekBar) {
 				audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
 						seekBar.getProgress(), 0);
-
+				audioManager.setStreamVolume(AudioManager.STREAM_ALARM,
+						seekBar.getProgress(), 0);
 			}
 
 			@Override
@@ -131,6 +132,8 @@ public class QuickSettingActivity extends Activity {
 					boolean fromUser) {
 				secondCount = 1;
 				audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
+						progress, 0);
+				audioManager.setStreamVolume(AudioManager.STREAM_ALARM,
 						progress, 0);
 			}
 		});

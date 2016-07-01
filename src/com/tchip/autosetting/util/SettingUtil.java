@@ -17,6 +17,8 @@ import java.net.SocketException;
 import java.util.Enumeration;
 
 import com.tchip.autosetting.Constant;
+import com.tchip.autosetting.ui.MainActivity;
+import com.tchip.autosetting.util.ProviderUtil.Name;
 
 import android.content.ContentResolver;
 import android.content.Context;
@@ -102,24 +104,14 @@ public class SettingUtil {
 		return fileValue == 40;
 	}
 
-	public static void setParkingMonitor(Context context, boolean isParkingOn) {
-		if (isParkingOn) {
-			SaveFileToNode(fileParkingMonitor, "2");
-		} else {
-			SaveFileToNode(fileParkingMonitor, "3");
-		}
+	public static void setParkMonitorNode(boolean isParkingOn) {
+		SaveFileToNode(fileParkingMonitor, isParkingOn ? "2" : "3");
+		MyLog.v("SettingUtil.setParkingMonitorNode:" + isParkingOn);
+	}
 
-		SharedPreferences sharedPreferences = context.getSharedPreferences(
-				Constant.MySP.NAME, Context.MODE_PRIVATE);
-		Editor editor = sharedPreferences.edit();
-
-		editor.putBoolean(Constant.MySP.STR_PARKING_ON, isParkingOn);
-		editor.commit();
-		MyLog.v("SettingUtil.setParkingMonitor:" + isParkingOn);
-
-		// 通知CarLauncher
-		context.sendBroadcast(new Intent("com.tchip.SETTING_SYNC").putExtra(
-				"content", isParkingOn ? "parkOn" : "parkOff"));
+	public static void setParkMonitorConfig(Context context, boolean isParkingOn) {
+		ProviderUtil.setValue(context, Name.SET_PARK_MONITOR_STATE,
+				isParkingOn ? "1" : "0");
 	}
 
 	/**

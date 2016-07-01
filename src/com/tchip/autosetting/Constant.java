@@ -11,9 +11,6 @@ public interface Constant {
 		/** 名称 */
 		public static final String NAME = "AutoSetting";
 
-		/** 停车侦测是否打开[boolean:true] */
-		public static final String STR_PARKING_ON = "parkingOn";
-
 		/** 手动设置的亮度[int] */
 		public static final String STR_MANUL_LIGHT_VALUE = "manulLightValue";
 

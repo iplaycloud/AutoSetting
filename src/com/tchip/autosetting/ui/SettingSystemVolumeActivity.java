@@ -1,6 +1,5 @@
 package com.tchip.autosetting.ui;
 
-
 import com.tchip.autosetting.R;
 
 import android.app.Activity;
@@ -41,6 +40,8 @@ public class SettingSystemVolumeActivity extends Activity {
 			public void onStopTrackingTouch(SeekBar seekBar) {
 				audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
 						seekBar.getProgress(), 0);
+				audioManager.setStreamVolume(AudioManager.STREAM_ALARM,
+						seekBar.getProgress(), 0);
 
 			}
 
@@ -53,6 +54,10 @@ public class SettingSystemVolumeActivity extends Activity {
 			public void onProgressChanged(SeekBar seekBar, int progress,
 					boolean fromUser) {
 				secondCount = 1;
+				audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
+						progress, 0);
+				audioManager.setStreamVolume(AudioManager.STREAM_ALARM,
+						progress, 0);
 			}
 		});
 
