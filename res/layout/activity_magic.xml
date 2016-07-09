@@ -112,7 +112,7 @@
                 android:text="@string/magic_back_record" />
 
             <Switch
-                android:id="@+id/switchBack"
+                android:id="@+id/switchAccOffWake"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="false"

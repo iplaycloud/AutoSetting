@@ -17,7 +17,6 @@ import java.net.SocketException;
 import java.util.Enumeration;
 
 import com.tchip.autosetting.Constant;
-import com.tchip.autosetting.ui.MainActivity;
 import com.tchip.autosetting.util.ProviderUtil.Name;
 
 import android.content.ContentResolver;
@@ -130,7 +129,6 @@ public class SettingUtil {
 			SharedPreferences sharedPreferences = context.getSharedPreferences(
 					Constant.MySP.NAME, Context.MODE_PRIVATE);
 			Editor editor = sharedPreferences.edit();
-
 			editor.putInt(Constant.MySP.STR_MANUL_LIGHT_VALUE, brightness);
 			editor.commit();
 		}
@@ -299,4 +297,30 @@ public class SettingUtil {
 		}
 	}
 
+	/**
+	 * Camera自动调节亮度节点
+	 * 
+	 * 1：开 0：关;默认打开
+	 */
+	public static File fileAutoLightSwitch = new File(
+			Constant.Path.NODE_PARK_MONITOR);
+
+	public static void setAutoLight(boolean enable) {
+		if (enable) {
+			SaveFileToNode(fileAutoLightSwitch, "1");
+		} else {
+			SaveFileToNode(fileAutoLightSwitch, "0");
+		}
+		MyLog.v("[SettingUtil]setAutoLight:" + enable);
+	}
+
+	public static File fileAccOffWake = new File(Constant.Path.NODE_ACC_STATUS);
+
+	public static void setAccOffWake(boolean enable) {
+		if (enable) {
+			SaveFileToNode(fileAccOffWake, "1");
+		} else {
+			SaveFileToNode(fileAccOffWake, "0");
+		}
+	}
 }

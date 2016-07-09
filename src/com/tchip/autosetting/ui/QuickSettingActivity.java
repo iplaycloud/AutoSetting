@@ -3,6 +3,7 @@ package com.tchip.autosetting.ui;
 import com.tchip.autosetting.Constant;
 import com.tchip.autosetting.R;
 import com.tchip.autosetting.util.HintUtil;
+import com.tchip.autosetting.util.MyLog;
 import com.tchip.autosetting.util.OpenUtil;
 import com.tchip.autosetting.util.ProviderUtil;
 import com.tchip.autosetting.util.ProviderUtil.Name;
@@ -15,6 +16,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
@@ -26,6 +28,7 @@ import android.view.View.OnLongClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 
@@ -42,6 +45,8 @@ public class QuickSettingActivity extends Activity {
 	private ImageView imageLocation;
 	private ImageView imageAirplane;
 	private ImageView imageSetting;
+	private ImageView imageBrightness;
+	private SeekBar seekBarBright;
 
 	/** WiFi状态监听器 **/
 	private IntentFilter intentFilter;
@@ -82,7 +87,22 @@ public class QuickSettingActivity extends Activity {
 		MyOnClickListener myOnClickListener = new MyOnClickListener();
 		MyOnLongClickListener myOnLongClickListener = new MyOnLongClickListener();
 		// 亮度SeekBar
-		SeekBar seekBarBright = (SeekBar) findViewById(R.id.seekBarBright);
+		imageBrightness = (ImageView) findViewById(R.id.imageBrightness);
+		imageBrightness.setOnClickListener(myOnClickListener);
+		seekBarBright = (SeekBar) findViewById(R.id.seekBarBright);
+		String strAutoLight = ProviderUtil.getValue(context,
+				Name.SET_AUTO_LIGHT_STATE);
+		if (null != strAutoLight && strAutoLight.trim().length() > 0
+				&& "1".equals(strAutoLight)) {
+			seekBarBright.setEnabled(false);
+			imageBrightness.setImageDrawable(getResources().getDrawable(
+					R.drawable.quick_setting_brightness_auto, null));
+		} else {
+			imageBrightness.setImageDrawable(getResources().getDrawable(
+					R.drawable.quick_setting_brightness, null));
+			seekBarBright.setEnabled(true);
+		}
+
 		seekBarBright.setMax(Constant.Setting.MAX_BRIGHTNESS);
 		seekBarBright.setProgress(SettingUtil.getBrightness(context));
 		seekBarBright.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
@@ -244,6 +264,44 @@ public class QuickSettingActivity extends Activity {
 				Intent intentSetting = new Intent(QuickSettingActivity.this,
 						MainActivity.class);
 				startActivity(intentSetting);
+				break;
+
+			case R.id.imageBrightness:
+				String strAutoLight = ProviderUtil.getValue(context,
+						Name.SET_AUTO_LIGHT_STATE);
+				if (null != strAutoLight && strAutoLight.trim().length() > 0
+						&& "1".equals(strAutoLight)) {
+					ProviderUtil.setValue(context, Name.SET_AUTO_LIGHT_STATE,
+							"0");
+					SettingUtil.setAutoLight(false);
+					seekBarBright.setEnabled(true);
+					imageBrightness.setImageDrawable(getResources()
+							.getDrawable(R.drawable.quick_setting_brightness,
+									null));
+					SharedPreferences sharedPreferences = getSharedPreferences(
+							Constant.MySP.NAME, Context.MODE_PRIVATE);
+					int manulLightValue = sharedPreferences.getInt(
+							"manulLightValue",
+							Constant.Setting.DEFAULT_BRIGHTNESS);
+					SettingUtil.setBrightness(getApplicationContext(),
+							manulLightValue - 1);
+
+					SettingUtil.setBrightness(getApplicationContext(),
+							manulLightValue + 1);
+
+					SettingUtil.setBrightness(getApplicationContext(),
+							manulLightValue);
+				} else {
+					ProviderUtil.setValue(context, Name.SET_AUTO_LIGHT_STATE,
+							"1");
+					SettingUtil.setAutoLight(true);
+					seekBarBright.setEnabled(false);
+					imageBrightness.setImageDrawable(getResources()
+							.getDrawable(
+									R.drawable.quick_setting_brightness_auto,
+									null));
+				}
+
 				break;
 
 			default:

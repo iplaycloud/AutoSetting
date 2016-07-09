@@ -3,6 +3,8 @@ package com.tchip.autosetting.ui;
 import com.tchip.autosetting.Constant;
 import com.tchip.autosetting.R;
 import com.tchip.autosetting.util.MyLog;
+import com.tchip.autosetting.util.ProviderUtil;
+import com.tchip.autosetting.util.ProviderUtil.Name;
 import com.tchip.autosetting.util.SettingUtil;
 import com.tchip.autosetting.util.TypefaceUtil;
 
@@ -36,7 +38,7 @@ public class SettingSystemDisplayActivity extends Activity {
 	private Editor editor;
 
 	private Switch switchAutolight;
-
+	private SeekBar brightSeekBar;
 	private RelativeLayout layoutSeekBar;
 
 	@Override
@@ -59,7 +61,7 @@ public class SettingSystemDisplayActivity extends Activity {
 				+ "Font-Helvetica-Neue-LT-Pro.otf"));
 
 		// 亮度SeekBar
-		SeekBar brightSeekBar = (SeekBar) findViewById(R.id.brightSeekBar);
+		brightSeekBar = (SeekBar) findViewById(R.id.brightSeekBar);
 		brightSeekBar.setMax(Constant.Setting.MAX_BRIGHTNESS);
 		brightSeekBar.setProgress(SettingUtil.getBrightness(context));
 		brightSeekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
@@ -85,8 +87,7 @@ public class SettingSystemDisplayActivity extends Activity {
 		iniRadioGroup();
 		boolean isAutoLightSwitchOn = isAutoLightSwitchOn();
 		layoutSeekBar = (RelativeLayout) findViewById(R.id.layoutSeekBar);
-		// hideOrShowSeekBarLayout(isAutoLightSwitchOn);
-		layoutSeekBar.setVisibility(View.VISIBLE);
+		hideOrShowSeekBarLayout(isAutoLightSwitchOn);
 
 		// 亮度自动调节开关
 		switchAutolight = (Switch) findViewById(R.id.switchAutolight);
@@ -97,17 +98,14 @@ public class SettingSystemDisplayActivity extends Activity {
 					@Override
 					public void onCheckedChanged(CompoundButton buttonView,
 							boolean isChecked) {
-						// Settings.System.putString(getContentResolver(),
-						// Constant.FMTransmit.SETTING_ENABLE,
-						// isChecked ? "1" : "0");
-						editor.putBoolean("autoScreenLight", isChecked);
-						editor.commit();
+						ProviderUtil.setValue(context,
+								Name.SET_AUTO_LIGHT_STATE, isChecked ? "1"
+										: "0");
 						hideOrShowSeekBarLayout(isChecked);
 
-						// SettingUtil.setAutoLight(context, isChecked);
+						SettingUtil.setAutoLight(isChecked);
 
-						// 关闭自动亮度调节，重设亮度值
-						if (!isChecked) {
+						if (!isChecked) { // 关闭自动亮度调节，重设亮度值
 							int manulLightValue = sharedPreferences.getInt(
 									"manulLightValue",
 									Constant.Setting.DEFAULT_BRIGHTNESS);
@@ -126,6 +124,15 @@ public class SettingSystemDisplayActivity extends Activity {
 				});
 	}
 
+	@Override
+	protected void onResume() {
+		brightSeekBar.setProgress(SettingUtil.getBrightness(context));
+		boolean isAutoLightSwitchOn = isAutoLightSwitchOn();
+		switchAutolight.setChecked(isAutoLightSwitchOn);
+		hideOrShowSeekBarLayout(isAutoLightSwitchOn);
+		super.onResume();
+	}
+
 	private void hideOrShowSeekBarLayout(boolean isAutoLightSwitchOn) {
 		if (!isAutoLightSwitchOn) {
 			layoutSeekBar.setVisibility(View.VISIBLE);
@@ -135,8 +142,14 @@ public class SettingSystemDisplayActivity extends Activity {
 	}
 
 	private boolean isAutoLightSwitchOn() {
-		return sharedPreferences.getBoolean("autoScreenLight",
-				Constant.Setting.AUTO_BRIGHT_DEFAULT_ON);
+		String strAutoLight = ProviderUtil.getValue(context,
+				Name.SET_AUTO_LIGHT_STATE);
+		if (null != strAutoLight && strAutoLight.trim().length() > 0
+				&& "1".equals(strAutoLight)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	class MyOnClickListener implements View.OnClickListener {

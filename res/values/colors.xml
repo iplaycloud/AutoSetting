@@ -21,7 +21,7 @@
     <color name="setting_title_bg">#28313b</color>
     <color name="setting_bg_color">#1f2227</color>
     <color name="setting_item_bg_grey">#29292d</color>
-    <color name="setting_item_separator">#555555</color>
+    <color name="setting_item_separator">#28313b</color>
     <color name="setting_tab_on">#ec6100</color>
     <color name="setting_tab_off">#262626</color>
     <color name="setting_tab_text_off">#878787</color>

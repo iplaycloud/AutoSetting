@@ -88,7 +88,14 @@ public interface Constant {
 		/** FM频率 */
 		public static final String NODE_FM_FREQUENCY = "/sys/bus/i2c/devices/2-0011/setch_si4712";
 
-		/** 停车守卫开关： * 2：打开(默认) 3：关闭 */
+		/** ACC状态 */
+		public static final String NODE_ACC_STATUS = "/sys/bus/i2c/devices/0-007f/ACC_status";
+
+		/**
+		 * Read: 0-未倒车 1-倒车
+		 * 
+		 * Write：1：自动调节亮度节点开 0：关;默认打开 ；2：停车侦测开关节点打开 3：关闭（默认）
+		 */
 		public static final String NODE_PARK_MONITOR = "/sys/bus/i2c/devices/0-007f/back_car_status";
 
 	}

@@ -31,7 +31,7 @@ public class MagicActivity extends Activity {
 
 	private Switch switchFM;
 	private Switch switchUVC;
-	private Switch switchBack;
+	private Switch switchAccOffWake;
 
 	private EditText textInput;
 	private Button btnSet;
@@ -93,18 +93,20 @@ public class MagicActivity extends Activity {
 		btnApplication.setOnClickListener(myOnClickListener);
 		Button btnCamera = (Button) findViewById(R.id.btnCamera);
 		btnCamera.setOnClickListener(myOnClickListener);
-		switchBack = (Switch) findViewById(R.id.switchBack);
-		switchBack.setChecked("1".equals(ProviderUtil.getValue(context,
-				Name.REC_BACK_ENABLE)));
-		switchBack.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+		switchAccOffWake = (Switch) findViewById(R.id.switchAccOffWake);
+		switchAccOffWake.setChecked("1".equals(ProviderUtil.getValue(context,
+				Name.DEBUG_ACCOFF_WAKE)));
+		switchAccOffWake
+				.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
-			@Override
-			public void onCheckedChanged(CompoundButton buttonView,
-					boolean isChecked) {
-				ProviderUtil.setValue(context, Name.REC_BACK_ENABLE,
-						isChecked ? "1" : "0");
-			}
-		});
+					@Override
+					public void onCheckedChanged(CompoundButton buttonView,
+							boolean isChecked) {
+						ProviderUtil.setValue(context, Name.DEBUG_ACCOFF_WAKE,
+								isChecked ? "1" : "0");
+						SettingUtil.setAccOffWake(isChecked);
+					}
+				});
 
 		// Row 3
 		switchFM = (Switch) findViewById(R.id.switchFM);
