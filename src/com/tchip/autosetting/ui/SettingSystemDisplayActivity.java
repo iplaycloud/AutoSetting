@@ -143,13 +143,8 @@ public class SettingSystemDisplayActivity extends Activity {
 
 	private boolean isAutoLightSwitchOn() {
 		String strAutoLight = ProviderUtil.getValue(context,
-				Name.SET_AUTO_LIGHT_STATE);
-		if (null != strAutoLight && strAutoLight.trim().length() > 0
-				&& "1".equals(strAutoLight)) {
-			return true;
-		} else {
-			return false;
-		}
+				Name.SET_AUTO_LIGHT_STATE, "0");
+		return "1".equals(strAutoLight);
 	}
 
 	class MyOnClickListener implements View.OnClickListener {

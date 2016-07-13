@@ -91,9 +91,8 @@ public class QuickSettingActivity extends Activity {
 		imageBrightness.setOnClickListener(myOnClickListener);
 		seekBarBright = (SeekBar) findViewById(R.id.seekBarBright);
 		String strAutoLight = ProviderUtil.getValue(context,
-				Name.SET_AUTO_LIGHT_STATE);
-		if (null != strAutoLight && strAutoLight.trim().length() > 0
-				&& "1".equals(strAutoLight)) {
+				Name.SET_AUTO_LIGHT_STATE, "0");
+		if ("1".equals(strAutoLight)) {
 			seekBarBright.setEnabled(false);
 			imageBrightness.setImageDrawable(getResources().getDrawable(
 					R.drawable.quick_setting_brightness_auto, null));
@@ -202,7 +201,7 @@ public class QuickSettingActivity extends Activity {
 		}
 		// 蓝牙
 		boolean isBluetoothEnable = "1".equals(ProviderUtil.getValue(context,
-				Name.ACC_STATE))
+				Name.ACC_STATE, "0"))
 				&& "1".equals(Settings.System.getString(getContentResolver(),
 						"bt_enable"));
 		imageBluetooth.setImageDrawable(getResources().getDrawable(
@@ -244,7 +243,8 @@ public class QuickSettingActivity extends Activity {
 				break;
 
 			case R.id.imageBluetooth:
-				if ("1".equals(ProviderUtil.getValue(context, Name.ACC_STATE))) {
+				if ("1".equals(ProviderUtil.getValue(context, Name.ACC_STATE,
+						"0"))) {
 					sendBroadcast(new Intent(
 							Constant.Broadcast.BT_STATUS_CHANGE));
 				}
@@ -268,9 +268,8 @@ public class QuickSettingActivity extends Activity {
 
 			case R.id.imageBrightness:
 				String strAutoLight = ProviderUtil.getValue(context,
-						Name.SET_AUTO_LIGHT_STATE);
-				if (null != strAutoLight && strAutoLight.trim().length() > 0
-						&& "1".equals(strAutoLight)) {
+						Name.SET_AUTO_LIGHT_STATE, "0");
+				if ("1".equals(strAutoLight)) {
 					ProviderUtil.setValue(context, Name.SET_AUTO_LIGHT_STATE,
 							"0");
 					SettingUtil.setAutoLight(false);

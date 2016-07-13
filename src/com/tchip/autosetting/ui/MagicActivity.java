@@ -95,7 +95,7 @@ public class MagicActivity extends Activity {
 		btnCamera.setOnClickListener(myOnClickListener);
 		switchAccOffWake = (Switch) findViewById(R.id.switchAccOffWake);
 		switchAccOffWake.setChecked("1".equals(ProviderUtil.getValue(context,
-				Name.DEBUG_ACCOFF_WAKE)));
+				Name.DEBUG_ACCOFF_WAKE, "0")));
 		switchAccOffWake
 				.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 

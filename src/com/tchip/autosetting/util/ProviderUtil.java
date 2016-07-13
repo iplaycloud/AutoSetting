@@ -20,7 +20,7 @@ public class ProviderUtil {
 
 		/** 是否开启后录 */
 		public static final String REC_BACK_ENABLE = "rec_back_enable";
-		
+
 		/** ACC下电是否可亮屏 */
 		public static final String DEBUG_ACCOFF_WAKE = "debug_accoff_wake";
 
@@ -89,8 +89,9 @@ public class ProviderUtil {
 
 	}
 
-	public static String getValue(Context context, String name) {
-		String dbValue = "";
+	public static String getValue(Context context, String name,
+			String defaultValue) {
+		String dbValue = defaultValue;
 		try {
 			Uri uri = Uri
 					.parse("content://com.tchip.provider.AutoProvider/state/name/"
@@ -109,6 +110,7 @@ public class ProviderUtil {
 			MyLog.e("ProviderUtil.get " + name + " Value Exception:"
 					+ e.toString());
 		}
+		MyLog.v("ProviderUtil.getValue.Name:" + name + ",value:" + dbValue);
 		return dbValue;
 	}
 

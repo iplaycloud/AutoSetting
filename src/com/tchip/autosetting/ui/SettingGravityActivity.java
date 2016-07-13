@@ -155,30 +155,18 @@ public class SettingGravityActivity extends Activity {
 	/** 碰撞侦测是否打开:默认开启 */
 	private boolean isGravityOn() {
 		String strGravityOn = ProviderUtil.getValue(context,
-				Name.SET_DETECT_CRASH_STATE);
-		if (null != strGravityOn && strGravityOn.trim().length() > 0) {
-			if (strGravityOn.equals("0")) {
-				return false;
-			} else {
-				return true;
-			}
-		} else {
-			return true;
-		}
+				Name.SET_DETECT_CRASH_STATE, "1");
+		return "1".equals(strGravityOn);
 	}
 
 	/** 获取当前设置的碰撞等级:默认1-中 */
 	private int getGravityLevel() {
 		String strGravityLevel = ProviderUtil.getValue(context,
-				Name.SET_DETECT_CRASH_LEVEL);
-		if (null != strGravityLevel && strGravityLevel.trim().length() > 0) {
-			if (strGravityLevel.equals("0")) {
-				return 0;
-			} else if (strGravityLevel.equals("2")) {
-				return 2;
-			} else {
-				return 1;
-			}
+				Name.SET_DETECT_CRASH_LEVEL, "1");
+		if (strGravityLevel.equals("0")) {
+			return 0;
+		} else if (strGravityLevel.equals("2")) {
+			return 2;
 		} else {
 			return 1;
 		}

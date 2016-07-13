@@ -137,16 +137,11 @@ public class MainActivity extends Activity {
 
 	}
 
-	/** 停车守卫是否打开：默认关闭 */
+	/** 停车守卫是否打开 */
 	private boolean isParkingMonitorOn() {
 		String parkState = ProviderUtil.getValue(MainActivity.this,
-				Name.SET_PARK_MONITOR_STATE);
-		if (null != parkState && parkState.trim().length() > 0
-				&& "0".equals(parkState)) {
-			return false;
-		} else {
-			return true;
-		}
+				Name.SET_PARK_MONITOR_STATE, "1");
+		return "1".equals(parkState);
 	}
 
 	class MyOnClickListener implements View.OnClickListener {
