@@ -51,6 +51,8 @@
     <dimen name="magic_btn_width">195dp</dimen>
     <dimen name="magic_btn_height">60dp</dimen>
     <dimen name="magic_btn_text_size">25sp</dimen>
+    <dimen name="magic_btn_width_half">95dp</dimen>
+    <dimen name="magic_btn_text_size_half">12sp</dimen>
 
     <!-- Gravity -->
     <dimen name="gravity_hint_main_text_size">22sp</dimen>

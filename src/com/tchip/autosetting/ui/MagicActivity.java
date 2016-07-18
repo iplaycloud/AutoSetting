@@ -10,6 +10,8 @@ import com.tchip.autosetting.util.OpenUtil.MODULE_TYPE;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.ComponentName;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -93,6 +95,11 @@ public class MagicActivity extends Activity {
 		btnApplication.setOnClickListener(myOnClickListener);
 		Button btnCamera = (Button) findViewById(R.id.btnCamera);
 		btnCamera.setOnClickListener(myOnClickListener);
+		Button btnOpenCpuTemp = (Button) findViewById(R.id.btnOpenCpuTemp);
+		btnOpenCpuTemp.setOnClickListener(myOnClickListener);
+		Button btnCloseCpuTemp = (Button) findViewById(R.id.btnCloseCpuTemp);
+		btnCloseCpuTemp.setOnClickListener(myOnClickListener);
+		
 		switchAccOffWake = (Switch) findViewById(R.id.switchAccOffWake);
 		switchAccOffWake.setChecked("1".equals(ProviderUtil.getValue(context,
 				Name.DEBUG_ACCOFF_WAKE, "0")));
@@ -186,12 +193,58 @@ public class MagicActivity extends Activity {
 				}
 				break;
 
+
+			case R.id.btnOpenCpuTemp:
+				startUvcBackCarService(true);
+				startUvcDaemonService(true);
+				break;
+				
+			case R.id.btnCloseCpuTemp:
+				startUvcBackCarService(false);
+				startUvcDaemonService(false);
+				break;
+				
 			default:
 				break;
 			}
 
 		}
 
+	}
+	
+	/**
+	 * 温度节点读取服务
+	 * @param msg
+	 */
+	private void startUvcBackCarService(boolean open) {
+		try{
+			Intent intent = new Intent();
+			ComponentName comp = new ComponentName("com.android.systemui", "com.android.systemui.UvcBackCarService");
+			intent.setComponent(comp);
+			if(open)
+				startService(intent);
+			else
+				stopService(intent);
+		}catch(Exception e){
+			
+		}
+	}
+	/**
+	 * 温度节点监控服务
+	 * @param msg
+	 */
+	private void startUvcDaemonService(boolean open) {
+		try{
+			Intent intent = new Intent();
+			ComponentName comp = new ComponentName("com.android.systemui", "com.android.systemui.UvcDaemonService");
+			intent.setComponent(comp);
+			if(open)
+				startService(intent);
+			else
+				stopService(intent);
+		}catch(Exception e){
+			
+		}
 	}
 
 }

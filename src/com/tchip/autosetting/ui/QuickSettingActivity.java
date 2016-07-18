@@ -12,10 +12,8 @@ import com.tchip.autosetting.util.TelephonyUtil;
 import com.tchip.autosetting.util.OpenUtil.MODULE_TYPE;
 
 import android.app.Activity;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.net.wifi.WifiManager;
@@ -48,9 +46,6 @@ public class QuickSettingActivity extends Activity {
 	private ImageView imageBrightness;
 	private SeekBar seekBarBright;
 
-	/** WiFi状态监听器 **/
-	private IntentFilter intentFilter;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -67,15 +62,11 @@ public class QuickSettingActivity extends Activity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		registerReceiver(quickReceiver, intentFilter);
 	}
 
 	@Override
 	protected void onPause() {
 		super.onPause();
-		if (quickReceiver != null) {
-			unregisterReceiver(quickReceiver);
-		}
 	}
 
 	@Override
@@ -174,11 +165,6 @@ public class QuickSettingActivity extends Activity {
 		imageSetting.setOnClickListener(myOnClickListener);
 
 		updateIconState();
-
-		intentFilter = new IntentFilter();
-		intentFilter.addAction(WifiManager.WIFI_STATE_CHANGED_ACTION);
-		intentFilter.addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED);
-		intentFilter.setPriority(Integer.MAX_VALUE);
 	}
 
 	private void updateIconState() {
@@ -340,38 +326,6 @@ public class QuickSettingActivity extends Activity {
 		}
 
 	}
-
-	private BroadcastReceiver quickReceiver = new BroadcastReceiver() {
-		@Override
-		public void onReceive(Context context, Intent intent) {
-
-			String action = intent.getAction();
-			if (WifiManager.WIFI_STATE_CHANGED_ACTION.equals(action)) {
-				int wifi_state = intent.getIntExtra("wifi_state", 0);
-				switch (wifi_state) {
-				case WifiManager.WIFI_STATE_DISABLING:
-				case WifiManager.WIFI_STATE_UNKNOWN:
-				case WifiManager.WIFI_STATE_DISABLED:
-					imageWifi.setImageDrawable(getResources().getDrawable(
-							R.drawable.quick_setting_wifi_off, null));
-					break;
-
-				case WifiManager.WIFI_STATE_ENABLING:
-				case WifiManager.WIFI_STATE_ENABLED:
-					imageWifi.setImageDrawable(getResources().getDrawable(
-							R.drawable.quick_setting_wifi_on, null));
-					break;
-				}
-			} else if (Intent.ACTION_AIRPLANE_MODE_CHANGED.equals(action)) {
-				imageAirplane
-						.setImageDrawable(getResources()
-								.getDrawable(
-										intent.getBooleanExtra("state", false) ? R.drawable.quick_setting_airplane_on
-												: R.drawable.quick_setting_airplane_off,
-										null));
-			}
-		}
-	};
 
 	/**
 	 * 无操作3秒后关闭音量调节界面

@@ -61,6 +61,8 @@
     <string name="magic_developer_option">开发者选项</string>
     <string name="magic_application">应用</string>
     <string name="magic_system_camera">系统相机</string>
+    <string name="magic_open_cpu_temp">打开温度检测</string>
+    <string name="magic_close_cpu_temp">关闭温度检测</string>
     <string name="magic_fm_off">FM关闭</string>
     <string name="magic_fm_on">FM开启</string>
     <string name="magic_usb_mode">USB模式</string>

@@ -106,18 +106,18 @@
                 android:textColor="@color/magic_btn_text_color"
                 android:textSize="@dimen/magic_btn_text_size" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/magic_back_record" />
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/magic_back_record" />
 
-            <Switch
-                android:id="@+id/switchAccOffWake"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="false"
-                android:textOff="@string/magic_back_off"
-                android:textOn="@string/magic_back_on" />
+			<Switch
+				android:id="@+id/switchAccOffWake"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:checked="false"
+				android:textOff="@string/magic_back_off"
+				android:textOn="@string/magic_back_on" />
         </LinearLayout>
 
         <ScrollView
@@ -131,7 +131,23 @@
                 android:layout_height="@dimen/magic_btn_height"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
-                android:orientation="vertical" >
+                android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/btnOpenCpuTemp"
+                android:layout_width="@dimen/magic_btn_width_half"
+                android:layout_height="@dimen/magic_btn_height"
+                android:text="@string/magic_open_cpu_temp"
+                android:textColor="@color/magic_btn_text_color"
+                android:textSize="@dimen/magic_btn_text_size_half" />
+
+            <Button
+                android:id="@+id/btnCloseCpuTemp"
+                android:layout_width="@dimen/magic_btn_width_half"
+                android:layout_height="@dimen/magic_btn_height"
+                android:text="@string/magic_close_cpu_temp"
+                android:textColor="@color/magic_btn_text_color"
+                android:textSize="@dimen/magic_btn_text_size_half" />
 
                 <Switch
                     android:id="@+id/switchFM"
