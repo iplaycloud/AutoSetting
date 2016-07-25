@@ -162,7 +162,7 @@ public class SettingUtil {
 					Settings.System.SCREEN_OFF_TIMEOUT);
 		} catch (SettingNotFoundException e) {
 			e.printStackTrace();
-			return 155;
+			return Constant.Setting.SCREEN_OFF_DEFAULT;
 		}
 	}
 

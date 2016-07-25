@@ -199,19 +199,24 @@ public class SettingSystemDisplayActivity extends Activity {
 		public void onCheckedChanged(RadioGroup group, int checkedId) {
 			switch (checkedId) {
 			case R.id.screenOff30Second:
-				SettingUtil.setScreenOffTime(context, 30000);
+				SettingUtil.setScreenOffTime(context,
+						Constant.Setting.SCREEN_OFF_30S);
 				break;
 			case R.id.screenOff1min:
-				SettingUtil.setScreenOffTime(context, 60000);
+				SettingUtil.setScreenOffTime(context,
+						Constant.Setting.SCREEN_OFF_1M);
 				break;
 			case R.id.screenOff2min:
-				SettingUtil.setScreenOffTime(context, 120000);
+				SettingUtil.setScreenOffTime(context,
+						Constant.Setting.SCREEN_OFF_2M);
 				break;
 			case R.id.screenOff10min:
-				SettingUtil.setScreenOffTime(context, 600000);
+				SettingUtil.setScreenOffTime(context,
+						Constant.Setting.SCREEN_OFF_10M);
 				break;
 			case R.id.screenOffNone:
-				SettingUtil.setScreenOffTime(context, Integer.MAX_VALUE);
+				SettingUtil.setScreenOffTime(context,
+						Constant.Setting.SCREEN_OFF_NEVER);
 				break;
 
 			default:

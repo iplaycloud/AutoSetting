@@ -33,6 +33,18 @@ public interface Constant {
 
 		/** Camera自动调节亮度是否打开 */
 		public static final boolean AUTO_BRIGHT_DEFAULT_ON = false;
+
+		public static final int SCREEN_OFF_30S = 30 * 000;
+
+		public static final int SCREEN_OFF_1M = 60 * 000;
+
+		public static final int SCREEN_OFF_2M = 2 * SCREEN_OFF_1M;
+
+		public static final int SCREEN_OFF_10M = 10 * SCREEN_OFF_1M;
+
+		public static final int SCREEN_OFF_NEVER = Integer.MAX_VALUE;
+
+		public static final int SCREEN_OFF_DEFAULT = SCREEN_OFF_NEVER; // 2147483647
 	}
 
 	public static final class Module {
