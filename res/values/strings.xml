@@ -39,7 +39,7 @@
     <string name="display_time_10m">10分</string>
     <string name="display_time_forever">永不休眠</string>
     <string name="display_brightness">亮度</string>
-    
+
     <!-- Volume -->
     <string name="volume_ringtone">铃声</string>
 
@@ -72,5 +72,19 @@
     <string name="magic_back_off">ACC下电唤醒关闭</string>
     <string name="magic_input_audio_channel">请输入音频通道</string>
     <string name="magic_audio_set">设置</string>
+    <string name="magic_record_bitrate_front">前录1080P码率</string>
+    <string name="magic_record_bitrate_7m">7M</string>
+    <string name="magic_record_bitrate_8m">8M</string>
+    <string name="magic_record_bitrate_10m">10M</string>
+    <string name="magic_record_bitrate_12m">12M</string>
+    <string name="magic_record_bitrate_14m">14M</string>
+    <string name="magic_record_bitrate_16m">16M</string>
+    <string name="magic_record_bitrate_back">后录码率</string>
+    <string name="magic_record_bitrate_05m">0.5M</string>
+    <string name="magic_record_bitrate_1m">1M</string>
+    <string name="magic_record_bitrate_2m">2M</string>
+    <string name="magic_record_bitrate_3m">3M</string>
+    <string name="magic_record_bitrate_4m">4M</string>
+    <string name="set_success_reboot">(设置后重启生效)</string>
 
 </resources>

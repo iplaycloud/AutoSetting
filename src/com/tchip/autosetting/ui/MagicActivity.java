@@ -2,6 +2,7 @@ package com.tchip.autosetting.ui;
 
 import com.tchip.autosetting.Constant;
 import com.tchip.autosetting.R;
+import com.tchip.autosetting.util.HintUtil;
 import com.tchip.autosetting.util.OpenUtil;
 import com.tchip.autosetting.util.ProviderUtil;
 import com.tchip.autosetting.util.ProviderUtil.Name;
@@ -21,6 +22,8 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -30,10 +33,17 @@ public class MagicActivity extends Activity {
 	private Context context;
 	private EditText textPass;
 	private RelativeLayout layoutMagic;
+	private RelativeLayout layoutRecord;
 
 	private Switch switchFM;
 	private Switch switchUVC;
 	private Switch switchAccOffWake;
+
+	private RadioButton frontBitrate7, frontBitrate8, frontBitrate10,
+			frontBitrate12, frontBitrate14, frontBitrate16;
+
+	private RadioButton backBitrate05, backBitrate1, backBitrate2,
+			backBitrate3, backBitrate4;
 
 	private EditText textInput;
 	private Button btnSet;
@@ -54,6 +64,7 @@ public class MagicActivity extends Activity {
 	private void initialLayout() {
 		MyOnClickListener myOnClickListener = new MyOnClickListener();
 		layoutMagic = (RelativeLayout) findViewById(R.id.layoutMagic);
+		layoutRecord = (RelativeLayout) findViewById(R.id.layoutRecord);
 
 		textPass = (EditText) findViewById(R.id.textPass);
 		textPass.addTextChangedListener(new TextWatcher() {
@@ -72,7 +83,11 @@ public class MagicActivity extends Activity {
 			public void afterTextChanged(Editable s) {
 				String strInput = textPass.getText().toString();
 				if (Constant.Module.MagicCode.equals(strInput)) {
+					layoutRecord.setVisibility(View.GONE);
 					layoutMagic.setVisibility(View.VISIBLE);
+				} else if (Constant.Module.RecordCode.equals(strInput)) {
+					layoutMagic.setVisibility(View.GONE);
+					layoutRecord.setVisibility(View.VISIBLE);
 				}
 			}
 		});
@@ -99,7 +114,7 @@ public class MagicActivity extends Activity {
 		btnOpenCpuTemp.setOnClickListener(myOnClickListener);
 		Button btnCloseCpuTemp = (Button) findViewById(R.id.btnCloseCpuTemp);
 		btnCloseCpuTemp.setOnClickListener(myOnClickListener);
-		
+
 		switchAccOffWake = (Switch) findViewById(R.id.switchAccOffWake);
 		switchAccOffWake.setChecked("1".equals(ProviderUtil.getValue(context,
 				Name.DEBUG_ACCOFF_WAKE, "0")));
@@ -141,6 +156,161 @@ public class MagicActivity extends Activity {
 		textInput = (EditText) findViewById(R.id.textInput);
 		btnSet = (Button) findViewById(R.id.btnSet);
 		btnSet.setOnClickListener(myOnClickListener);
+
+		RadioGroup frontBitrateGroup = (RadioGroup) findViewById(R.id.frontBitrateGroup);
+		frontBitrateGroup
+				.setOnCheckedChangeListener(new FrontRadioOnCheckedListener());
+		frontBitrate7 = (RadioButton) findViewById(R.id.frontBitrate7);
+		frontBitrate8 = (RadioButton) findViewById(R.id.frontBitrate8);
+		frontBitrate10 = (RadioButton) findViewById(R.id.frontBitrate10);
+		frontBitrate12 = (RadioButton) findViewById(R.id.frontBitrate12);
+		frontBitrate14 = (RadioButton) findViewById(R.id.frontBitrate14);
+		frontBitrate16 = (RadioButton) findViewById(R.id.frontBitrate16);
+
+		String strFrontBitrate = ProviderUtil.getValue(context,
+				Name.REC_FRONT_1080_BITRATE, "" + 7 * 1024 * 1024);
+		int intFrontBitrate = Integer.parseInt(strFrontBitrate);
+		switch (intFrontBitrate) {
+
+		case 8 * 1024 * 1024:
+			frontBitrate8.setChecked(true);
+			break;
+
+		case 10 * 1024 * 1024:
+			frontBitrate10.setChecked(true);
+			break;
+
+		case 12 * 1024 * 1024:
+			frontBitrate12.setChecked(true);
+			break;
+
+		case 14 * 1024 * 1024:
+			frontBitrate14.setChecked(true);
+			break;
+
+		case 16 * 1024 * 1024:
+			frontBitrate16.setChecked(true);
+			break;
+
+		case 7 * 1024 * 1024:
+		default:
+			frontBitrate7.setChecked(true);
+			break;
+		}
+
+		RadioGroup backBitrateGroup = (RadioGroup) findViewById(R.id.backBitrateGroup);
+		backBitrateGroup
+				.setOnCheckedChangeListener(new BackRadioOnCheckedListener());
+		backBitrate05 = (RadioButton) findViewById(R.id.backBitrate05);
+		backBitrate1 = (RadioButton) findViewById(R.id.backBitrate1);
+		backBitrate2 = (RadioButton) findViewById(R.id.backBitrate2);
+		backBitrate3 = (RadioButton) findViewById(R.id.backBitrate3);
+		backBitrate4 = (RadioButton) findViewById(R.id.backBitrate4);
+
+		String strBackBitrate = ProviderUtil.getValue(context,
+				Name.REC_BACK_BITRATE, "" + 1 * 1024 * 1024);
+		int intBackBitrate = Integer.parseInt(strBackBitrate);
+		switch (intBackBitrate) {
+		case 512 * 1024:
+			backBitrate05.setChecked(true);
+			break;
+
+		case 2 * 1024 * 1024:
+			backBitrate2.setChecked(true);
+			break;
+
+		case 3 * 1024 * 1024:
+			backBitrate3.setChecked(true);
+			break;
+
+		case 4 * 1024 * 1024:
+			backBitrate4.setChecked(true);
+			break;
+
+		case 1 * 1024 * 1024:
+		default:
+			backBitrate1.setChecked(true);
+			break;
+		}
+
+	}
+
+	class FrontRadioOnCheckedListener implements
+			android.widget.RadioGroup.OnCheckedChangeListener {
+
+		@Override
+		public void onCheckedChanged(RadioGroup group, int checkedId) {
+			switch (checkedId) {
+			case R.id.frontBitrate7:
+				saveFrontBitrate(7 * 1024 * 1024);
+				break;
+
+			case R.id.frontBitrate8:
+				saveFrontBitrate(8 * 1024 * 1024);
+				break;
+
+			case R.id.frontBitrate10:
+				saveFrontBitrate(10 * 1024 * 1024);
+				break;
+
+			case R.id.frontBitrate12:
+				saveFrontBitrate(12 * 1024 * 1024);
+				break;
+
+			case R.id.frontBitrate14:
+				saveFrontBitrate(14 * 1024 * 1024);
+				break;
+
+			case R.id.frontBitrate16:
+				saveFrontBitrate(16 * 1024 * 1024);
+				break;
+
+			default:
+				break;
+			}
+		}
+
+	}
+
+	private void saveFrontBitrate(int bitrate) {
+		ProviderUtil.setValue(context, Name.REC_FRONT_1080_BITRATE, "" + bitrate);
+	}
+
+	class BackRadioOnCheckedListener implements
+			android.widget.RadioGroup.OnCheckedChangeListener {
+
+		@Override
+		public void onCheckedChanged(RadioGroup group, int checkedId) {
+			switch (checkedId) {
+			case R.id.backBitrate05:
+				saveBackBitrate(512 * 1024);
+				break;
+
+			case R.id.backBitrate1:
+				saveBackBitrate(1 * 1024 * 1024);
+				break;
+
+			case R.id.backBitrate2:
+				saveBackBitrate(2 * 1024 * 1024);
+				break;
+
+			case R.id.backBitrate3:
+				saveBackBitrate(3 * 1024 * 1024);
+				break;
+
+			case R.id.backBitrate4:
+				saveBackBitrate(4 * 1024 * 1024);
+				break;
+
+			default:
+				break;
+			}
+		}
+
+	}
+
+	private void saveBackBitrate(int bitrate) {
+		ProviderUtil.setValue(context, Name.REC_BACK_BITRATE, "" + bitrate);
 	}
 
 	class MyOnClickListener implements View.OnClickListener {
@@ -193,17 +363,16 @@ public class MagicActivity extends Activity {
 				}
 				break;
 
-
 			case R.id.btnOpenCpuTemp:
 				startUvcBackCarService(true);
 				startUvcDaemonService(true);
 				break;
-				
+
 			case R.id.btnCloseCpuTemp:
 				startUvcBackCarService(false);
 				startUvcDaemonService(false);
 				break;
-				
+
 			default:
 				break;
 			}
@@ -211,39 +380,44 @@ public class MagicActivity extends Activity {
 		}
 
 	}
-	
+
 	/**
 	 * 温度节点读取服务
+	 * 
 	 * @param msg
 	 */
 	private void startUvcBackCarService(boolean open) {
-		try{
+		try {
 			Intent intent = new Intent();
-			ComponentName comp = new ComponentName("com.android.systemui", "com.android.systemui.UvcBackCarService");
+			ComponentName comp = new ComponentName("com.android.systemui",
+					"com.android.systemui.UvcBackCarService");
 			intent.setComponent(comp);
-			if(open)
+			if (open)
 				startService(intent);
 			else
 				stopService(intent);
-		}catch(Exception e){
-			
+		} catch (Exception e) {
+
 		}
 	}
+
 	/**
 	 * 温度节点监控服务
+	 * 
 	 * @param msg
 	 */
 	private void startUvcDaemonService(boolean open) {
-		try{
+		try {
 			Intent intent = new Intent();
-			ComponentName comp = new ComponentName("com.android.systemui", "com.android.systemui.UvcDaemonService");
+			ComponentName comp = new ComponentName("com.android.systemui",
+					"com.android.systemui.UvcDaemonService");
 			intent.setComponent(comp);
-			if(open)
+			if (open)
 				startService(intent);
 			else
 				stopService(intent);
-		}catch(Exception e){
-			
+		} catch (Exception e) {
+
 		}
 	}
 

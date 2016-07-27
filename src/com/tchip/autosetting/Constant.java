@@ -52,6 +52,8 @@ public interface Constant {
 		/** 进入MagicActivity的密码 */
 		public static final String MagicCode = "55555";
 
+		public static final String RecordCode = "99999";
+
 		/** 是否有APN设置 */
 		public static final boolean hasAPNSetting = false;
 
