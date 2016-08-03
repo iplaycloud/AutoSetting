@@ -39,14 +39,17 @@ public class MagicActivity extends Activity {
 	private Switch switchUVC;
 	private Switch switchAccOffWake;
 
-	private RadioButton frontBitrate7, frontBitrate8, frontBitrate10,
-			frontBitrate12, frontBitrate14, frontBitrate16;
+	private RadioButton frontBitrate6, frontBitrate7, frontBitrate8,
+			frontBitrate9, frontBitrate10, frontBitrate12;
 
 	private RadioButton backBitrate05, backBitrate1, backBitrate2,
 			backBitrate3, backBitrate4;
 
 	private EditText textInput;
 	private Button btnSet;
+
+	private final int M = 1024 * 1024;
+	private final int DEFAULT_BITRATE_FRONT = 6 * M;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -160,41 +163,40 @@ public class MagicActivity extends Activity {
 		RadioGroup frontBitrateGroup = (RadioGroup) findViewById(R.id.frontBitrateGroup);
 		frontBitrateGroup
 				.setOnCheckedChangeListener(new FrontRadioOnCheckedListener());
+		frontBitrate6 = (RadioButton) findViewById(R.id.frontBitrate6);
 		frontBitrate7 = (RadioButton) findViewById(R.id.frontBitrate7);
 		frontBitrate8 = (RadioButton) findViewById(R.id.frontBitrate8);
+		frontBitrate9 = (RadioButton) findViewById(R.id.frontBitrate9);
 		frontBitrate10 = (RadioButton) findViewById(R.id.frontBitrate10);
 		frontBitrate12 = (RadioButton) findViewById(R.id.frontBitrate12);
-		frontBitrate14 = (RadioButton) findViewById(R.id.frontBitrate14);
-		frontBitrate16 = (RadioButton) findViewById(R.id.frontBitrate16);
 
 		String strFrontBitrate = ProviderUtil.getValue(context,
-				Name.REC_FRONT_1080_BITRATE, "" + 7 * 1024 * 1024);
+				Name.REC_FRONT_1080_BITRATE, "" + DEFAULT_BITRATE_FRONT);
 		int intFrontBitrate = Integer.parseInt(strFrontBitrate);
 		switch (intFrontBitrate) {
+		case 7 * M:
+			frontBitrate7.setChecked(true);
+			break;
 
-		case 8 * 1024 * 1024:
+		case 8 * M:
 			frontBitrate8.setChecked(true);
 			break;
 
-		case 10 * 1024 * 1024:
+		case 9 * M:
+			frontBitrate9.setChecked(true);
+			break;
+
+		case 10 * M:
 			frontBitrate10.setChecked(true);
 			break;
 
-		case 12 * 1024 * 1024:
+		case 12 * M:
 			frontBitrate12.setChecked(true);
 			break;
 
-		case 14 * 1024 * 1024:
-			frontBitrate14.setChecked(true);
-			break;
-
-		case 16 * 1024 * 1024:
-			frontBitrate16.setChecked(true);
-			break;
-
-		case 7 * 1024 * 1024:
+		case DEFAULT_BITRATE_FRONT:
 		default:
-			frontBitrate7.setChecked(true);
+			frontBitrate6.setChecked(true);
 			break;
 		}
 
@@ -215,19 +217,19 @@ public class MagicActivity extends Activity {
 			backBitrate05.setChecked(true);
 			break;
 
-		case 2 * 1024 * 1024:
+		case 2 * M:
 			backBitrate2.setChecked(true);
 			break;
 
-		case 3 * 1024 * 1024:
+		case 3 * M:
 			backBitrate3.setChecked(true);
 			break;
 
-		case 4 * 1024 * 1024:
+		case 4 * M:
 			backBitrate4.setChecked(true);
 			break;
 
-		case 1 * 1024 * 1024:
+		case 1 * M:
 		default:
 			backBitrate1.setChecked(true);
 			break;
@@ -241,28 +243,28 @@ public class MagicActivity extends Activity {
 		@Override
 		public void onCheckedChanged(RadioGroup group, int checkedId) {
 			switch (checkedId) {
+			case R.id.frontBitrate6:
+				saveFrontBitrate(6 * M);
+				break;
+
 			case R.id.frontBitrate7:
-				saveFrontBitrate(7 * 1024 * 1024);
+				saveFrontBitrate(7 * M);
 				break;
 
 			case R.id.frontBitrate8:
-				saveFrontBitrate(8 * 1024 * 1024);
+				saveFrontBitrate(8 * M);
+				break;
+
+			case R.id.frontBitrate9:
+				saveFrontBitrate(9 * M);
 				break;
 
 			case R.id.frontBitrate10:
-				saveFrontBitrate(10 * 1024 * 1024);
+				saveFrontBitrate(10 * M);
 				break;
 
 			case R.id.frontBitrate12:
-				saveFrontBitrate(12 * 1024 * 1024);
-				break;
-
-			case R.id.frontBitrate14:
-				saveFrontBitrate(14 * 1024 * 1024);
-				break;
-
-			case R.id.frontBitrate16:
-				saveFrontBitrate(16 * 1024 * 1024);
+				saveFrontBitrate(12 * M);
 				break;
 
 			default:
@@ -273,7 +275,8 @@ public class MagicActivity extends Activity {
 	}
 
 	private void saveFrontBitrate(int bitrate) {
-		ProviderUtil.setValue(context, Name.REC_FRONT_1080_BITRATE, "" + bitrate);
+		ProviderUtil.setValue(context, Name.REC_FRONT_1080_BITRATE, ""
+				+ bitrate);
 	}
 
 	class BackRadioOnCheckedListener implements
@@ -287,19 +290,19 @@ public class MagicActivity extends Activity {
 				break;
 
 			case R.id.backBitrate1:
-				saveBackBitrate(1 * 1024 * 1024);
+				saveBackBitrate(1 * M);
 				break;
 
 			case R.id.backBitrate2:
-				saveBackBitrate(2 * 1024 * 1024);
+				saveBackBitrate(2 * M);
 				break;
 
 			case R.id.backBitrate3:
-				saveBackBitrate(3 * 1024 * 1024);
+				saveBackBitrate(3 * M);
 				break;
 
 			case R.id.backBitrate4:
-				saveBackBitrate(4 * 1024 * 1024);
+				saveBackBitrate(4 * M);
 				break;
 
 			default:

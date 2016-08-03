@@ -26,17 +26,17 @@ public interface Constant {
 	public static final class Setting {
 
 		/** 最大亮度 */
-		public static final int MAX_BRIGHTNESS = 230; // 255;
+		public static final int MAX_BRIGHTNESS = 190; // 255;
 
 		/** 默认亮度 */
-		public static final int DEFAULT_BRIGHTNESS = 180;
+		public static final int DEFAULT_BRIGHTNESS = 190;
 
 		/** Camera自动调节亮度是否打开 */
 		public static final boolean AUTO_BRIGHT_DEFAULT_ON = false;
 
-		public static final int SCREEN_OFF_30S = 30 * 000;
+		public static final int SCREEN_OFF_30S = 30 * 1000;
 
-		public static final int SCREEN_OFF_1M = 60 * 000;
+		public static final int SCREEN_OFF_1M = 60 * 1000;
 
 		public static final int SCREEN_OFF_2M = 2 * SCREEN_OFF_1M;
 

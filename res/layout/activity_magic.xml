@@ -228,6 +228,15 @@
             android:orientation="horizontal" >
 
             <RadioButton
+                android:id="@+id/frontBitrate6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/setting_system_bright_radio_margin"
+                android:text="@string/magic_record_bitrate_6m"
+                android:textColor="@color/display_item_text_color"
+                android:textSize="@dimen/setting_system_bright_text_size" />
+
+            <RadioButton
                 android:id="@+id/frontBitrate7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -246,6 +255,15 @@
                 android:textSize="@dimen/setting_system_bright_text_size" />
 
             <RadioButton
+                android:id="@+id/frontBitrate9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/setting_system_bright_radio_margin"
+                android:text="@string/magic_record_bitrate_9m"
+                android:textColor="@color/display_item_text_color"
+                android:textSize="@dimen/setting_system_bright_text_size" />
+
+            <RadioButton
                 android:id="@+id/frontBitrate10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -260,23 +278,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/setting_system_bright_radio_margin"
                 android:text="@string/magic_record_bitrate_12m"
-                android:textColor="@color/display_item_text_color"
-                android:textSize="@dimen/setting_system_bright_text_size" />
-
-            <RadioButton
-                android:id="@+id/frontBitrate14"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/setting_system_bright_radio_margin"
-                android:text="@string/magic_record_bitrate_14m"
-                android:textColor="@color/display_item_text_color"
-                android:textSize="@dimen/setting_system_bright_text_size" />
-
-            <RadioButton
-                android:id="@+id/frontBitrate16"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/magic_record_bitrate_16m"
                 android:textColor="@color/display_item_text_color"
                 android:textSize="@dimen/setting_system_bright_text_size" />
         </RadioGroup>
