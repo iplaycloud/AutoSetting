@@ -4,7 +4,7 @@
     package="com.tchip.autosetting"
     android:sharedUserId="android.uid.system"
     android:versionCode="1"
-    android:versionName="2016.08.03-17:00" >
+    android:versionName="2016.08.04-12:00" >
 
     <uses-sdk
         android:minSdkVersion="21"
@@ -48,6 +48,7 @@
     <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
 
     <application
+        android:name="com.tchip.autosetting.MyApp"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
