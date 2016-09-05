@@ -38,11 +38,11 @@ public class SettingSystemVolumeActivity extends Activity {
 
 			@Override
 			public void onStopTrackingTouch(SeekBar seekBar) {
+				audioManager.setStreamMute(AudioManager.STREAM_MUSIC, false);
 				audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
 						seekBar.getProgress(), 0);
 				audioManager.setStreamVolume(AudioManager.STREAM_ALARM,
 						seekBar.getProgress(), 0);
-
 			}
 
 			@Override
@@ -54,6 +54,7 @@ public class SettingSystemVolumeActivity extends Activity {
 			public void onProgressChanged(SeekBar seekBar, int progress,
 					boolean fromUser) {
 				secondCount = 1;
+				audioManager.setStreamMute(AudioManager.STREAM_MUSIC, false);
 				audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
 						progress, 0);
 				audioManager.setStreamVolume(AudioManager.STREAM_ALARM,
