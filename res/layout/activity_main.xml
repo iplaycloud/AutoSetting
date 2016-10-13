@@ -182,15 +182,6 @@
                             android:text="@string/title_wifi"
                             android:textColor="@color/setting_item_title_color"
                             android:textSize="@dimen/item_title_text_size" />
-
-                        <Switch
-                            android:id="@+id/switchWifi"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="@dimen/item_switch_margin_right"
-                            android:visibility="gone" />
                     </RelativeLayout>
                 </RelativeLayout>
 

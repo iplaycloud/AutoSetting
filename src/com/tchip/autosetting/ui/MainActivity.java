@@ -27,9 +27,7 @@ import android.widget.Switch;
 public class MainActivity extends Activity {
 
 	private Context context;
-	private Switch switchWifi, switchParking;
-
-	private WifiManager wifiManager;
+	private Switch switchParking;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -104,21 +102,6 @@ public class MainActivity extends Activity {
 		itemAbout.setOnClickListener(myOnClickListener);
 
 		// Below is OLD
-		// Wi-Fi
-		switchWifi = (Switch) findViewById(R.id.switchWifi);
-		wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
-		switchWifi.setChecked(wifiManager.isWifiEnabled());
-
-		switchWifi.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-			@Override
-			public void onCheckedChanged(CompoundButton buttonView,
-					boolean isChecked) {
-				if (isChecked != wifiManager.isWifiEnabled()) {
-					wifiManager.setWifiEnabled(isChecked);
-				}
-			}
-		});
 
 		// 停车侦测开关
 		switchParking = (Switch) findViewById(R.id.switchParking);
