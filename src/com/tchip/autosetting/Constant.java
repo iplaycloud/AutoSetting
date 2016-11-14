@@ -56,7 +56,11 @@ public interface Constant {
 
 		/** 是否有APN设置 */
 		public static final boolean hasAPNSetting = false;
-
+		
+		/**
+		 * 是否有自动调节亮度功能
+		 */
+		public static final boolean hasAutoLight = true;
 	}
 
 	public static final class GravitySensor {

@@ -40,6 +40,7 @@ public class SettingSystemDisplayActivity extends Activity {
 	private Switch switchAutolight;
 	private SeekBar brightSeekBar;
 	private RelativeLayout layoutSeekBar;
+	private RelativeLayout layoutAutoLight;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +86,12 @@ public class SettingSystemDisplayActivity extends Activity {
 
 		// 屏幕关闭RadioGroup
 		iniRadioGroup();
+
+		layoutAutoLight = (RelativeLayout) findViewById(R.id.layoutAutoLight);
+		layoutAutoLight
+				.setVisibility(Constant.Module.hasAutoLight ? View.VISIBLE
+						: View.GONE);
+
 		boolean isAutoLightSwitchOn = isAutoLightSwitchOn();
 		layoutSeekBar = (RelativeLayout) findViewById(R.id.layoutSeekBar);
 		hideOrShowSeekBarLayout(isAutoLightSwitchOn);
