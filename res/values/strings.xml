@@ -61,6 +61,7 @@
     <string name="magic_developer_option">开发者选项</string>
     <string name="magic_application">应用</string>
     <string name="magic_system_camera">系统相机</string>
+    <string name="magic_open_img_sensor">录像调节</string>
     <string name="magic_open_cpu_temp">打开温度检测</string>
     <string name="magic_close_cpu_temp">关闭温度检测</string>
     <string name="magic_fm_off">FM关闭</string>
@@ -86,5 +87,15 @@
     <string name="magic_record_bitrate_3m">3M</string>
     <string name="magic_record_bitrate_4m">4M</string>
     <string name="set_success_reboot">(设置后重启生效)</string>
+
+    <!-- ImageSensorModify -->
+    <string name="image_sensor_light_day">亮度(白天)</string>
+    <string name="image_sensor_light_night">亮度(晚上)</string>
+    <string name="image_sensor_light_night2">亮度(晚上2)</string>
+    <string name="image_sensor_contrast_day">对比度(白天)</string>
+    <string name="image_sensor_contrast_night">对比度(晚上)</string>
+    <string name="image_sensor_saturation">饱和度</string>
+    <string name="image_sensor_set">设置</string>
+    <string name="image_sensor_0_255">请输入0-255</string>
 
 </resources>

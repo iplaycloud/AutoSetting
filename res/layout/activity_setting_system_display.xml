@@ -73,6 +73,8 @@
         android:orientation="vertical" >
 
         <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/layoutAutoLight"
             android:layout_width="match_parent"
             android:layout_height="@dimen/setting_system_bright_item_height"
             android:layout_margin="5dp" >

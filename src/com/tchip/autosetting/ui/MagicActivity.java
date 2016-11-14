@@ -47,6 +47,7 @@ public class MagicActivity extends Activity {
 
 	private EditText textInput;
 	private Button btnSet;
+	private Button btnOpenImageSensor;
 
 	private final int M = 1024 * 1024;
 	private final int DEFAULT_BITRATE_FRONT = 6 * M;
@@ -134,6 +135,9 @@ public class MagicActivity extends Activity {
 				});
 
 		// Row 3
+		btnOpenImageSensor = (Button) findViewById(R.id.btnOpenImageSensor);
+		btnOpenImageSensor.setOnClickListener(myOnClickListener);
+
 		switchFM = (Switch) findViewById(R.id.switchFM);
 		switchFM.setChecked(SettingUtil.isFMEnable());
 		switchFM.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -349,6 +353,12 @@ public class MagicActivity extends Activity {
 
 			case R.id.btnApplication:
 				OpenUtil.openModule(MagicActivity.this, MODULE_TYPE.APP);
+				break;
+
+			case R.id.btnOpenImageSensor:
+				Intent intentImageSensor = new Intent(MagicActivity.this,
+						ImageSensorModifyActivity.class);
+				startActivity(intentImageSensor);
 				break;
 
 			case R.id.btnCamera:
