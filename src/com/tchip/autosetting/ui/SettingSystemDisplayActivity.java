@@ -1,6 +1,9 @@
 package com.tchip.autosetting.ui;
 
+import java.util.Calendar;
+
 import com.tchip.autosetting.Constant;
+import com.tchip.autosetting.Constant.Setting;
 import com.tchip.autosetting.R;
 import com.tchip.autosetting.util.MyLog;
 import com.tchip.autosetting.util.ProviderUtil;
@@ -110,9 +113,25 @@ public class SettingSystemDisplayActivity extends Activity {
 										: "0");
 						hideOrShowSeekBarLayout(isChecked);
 
-						SettingUtil.setAutoLight(isChecked);
-
-						if (!isChecked) { // 关闭自动亮度调节，重设亮度值
+						if (isChecked) {
+							Calendar calendar = Calendar.getInstance(); // 获取时间
+							int hour = calendar.get(Calendar.HOUR_OF_DAY);
+							if (hour >= 6 && hour < 18) {
+								SettingUtil.setBrightness(
+										getApplicationContext(),
+										Setting.AUTO_BRIGHT_DAY - 1);
+								SettingUtil.setBrightness(
+										getApplicationContext(),
+										Setting.AUTO_BRIGHT_DAY);
+							} else {
+								SettingUtil.setBrightness(
+										getApplicationContext(),
+										Setting.AUTO_BRIGHT_NIGHT + 1);
+								SettingUtil.setBrightness(
+										getApplicationContext(),
+										Setting.AUTO_BRIGHT_DAY);
+							}
+						} else { // 关闭自动亮度调节，重设亮度值
 							int manulLightValue = sharedPreferences.getInt(
 									"manulLightValue",
 									Constant.Setting.DEFAULT_BRIGHTNESS);

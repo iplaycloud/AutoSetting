@@ -1,7 +1,10 @@
 package com.tchip.autosetting.ui;
 
+import java.util.Calendar;
+
 import com.tchip.autosetting.Constant;
 import com.tchip.autosetting.R;
+import com.tchip.autosetting.Constant.Setting;
 import com.tchip.autosetting.util.HintUtil;
 import com.tchip.autosetting.util.MyLog;
 import com.tchip.autosetting.util.OpenUtil;
@@ -263,7 +266,7 @@ public class QuickSettingActivity extends Activity {
 					if ("1".equals(strAutoLight)) {
 						ProviderUtil.setValue(context,
 								Name.SET_AUTO_LIGHT_STATE, "0");
-						SettingUtil.setAutoLight(false);
+						// SettingUtil.setAutoLight(false);
 						seekBarBright.setEnabled(true);
 						imageBrightness.setImageDrawable(getResources()
 								.getDrawable(
@@ -285,7 +288,21 @@ public class QuickSettingActivity extends Activity {
 					} else {
 						ProviderUtil.setValue(context,
 								Name.SET_AUTO_LIGHT_STATE, "1");
-						SettingUtil.setAutoLight(true);
+						// SettingUtil.setAutoLight(true);
+						Calendar calendar = Calendar.getInstance(); // 获取时间
+						int hour = calendar.get(Calendar.HOUR_OF_DAY);
+						if (hour >= 6 && hour < 18) {
+							SettingUtil.setBrightness(getApplicationContext(),
+									Setting.AUTO_BRIGHT_DAY - 1);
+							SettingUtil.setBrightness(getApplicationContext(),
+									Setting.AUTO_BRIGHT_DAY);
+						} else {
+							SettingUtil.setBrightness(getApplicationContext(),
+									Setting.AUTO_BRIGHT_NIGHT + 1);
+							SettingUtil.setBrightness(getApplicationContext(),
+									Setting.AUTO_BRIGHT_DAY);
+						}
+
 						seekBarBright.setEnabled(false);
 						imageBrightness
 								.setImageDrawable(getResources()

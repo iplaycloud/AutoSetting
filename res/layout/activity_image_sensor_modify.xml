@@ -10,129 +10,146 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         android:orientation="horizontal" >
 
-        <LinearLayout
+        <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:orientation="horizontal" >
+            android:layout_weight="2"
+            android:text="@string/image_sensor_light_day" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/image_sensor_light_day" />
-
-            <EditText
-                android:id="@+id/editLightDay"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:imeOptions="actionDone"
-                android:inputType="number"
-                android:paddingLeft="5dp" />
-        </LinearLayout>
-
-        <LinearLayout
+        <SeekBar
+            android:id="@+id/seekBarLightDay"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:orientation="horizontal" >
+            android:layout_marginRight="5dp"
+            android:layout_weight="8"
+            android:max="255"
+            android:paddingLeft="5dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/image_sensor_light_night" />
-
-            <EditText
-                android:id="@+id/editLightNight"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:imeOptions="actionDone"
-                android:inputType="number"
-                android:paddingLeft="5dp" />
-        </LinearLayout>
-
-        <LinearLayout
+        <TextView
+            android:id="@+id/textLightDay"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:orientation="horizontal" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:text="@string/image_sensor_light_night2" />
-
-            <EditText
-                android:id="@+id/editLightNight2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:imeOptions="actionDone"
-                android:inputType="number"
-                android:paddingLeft="5dp" />
-        </LinearLayout>
+            android:layout_weight="1" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         android:orientation="horizontal" >
 
-        <LinearLayout
+        <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:orientation="horizontal" >
+            android:layout_weight="2"
+            android:text="@string/image_sensor_light_night" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/image_sensor_contrast_day" />
-
-            <EditText
-                android:id="@+id/editContrastDay"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:imeOptions="actionDone"
-                android:inputType="number"
-                android:paddingLeft="5dp" />
-        </LinearLayout>
-
-        <LinearLayout
+        <SeekBar
+            android:id="@+id/seekBarLightNight"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:orientation="horizontal" >
+            android:layout_marginRight="5dp"
+            android:layout_weight="8"
+            android:max="255"
+            android:paddingLeft="5dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/image_sensor_contrast_night" />
-
-            <EditText
-                android:id="@+id/editContrastNight"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:imeOptions="actionDone"
-                android:inputType="number"
-                android:paddingLeft="5dp" />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/textLightNight"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btnApply"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        android:text="@string/image_sensor_set" />
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="@string/image_sensor_light_night2" />
+
+        <SeekBar
+            android:id="@+id/seekBarLightNight2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="8"
+            android:max="255"
+            android:paddingLeft="5dp" />
+
+        <TextView
+            android:id="@+id/textLightNight2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="@string/image_sensor_contrast_day" />
+
+        <SeekBar
+            android:id="@+id/seekBarContrastDay"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="8"
+            android:max="255"
+            android:paddingLeft="5dp" />
+
+        <TextView
+            android:id="@+id/textContrastDay"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="@string/image_sensor_contrast_night" />
+
+        <SeekBar
+            android:id="@+id/seekBarContrastNight"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="8"
+            android:max="255"
+            android:paddingLeft="5dp" />
+
+        <TextView
+            android:id="@+id/textContrastNight"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
 
 </LinearLayout>

@@ -172,8 +172,7 @@
                     android:layout_height="wrap_content"
                     android:checked="false"
                     android:textOff="@string/magic_usb_mode"
-                    android:textOn="@string/magic_uvc_mode"
-                    android:visibility="gone" />
+                    android:textOn="@string/magic_uvc_mode" />
 
                 <EditText
                     android:id="@+id/textInput"

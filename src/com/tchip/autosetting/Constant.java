@@ -30,6 +30,12 @@ public interface Constant {
 
 		/** 默认亮度 */
 		public static final int DEFAULT_BRIGHTNESS = 190;
+		
+		/** 根据时间自动调节亮度-白天 */
+		public static final int AUTO_BRIGHT_DAY = 180;
+		
+		/** 根据时间自动调节亮度-晚上 */
+		public static final int AUTO_BRIGHT_NIGHT = 32;
 
 		/** Camera自动调节亮度是否打开 */
 		public static final boolean AUTO_BRIGHT_DEFAULT_ON = false;

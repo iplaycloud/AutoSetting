@@ -78,7 +78,7 @@ public class ProviderUtil {
 		/** 电子狗电源状态:0,1 */
 		public static final String EDOG_POWER_STATE = "edog_power_state";
 
-		/** 自动亮度开关:0,1 */
+		/** 自动亮度开关:0,1[根据时间调整亮度开关] */
 		public static final String SET_AUTO_LIGHT_STATE = "set_auto_light_state";
 
 		/** 碰撞侦测开关:0,1 */

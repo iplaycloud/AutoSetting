@@ -305,14 +305,14 @@ public class SettingUtil {
 	public static File fileAutoLightSwitch = new File(
 			Constant.Path.NODE_PARK_MONITOR);
 
-	public static void setAutoLight(boolean enable) {
-		if (enable) {
-			SaveFileToNode(fileAutoLightSwitch, "1");
-		} else {
-			SaveFileToNode(fileAutoLightSwitch, "0");
-		}
-		MyLog.v("[SettingUtil]setAutoLight:" + enable);
-	}
+	// public static void setAutoLight(boolean enable) {
+	// if (enable) {
+	// SaveFileToNode(fileAutoLightSwitch, "1");
+	// } else {
+	// SaveFileToNode(fileAutoLightSwitch, "0");
+	// }
+	// MyLog.v("[SettingUtil]setAutoLight:" + enable);
+	// }
 
 	public static File fileAccOffWake = new File(Constant.Path.NODE_ACC_STATUS);
 

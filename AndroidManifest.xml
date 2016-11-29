@@ -4,7 +4,7 @@
     package="com.tchip.autosetting"
     android:sharedUserId="android.uid.system"
     android:versionCode="1"
-    android:versionName="2016.11.02-15:00" >
+    android:versionName="2016.11.29-15:30" >
 
     <uses-sdk
         android:minSdkVersion="21"
@@ -72,7 +72,9 @@
         <activity android:name="com.tchip.autosetting.ui.MagicActivity" />
         <activity android:name="com.tchip.autosetting.ui.SettingGravityActivity" />
         <activity android:name="com.tchip.autosetting.ui.SettingSystemDisplayActivity" />
-        <activity android:name="com.tchip.autosetting.ui.ImageSensorModifyActivity" />
+        <activity
+            android:name="com.tchip.autosetting.ui.ImageSensorModifyActivity"
+            android:exported="true" />
         <activity
             android:name="com.tchip.autosetting.ui.SettingSystemVolumeActivity"
             android:theme="@style/ThemeVolumeDialog" />
