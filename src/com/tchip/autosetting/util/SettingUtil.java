@@ -118,19 +118,23 @@ public class SettingUtil {
 	 * 
 	 * @param brightness
 	 */
-	public static void setBrightness(Context context, int brightness) {
+	public static void setBrightness(Context context, int brightness,
+			boolean saveLightAsManul) {
 		if (brightness <= Constant.Setting.MAX_BRIGHTNESS && brightness > -1) {
 			boolean setSuccess = Settings.System.putInt(
 					context.getContentResolver(),
 					Settings.System.SCREEN_BRIGHTNESS, brightness);
 			MyLog.v("SettingUtil.setBrightness: " + brightness + ", "
-					+ setSuccess);
+					+ setSuccess + ",saveLightAsManul:" + saveLightAsManul);
 
-			SharedPreferences sharedPreferences = context.getSharedPreferences(
-					Constant.MySP.NAME, Context.MODE_PRIVATE);
-			Editor editor = sharedPreferences.edit();
-			editor.putInt(Constant.MySP.STR_MANUL_LIGHT_VALUE, brightness);
-			editor.commit();
+			if (saveLightAsManul) {
+				SharedPreferences sharedPreferences = context
+						.getSharedPreferences(Constant.MySP.NAME,
+								Context.MODE_PRIVATE);
+				Editor editor = sharedPreferences.edit();
+				editor.putInt(Constant.MySP.STR_MANUL_LIGHT_VALUE, brightness);
+				editor.commit();
+			}
 		}
 	}
 

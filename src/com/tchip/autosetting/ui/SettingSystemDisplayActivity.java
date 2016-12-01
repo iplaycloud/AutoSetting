@@ -72,7 +72,7 @@ public class SettingSystemDisplayActivity extends Activity {
 
 			@Override
 			public void onStopTrackingTouch(SeekBar seekBar) {
-				SettingUtil.setBrightness(context, seekBar.getProgress());
+				SettingUtil.setBrightness(context, seekBar.getProgress(), true);
 			}
 
 			@Override
@@ -83,7 +83,7 @@ public class SettingSystemDisplayActivity extends Activity {
 			@Override
 			public void onProgressChanged(SeekBar seekBar, int progress,
 					boolean fromUser) {
-				SettingUtil.setBrightness(context, progress);
+				SettingUtil.setBrightness(context, progress, true);
 			}
 		});
 
@@ -119,17 +119,17 @@ public class SettingSystemDisplayActivity extends Activity {
 							if (hour >= 6 && hour < 18) {
 								SettingUtil.setBrightness(
 										getApplicationContext(),
-										Setting.AUTO_BRIGHT_DAY - 1);
+										Setting.AUTO_BRIGHT_DAY - 1, false);
 								SettingUtil.setBrightness(
 										getApplicationContext(),
-										Setting.AUTO_BRIGHT_DAY);
+										Setting.AUTO_BRIGHT_DAY, false);
 							} else {
 								SettingUtil.setBrightness(
 										getApplicationContext(),
-										Setting.AUTO_BRIGHT_NIGHT + 1);
+										Setting.AUTO_BRIGHT_NIGHT + 1, false);
 								SettingUtil.setBrightness(
 										getApplicationContext(),
-										Setting.AUTO_BRIGHT_DAY);
+										Setting.AUTO_BRIGHT_NIGHT, false);
 							}
 						} else { // 关闭自动亮度调节，重设亮度值
 							int manulLightValue = sharedPreferences.getInt(
@@ -138,13 +138,13 @@ public class SettingSystemDisplayActivity extends Activity {
 							MyLog.v("SettingSystemDisplay.manulLightValue:"
 									+ manulLightValue);
 							SettingUtil.setBrightness(getApplicationContext(),
-									manulLightValue - 1);
+									manulLightValue - 1, true);
 
 							SettingUtil.setBrightness(getApplicationContext(),
-									manulLightValue + 1);
+									manulLightValue + 1, true);
 
 							SettingUtil.setBrightness(getApplicationContext(),
-									manulLightValue);
+									manulLightValue, true);
 						}
 					}
 				});

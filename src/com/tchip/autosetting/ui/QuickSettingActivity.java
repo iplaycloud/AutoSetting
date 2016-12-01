@@ -104,7 +104,7 @@ public class QuickSettingActivity extends Activity {
 
 			@Override
 			public void onStopTrackingTouch(SeekBar seekBar) {
-				SettingUtil.setBrightness(context, seekBar.getProgress());
+				SettingUtil.setBrightness(context, seekBar.getProgress(), true);
 			}
 
 			@Override
@@ -116,7 +116,7 @@ public class QuickSettingActivity extends Activity {
 			public void onProgressChanged(SeekBar seekBar, int progress,
 					boolean fromUser) {
 				secondCount = 1;
-				SettingUtil.setBrightness(context, progress);
+				SettingUtil.setBrightness(context, progress, true);
 			}
 		});
 
@@ -278,13 +278,13 @@ public class QuickSettingActivity extends Activity {
 								"manulLightValue",
 								Constant.Setting.DEFAULT_BRIGHTNESS);
 						SettingUtil.setBrightness(getApplicationContext(),
-								manulLightValue - 1);
+								manulLightValue - 1, true);
 
 						SettingUtil.setBrightness(getApplicationContext(),
-								manulLightValue + 1);
+								manulLightValue + 1, true);
 
 						SettingUtil.setBrightness(getApplicationContext(),
-								manulLightValue);
+								manulLightValue, true);
 					} else {
 						ProviderUtil.setValue(context,
 								Name.SET_AUTO_LIGHT_STATE, "1");
@@ -293,14 +293,14 @@ public class QuickSettingActivity extends Activity {
 						int hour = calendar.get(Calendar.HOUR_OF_DAY);
 						if (hour >= 6 && hour < 18) {
 							SettingUtil.setBrightness(getApplicationContext(),
-									Setting.AUTO_BRIGHT_DAY - 1);
+									Setting.AUTO_BRIGHT_DAY - 1, false);
 							SettingUtil.setBrightness(getApplicationContext(),
-									Setting.AUTO_BRIGHT_DAY);
+									Setting.AUTO_BRIGHT_DAY, false);
 						} else {
 							SettingUtil.setBrightness(getApplicationContext(),
-									Setting.AUTO_BRIGHT_NIGHT + 1);
+									Setting.AUTO_BRIGHT_NIGHT + 1, false);
 							SettingUtil.setBrightness(getApplicationContext(),
-									Setting.AUTO_BRIGHT_DAY);
+									Setting.AUTO_BRIGHT_NIGHT, false);
 						}
 
 						seekBarBright.setEnabled(false);
